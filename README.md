@@ -1,5 +1,6 @@
 This is TakeStock! Proudly brought to you by Farah, Ambery, Casey and Elliott (FACE-co)
 
+
 This app has been completed with the following:
 Front-end: HTML, SCSS, Javascript and Tailwind CSS
 Back-end: Ruby on Rails, RESTful APIs
