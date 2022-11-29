@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get "stocks/:ticker", to: "stocks#show"
+  # get "stocks/:ticker", to: "stocks#show"
 
   resources :portfolios, only: [:show, :create, :update, :destroy]
 
@@ -22,5 +22,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :portfolio_stocks, only: [:create, :update, :destroy]
+  resources :portfolio_stocks, only: [:create, :destroy]
 end
