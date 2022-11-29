@@ -1,6 +1,6 @@
 class StocksController < ApplicationController
   def show
-    @portfolios = Portfolio.find(user_id: current_user.id)
+    @portfolios = Portfolio.where(user_id: current_user.id)
     @stock = Stock.friendly.find(params[:id])
   end
 

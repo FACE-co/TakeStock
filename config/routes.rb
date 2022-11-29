@@ -14,7 +14,10 @@ Rails.application.routes.draw do
 
   # get "stocks/:ticker", to: "stocks#show"
 
-  resources :portfolios, only: [:show, :create, :update, :destroy]
+  resources :portfolios, only: [:show, :create, :update, :destroy] do
+    # nested bec
+    resources :portfolio_stocks, only: [:create]
+  end
 
   resources :stocks, only: [:show, :create, :update, :destroy] do
     collection do
@@ -22,5 +25,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :portfolio_stocks, only: [:create, :destroy]
+  # only need id of portfolio_stock to destroy (So we don't nest this route)
+  resources :portfolio_stocks, only: [:destroy]
 end
