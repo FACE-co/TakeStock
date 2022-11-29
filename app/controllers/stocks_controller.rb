@@ -1,5 +1,6 @@
 class StocksController < ApplicationController
   def show
+    @stock = Stock.friendly.find(params[:id])
   end
 
   def create
