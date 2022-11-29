@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
   def show
+    @portfolios = Portfolio.where(user: current_user)
   end
 
   def basic_info
