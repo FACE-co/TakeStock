@@ -1,16 +1,28 @@
-"/stocks/:id" "stocks#show"
 
-http://localhost:3000/stocks/1
-<%# <%= @portfolios = current_user.portfolios %>
-<%# <%= turbo_frame_tag dom_id(@stock) do %>
-  <%# <%= render "list", portfolios: @portfolios %>
-  <%# <%= link_to portfolios_path(current_user) do %>
-    <%# <i class="fa-regular fa-plus"></i>
-  <% end %>
-<%# <% end %> %> %> %> %> %> %>
-add this stock
-its working
 
+<div data-controller="dropdown" class="relative">
+  <button type="button" data-action="dropdown#toggle click@window->dropdown#hide">
+<i class="fa-regular fa-plus"></i>
+</button>
+
+  <div
+    data-dropdown-target="menu"
+    class="hidden transition transform origin-top-right absolute left-0"
+    data-transition-enter-from="opacity-0 scale-95"
+    data-transition-enter-to="opacity-100 scale-100"
+    data-transition-leave-from="opacity-100 scale-100"
+    data-transition-leave-to="opacity-0 scale-95"
+  >
+    <% @portfolios.each do |portfolio| %>
+    <li>
+      <%= link_to "+ #{portfolio.name}",
+        portfolio_portfolio_stocks_path(portfolio, stock_id: @stock.id),
+        data: { turbo_method: :post, turbo_confirm: "Are you sure to add this new stock?" },
+        data_action:"dropdown#toggle" %>
+    </li>
+    <% end %>
+  </div>
+</div>
 
 <%# <%= @stock.ticker %>
 <%# <%= @stock.id %> %> %>
@@ -20,3 +32,4 @@ its working
 
 <%= @stock.name %>
 <%= @stock.slug %>
+

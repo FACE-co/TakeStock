@@ -2,8 +2,8 @@ class PortfolioStocksController < ApplicationController
   def create
     @portfolio = Portfolio.find(params[:portfolio_id])
     @stock = Stock.find(params[:stock_id])
-    @portfolio_stock = PortfolioStock.new(ps_params)
-    @portfolio_stock.stock = @stock
+    @portfolio_stock = PortfolioStock.new
+    @portfolio_stock.stock_id = @stock.id
     @portfolio_stock.portfolio = @portfolio
     # save
     if @portfolio_stock.save
@@ -22,6 +22,6 @@ class PortfolioStocksController < ApplicationController
   private
 
   def ps_params
-    params.require(:portfolio_stock).permit(:portfolio_id, :stock_id)
+    params.require(:portfolio_stock).permit(:portfolio, :portfolio_id, :stock, :stock_id)
   end
 end
