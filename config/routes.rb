@@ -22,5 +22,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :portfolio_stocks, only: [:create, :update, :destroy]
+  resources :portfolio_stocks, only: [:create, :destroy]
 end
