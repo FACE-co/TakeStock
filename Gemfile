@@ -59,6 +59,9 @@ group :development, :test do
 
 end
 
+# to change url from id to ticker
+gem 'friendly_id', '~> 5.4.0'
+
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
