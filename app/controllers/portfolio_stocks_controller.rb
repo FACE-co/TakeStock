@@ -8,7 +8,7 @@ class PortfolioStocksController < ApplicationController
     # save
     if @portfolio_stock.save
       # redirect if successful
-      redirect_to root_path, notice: "Successfully created task", status: :see_other
+      redirect_to stock_path(@stock), notice: "Successfully added this stock", status: :see_other
     else
       # render new again if not
       render :new, status: :unprocessable_entity
