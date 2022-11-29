@@ -1,5 +1,4 @@
 class StocksController < ApplicationController
-  APIKEY = "5e7415e46d13ac15a2d4ad0bc1ecb028044b31742dc8eb02630eaee45b3e04b7"
   def show
     @stock = Stock.friendly.find(params[:id])
     @new_stock = Stock.new
@@ -11,16 +10,24 @@ class StocksController < ApplicationController
     if @new_stock.save
       redirect_to stock_path(@new_stock)
     else
-      redirect_to root_path, notice: "Can't save duplicate stock"
+      redirect_to root_path, notice: "Can't create duplicate stock"
     end
   end
 
   # /stocks/:id(.:format)
   def update
+    @stock = Stock.friendly.find(params[:id])
+    if @stock.update(call_ticker_api(stock_params))
+      redirect_to stock_path(@stock)
+    else
+      redirect_to root_path, notice: "Can't update"
+    end
   end
 
   # /stocks/:id(.:format)
   def destroy
+    @stock = Stock.friendly.find(params[:id])
+    @stock.destroy
   end
 
   # /stocks/trending(.:format)
@@ -32,7 +39,7 @@ class StocksController < ApplicationController
   end
 
   def call_ticker_api(stock_params)
-    query = "https://api.sec-api.io/mapping/ticker/#{stock_params[:ticker]}?token=#{APIKEY}"
+    query = "https://api.sec-api.io/mapping/ticker/#{stock_params[:ticker]}?token=#{ENV['SEC_API_KEY']}"
     stock_serialized = URI.open(query).read
     stock_info = JSON.parse(stock_serialized).first
     stock_info["api_id"] = stock_info.delete("id")
