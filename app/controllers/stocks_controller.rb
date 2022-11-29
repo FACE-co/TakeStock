@@ -1,7 +1,7 @@
 class StocksController < ApplicationController
   APIKEY = "5e7415e46d13ac15a2d4ad0bc1ecb028044b31742dc8eb02630eaee45b3e04b7"
   def show
-    @portfolios = Portfolio.find(user_id: current_user.id)
+    @portfolios = Portfolio.where(user_id: current_user.id)
     @stock = Stock.friendly.find(params[:id])
     @new_stock = Stock.new
   end
@@ -27,6 +27,8 @@ class StocksController < ApplicationController
   # /stocks/trending(.:format)
   def trending
   end
+
+  private
 
   def stock_params
     params.require(:stock).permit(:ticker)
