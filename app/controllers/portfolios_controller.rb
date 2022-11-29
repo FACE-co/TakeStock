@@ -17,10 +17,18 @@ class PortfoliosController < ApplicationController
   end
 
   def update
-
+    @portfolio = Portfolio.find(params[:id])
+    if @Portfolio.update(portfolio_params)
+      redirect_to root_path, notice: "Portfolio name was successfully updated."
+    else
+      render root_path, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    @portfolio = Portfolio.find(params[:id])
+    @portfolio.destroy
+    redirect_to root_path, notice: "Portfolio was successfully destroyed."
   end
 
   private
