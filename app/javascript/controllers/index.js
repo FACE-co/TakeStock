@@ -6,3 +6,6 @@ import { application } from "./application"
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import StockInfoApiController from "./stock_info_api_controller"
+application.register("stock-info-api", StockInfoApiController)
