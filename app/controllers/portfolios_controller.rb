@@ -3,6 +3,7 @@ class PortfoliosController < ApplicationController
   end
 
   def create
+    @portfolio = Portfolio.new
   end
 
   def update
