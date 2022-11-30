@@ -1,4 +1,6 @@
 <%= turbo_frame_tag "portfolio_turbo_frame" do %>
+  <%= render "shared/stocks-container"%>
+
   <div class="container mx-auto">
     <h1><strong>Portfolio name: <%= @portfolio.name %></strong></h1>
     <br>
