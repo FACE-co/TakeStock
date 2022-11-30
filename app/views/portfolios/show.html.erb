@@ -1,18 +1,4 @@
 <%= turbo_frame_tag "portfolio_turbo_frame" do %>
-  <%= render "shared/stocks-container"%>
-
-  <div class="container mx-auto">
-    <h1><strong>Portfolio name: <%= @portfolio.name %></strong></h1>
-    <br>
-      <% @portfolio.stocks.each do |stock| %>
-        <a href="#" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-          <p class="font-normal text-gray-700 dark:text-gray-400"><u>Name:</u> <%= stock.name %></p>
-          <p class="font-normal text-gray-700 dark:text-gray-400"><u>Ticker:</u> <%= stock.ticker %></p>
-        </a>
-      <%= link_to portfolio_stock_path(portfolio_id: @portfolio.id, stock_id: stock.id), data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete this stock?"},
-                  class: 'btn btn-light btn-sm border text-right' do %>
-                      <i class="fa-regular fa-trash-can"></i>
-                      <% end %>
-      <% end %>
-  </div>
-  <% end %>
+  <%= render "shared/filter-table"%>
+  <%= render "shared/stocks-container", stocks: @portfolio.stocks %>
+<% end %>
