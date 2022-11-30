@@ -3,6 +3,7 @@ class StocksController < ApplicationController
     @portfolios = Portfolio.where(user_id: current_user.id)
     @stock = Stock.friendly.find(params[:id])
     @new_stock = Stock.new
+    # @news_hash = news(@stock)
   end
 
   # /stocks(.:format)
@@ -50,6 +51,8 @@ class StocksController < ApplicationController
   def trending
   end
 
+
+
   private
 
   def stock_params
@@ -66,5 +69,13 @@ class StocksController < ApplicationController
         return stock
       end
     end
+  end
+
+  # /stock_news
+  def news(stock)
+    query = "https://newsapi.org/v2/everything?q=#{stock.ticker}&from=2022-10-30&sortBy=publishedAt&apiKey=#{ENV['NEWS_API_KEY']}"
+    stock_news = URI.open(query).read
+    news_hash = JSON.parse(stock_news)
+    return news_hash
   end
 end
