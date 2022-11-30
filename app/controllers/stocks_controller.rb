@@ -7,7 +7,11 @@ class StocksController < ApplicationController
 
   # /stocks(.:format)
   def create
-    @new_stock = Stock.new(call_ticker_api(stock_params))
+    ## TODO RE-ENABLE :PRODUCTION CODE - TO WORK WITH API
+    # @new_stock = Stock.new(call_ticker_api(stock_params))
+
+    # Temporary new_stock for local/testing
+    @new_stock = Stock.new(params[:id])
     if @new_stock.save
       redirect_to stock_path(@new_stock)
     else
