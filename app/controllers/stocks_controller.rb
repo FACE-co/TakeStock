@@ -3,7 +3,7 @@ class StocksController < ApplicationController
     @portfolios = Portfolio.where(user_id: current_user.id)
     @stock = Stock.friendly.find(params[:id])
     @new_stock = Stock.new
-    @news_hash = news(@stock)
+    # @news_hash = news(@stock)
   end
 
   # /stocks(.:format)
