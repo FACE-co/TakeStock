@@ -19,6 +19,7 @@
             </tr>
           </thead>
           <div class="divide-y divide-gray-200 bg-white">
+          <%# Display all the stock information if Portfolio has stocks, ELSE display string to notify user of empty portfolio L50-52 %>
            <% if stocks.any? %>
             <% stocks.each_with_index do |stock, index| %>
 
@@ -32,6 +33,7 @@
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white/50">$52.00</td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white/50">+ $3.00</td> <%# Last vs Last %>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white/50">+1.02%</td> <%# Last vs Last as %%>
+                  <%# Only Display Delete Option if Portfolio is present %>
                   <% if portfolio %>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 table-cell">
                     <%= link_to portfolio_stock_path(
