@@ -20,7 +20,8 @@ class PortfolioStocksController < ApplicationController
     @stock = Stock.find(params[:stock_id])
     @portfolio_stock = PortfolioStock.where(["portfolio_id = ? and stock_id = ?", @portfolio.id, @stock.id])
     @portfolio_stock.destroy_all
-    redirect_to portfolio_path(@portfolio), notice: "Stock was successfully deleted."
+    # REDIRECT PATH NEEDS CHECKING - CURRENTLY REDIRECTS US TO THE STOCK
+    redirect_to root_path, notice: "Stock was successfully deleted."
   end
 
   private
