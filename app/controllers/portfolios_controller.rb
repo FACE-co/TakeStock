@@ -3,6 +3,7 @@ class PortfoliosController < ApplicationController
     @portfolio = Portfolio.find(params[:id])
     @portfolio_stocks = PortfolioStock.where(portfolio_id: @portfolio.id)
     @stocks = Stock.where(id: @portfolio_stocks.map(&:id))
+    @portfolios = Portfolio.where(user: current_user)
   end
 
   def create
