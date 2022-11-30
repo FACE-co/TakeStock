@@ -7,11 +7,19 @@ class StocksController < ApplicationController
 
   # /stocks(.:format)
   def create
-    @new_stock = Stock.new(call_ticker_api(stock_params))
-    if @new_stock.save
-      redirect_to stock_path(@new_stock)
+    @stock = Stock.find_by(ticker: params[:stock][:ticker])
+    if @stock
+      redirect_to @stock, status: :see_other
     else
-      redirect_to root_path, notice: "Can't create duplicate stock"
+      @new_stock = Stock.new(call_ticker_api(stock_params))
+      if @new_stock.save
+        redirect_to stock_path(@new_stock), status: :see_other
+      else
+        @portfolios = []
+        @stock = Stock.find_by(ticker: request.referrer.split('/').last)
+        render :show, status: :unprocessable_entity
+        # redirect_to request.referrer, notice: "Can't create duplicate stock"
+      end
     end
   end
 

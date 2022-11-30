@@ -12,3 +12,6 @@ application.register("hello", HelloController)
 
 import StockInfoApiController from "./stock_info_api_controller"
 application.register("stock-info-api", StockInfoApiController)
+
+import StockPageController from "./stock_page_controller"
+application.register("stock-page", StockPageController)

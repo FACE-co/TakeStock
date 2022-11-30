@@ -1,5 +1,3 @@
-
-
 <div class="px-3 py-3 lg:px-5 lg:pl-3">
   <%= render "stocks/form", stock: @new_stock %>
 </div>
@@ -34,7 +32,7 @@
 <div class="h-full w-90% bg-gray-50 relative overflow-y-auto">
   <div class="w-full shadow p-6">
     <div class="w-full row-span-2 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-4">
-<%# STOCK INFO %>
+      <%# STOCK INFO %>
       <div id="stock-info" class="row-span-1 bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
           <div class="flex items-center justify-between mb-4">
             <div class="flex-shrink-0">
@@ -50,7 +48,7 @@
           </div>
           <div id="main-chart"></div>
       </div>
-<%# TWITTER %>
+      <%# TWITTER %>
       <div id="twitter" class="row-span-2 bg-white shadow rounded-lg p-4 sm:p-4 xl:p-6">
           <div class="flex items-center justify-between mb-4">
             <div class="flex-shrink-0">
@@ -66,13 +64,13 @@
           </div>
           <div id="main-chart"></div>
       </div>
-<%# PRICE CHART %>
+      <%# PRICE CHART %>
       <div id="price-chart" class="row-span-1 bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
           <div class="flex items-center justify-between mb-4">
             <%= render "price_chart", stock:@stock %>
           </div>
       </div>
-<%# MEDIUM %>
+      <%# MEDIUM %>
       <div id="medium" class="row-span-1 bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
           <div class="mb-4 flex items-center justify-between">
             <div>
@@ -84,7 +82,7 @@
             </div>
           </div>
       </div>
-<%# NEWS %>
+      <%# NEWS %>
       <div id="news" class="row-span-1 bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-xl font-bold leading-none text-gray-900">Latest News Here</h3>
