@@ -14,8 +14,19 @@ class StocksController < ApplicationController
     @new_stock = Stock.new(params[:id])
     if @new_stock.save
       redirect_to stock_path(@new_stock)
+    @stock = Stock.find_by(ticker: params[:stock][:ticker])
+    if @stock
+      redirect_to @stock, status: :see_other
     else
-      redirect_to root_path, notice: "Can't create duplicate stock"
+      @new_stock = Stock.new(call_ticker_api(stock_params))
+      if @new_stock.save
+        redirect_to stock_path(@new_stock), status: :see_other
+      else
+        @portfolios = []
+        @stock = Stock.find_by(ticker: request.referrer.split('/').last)
+        render :show, status: :unprocessable_entity
+        # redirect_to request.referrer, notice: "Can't create duplicate stock"
+      end
     end
   end
 
@@ -48,8 +59,12 @@ class StocksController < ApplicationController
   def call_ticker_api(stock_params)
     query = "https://api.sec-api.io/mapping/ticker/#{stock_params[:ticker]}?token=#{ENV['SEC_API_KEY']}"
     stock_serialized = URI.open(query).read
-    stock_info = JSON.parse(stock_serialized).first
-    stock_info["api_id"] = stock_info.delete("id")
-    return stock_info
+    stock_info = JSON.parse(stock_serialized)
+    stock_info.each do |stock|
+      if stock["ticker"] == stock_params["ticker"].upcase
+        stock["api_id"] = stock.delete("id")
+        return stock
+      end
+    end
   end
 end
