@@ -4,32 +4,14 @@
   <%= render "stocks/form", stock: @new_stock %>
 </div>
 
-<div class="bg-white border-b border-gray-200 z-30 w-60">
-    <p><%= @stock.name %></p>
-    <p><%= @stock.slug %></p>
-    <div data-controller="dropdown" class="relative">
-      <button type="button" data-action="dropdown#toggle click@window->dropdown#hide">
-        <i class="fa-regular fa-plus"></i>
-      </button>
-      <div
-      data-dropdown-target="menu"
-      class="hidden transition transform origin-top-right absolute left-0"
-      data-transition-enter-from="opacity-0 scale-95"
-      data-transition-enter-to="opacity-100 scale-100"
-      data-transition-leave-from="opacity-100 scale-100"
-      data-transition-leave-to="opacity-0 scale-95">
-        <% @portfolios.each do |portfolio| %>
-        <li>
-          <%= link_to "+ #{portfolio.name}",
-            portfolio_portfolio_stocks_path(portfolio, stock_id: @stock.id),
-            data: { turbo_method: :post, turbo_confirm: "Are you sure to add this new stock?" },
-            data_action:"dropdown#toggle" %>
-        </li>
-        <% end %>
-      </div>
-    </div>
+<div class="bg-white border-b border-gray-200 z-30 w-full">
+  <p><%= @stock.name %></p>
+  <p><%= @stock.slug %></p>
 </div>
 
+<div class="px-3 py-3 lg:px-5 lg:pl-3">
+ <%= render "add", stock:@stock %>
+</div>
 
 <div class="h-full w-90% bg-gray-50 relative overflow-y-auto">
   <div class="w-full shadow p-6">
