@@ -1,0 +1,86 @@
+
+<div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+  <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+    <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+      <div class="min-w-full divide-y divide-gray-300">
+        <div class="bg-gray-50 flex table">
+          <div class= "table-row">
+            <div class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6 table-cell">#</div>
+            <div class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 table-cell">Name</div>
+            <div class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 table-cell">Ticker</div>
+            <div class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 table-cell">Last</div>
+            <div class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 table-cell">High</div>
+            <div class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 table-cell">Low</div>
+            <div class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 table-cell">Change</div>
+            <div class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900 table-cell">Change %</div>
+          </div>
+        </div>
+        <div class="divide-y divide-gray-200 bg-white flex table">
+              <% if portfolio.stocks.any? %>
+                <% portfolio.stocks.each_with_index do |stock, index| %>
+                  <a class="table-row" href= "<%= stock_path(stock) %>" >
+                    <div class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 table-cell"> <%= index + 1 %></div>
+                    <div class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 table-cell"><%= stock.name %></div>
+                    <div class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 table-cell"><%= stock.ticker %></div>
+                    <%# Interpolate data from API to Last, High & Low Below %>
+                    <div class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 table-cell">$55.00</div>
+                    <div class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 table-cell">$62.00</div>
+                    <div class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 table-cell">$52.00</div>
+                    <div class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 table-cell">+ $3.00</div> <%# Last vs Last %>
+                    <div class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 table-cell">+1.02%</div> <%# Last vs Last as %%>
+                    <div class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 table-cell"> <%= stock.delete %></div> <%# Last vs Last as %%>
+                    delete stock
+                </a>
+                <% end %>
+              <% else %>
+                <div class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 table-cell"> Portfolio is currently empty</div>
+              <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%# TABLE THAT USES TABLE_HEAD, TH, TB & TR -
+CURRENTLY NOT USED DUE TO A TAG NOT BEING ABLE TO BE WRAPPED %>
+<% if false %>
+
+  <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+      <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+        <table class="min-w-full divide-y divide-gray-300">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">#</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Name</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Ticker</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Last</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">High</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Low</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Change</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Change %</th>
+            </tr>
+          </thead>
+          <div class="divide-y divide-gray-200 bg-white">
+            <% stocks.each_with_index do |stock, index| %>
+              <a href= "<%= root_path %>" >
+                <tr>
+                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"> <%= index + 1 %></td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= stock.name %></td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= stock.ticker %></td>
+                  <%# Interpolate data from API to Last, High & Low Below %>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">$55.00</td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">$62.00</td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">$52.00</td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">+ $3.00</td> <%# Last vs Last %>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">+1.02%</td> <%# Last vs Last as %%>
+                </tr>
+              </a>
+            <% end %>
+          </div>
+        </table>
+      </div>
+    </div>
+  </div>
+<% end %>

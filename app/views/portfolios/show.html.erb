@@ -1,4 +1,4 @@
 <%= turbo_frame_tag "portfolio_turbo_frame" do %>
   <%= render "shared/filter-table"%>
-  <%= render "shared/stocks-container", stocks: @portfolio.stocks %>
+  <%= render "shared/stocks-container", stocks: @portfolio.stocks, portfolio: @portfolio %>
 <% end %>
