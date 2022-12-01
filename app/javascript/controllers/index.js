@@ -15,3 +15,6 @@ application.register("stock-info-api", StockInfoApiController)
 
 import StockPageController from "./stock_page_controller"
 application.register("stock-page", StockPageController)
+
+import TimescrollController from "./timescroll_controller"
+application.register("timescroll", TimescrollController)

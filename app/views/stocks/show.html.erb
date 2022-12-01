@@ -7,6 +7,10 @@
   </div>
 </div>
 
+<div class="w-2/4" data-controller="timescroll" data-action="change->timescroll#select" >
+ <%= render "timescroll", stock: @stock %>
+</div>
+
 <div class="h-full w-full bg-gray-50 relative overflow-y-auto">
   <div class="w-full shadow p-6 grid-rows-3">
     <div class="w-full row-span-1 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-4">
@@ -57,12 +61,9 @@
       <div id="news" class="row-span-1 bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
         <div class="flex items-center justify-between mb-4">
           <h3 class="text-xl font-bold leading-none text-gray-900">Latest News Here</h3>
-          <a href="#" class="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg inline-flex items-center p-2">
-          View all
-          </a>
         </div>
         <div>
-          <%# <%= render "news", stock: @stock %>
+          <%# <%= render "news", stock: @stock, enddate: @enddate %> %>
         </div>
       </div>
     </div>
