@@ -1,4 +1,4 @@
-<%= simple_form_for stock do |f| %>
+<%= simple_form_for stock, data: {turbo: false} do |f| %>
   <%= f.input :ticker %>
   <%= f.submit %>
 <% end %>
