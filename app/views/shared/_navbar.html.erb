@@ -10,14 +10,14 @@
       </div>
     <div class="relative">
       <div class="items-center justify-end">
-      <% if current_user.present? %>
-        <a class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900" href= "<%= destroy_user_session_path %>" data-turbo-method="delete">Log Out</a>
-      <% else %>
-        <%# <a href="#" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">Sign in</a> %>
-        <%= link_to "Sign in", user_session_path, class: "whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"  %>
-        <%# <a href="#" class="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Sign up</a> %>
-        <%= link_to "Sign up", new_user_session_path, class: "ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700" %>
-      <% end %>
+        <% if current_user.present? %>
+          <a class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900" href= "<%= destroy_user_session_path %>" data-turbo-method="delete">Log Out</a>
+        <% else %>
+          <%# <a href="#" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">Sign in</a> %>
+          <%= link_to "Sign in", new_user_session_path, class: "whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"  %>
+          <%# <a href="#" class="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700">Sign up</a> %>
+          <%= link_to "Sign up", new_user_registration_path, class: "ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700" %>
+        <% end %>
       </div>
   </div>
 </div>
