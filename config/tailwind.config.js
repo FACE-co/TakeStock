@@ -13,6 +13,9 @@ module.exports = {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
     },
+    fontSize: {
+      xxs: '0.7rem'
+    }
   },
   plugins: [
     require('@tailwindcss/forms'),
