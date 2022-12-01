@@ -103,7 +103,8 @@ def get_access_token()
       url: 'https://www.reddit.com/api/v1/access_token',
       user: client_id,
       password: client_secret,
-      payload: 'grant_type=https://oauth.reddit.com/grants/installed_client'
+      payload: 'grant_type=https://oauth.reddit.com/grants/installed_client\
+      device_id=DEVICE_ID'
     )
     response = JSON.parse(resp.body)
     puts response

@@ -74,11 +74,11 @@ class StocksController < ApplicationController
     ## the app should make a request to the following endpoint to retrieve your access token:
     #https://www.reddit.com/api/v1/access_token
 
-    DEVICE_ID = "eOaIJSfYUq33vHSLLPclKg"
     ## When using the https://oauth.reddit.com/grants/installed_client grant, include the following information in your POST data:
     grant_type=https://oauth.reddit.com/grants/installed_client&\
     device_id=DEVICE_ID
 
+    client_id = "eOaIJSfYUq33vHSLLPclKg"
     client_secret = "xfn_f-JNfn-8ry_zXbMv1jV81rPfbg"
 
     user: client_id
@@ -95,20 +95,4 @@ class StocksController < ApplicationController
     #hash['data']['children'][0]['data']['selftext']
   end
 
-  def get_access_token()
-    puts "getting reddit access token"
-    begin
-      resp = RestClient::Request.execute(
-        method: :post,
-        url: 'https://www.reddit.com/api/v1/access_token',
-        user: @client_id,
-        password: @client_secret,
-        payload: 'grant_type=client_credentials'
-      )
-      response = JSON.parse(resp.body)
-      response['access_token']
-    rescue StandardError => e
-      raise StandardError.new 'Error getting Reddit OAuth2 token.'
-    end
-  end
 end
