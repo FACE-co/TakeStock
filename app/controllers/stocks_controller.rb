@@ -12,6 +12,7 @@ def create
     # @new_stock = Stock.new(call_ticker_api(stock_params))
 
     ## TODO COMMENT BELOW OUT DURING PRODUCTION - USE API CALL METHOD ABOVE
+    stock_params[:ticker].upcase!
     @new_stock = Stock.new(stock_params)
     if @new_stock.save
       redirect_to stock_path(@new_stock), status: :see_other
