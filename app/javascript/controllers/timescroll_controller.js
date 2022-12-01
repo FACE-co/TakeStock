@@ -13,16 +13,24 @@ export default class extends Controller {
 
   select() {
     this.timeTarget.addEventListener("click", e =>{
-      let date = this.timeTarget.value
+      let datevalue = this.timeTarget.value
       function getaDate(i) {
         let dateToday = new Date();
         dateToday.setDate(dateToday.getDate() - i);
-        return dateToday.getFullYear() + '-' + (dateToday.getMonth()+1) + '-' + dateToday.getDate();
+        let datenumber = dateToday.getDate();
+        if (datenumber < 10){
+          datenumber = "0" + dateToday.getDate();
+        }
+        let monthnumber = dateToday.getMonth() + 1;
+        if (monthnumber < 10){
+          monthnumber = "0" + (dateToday.getMonth() + 1);
+        }
+        return dateToday.getFullYear() + '-' + monthnumber + '-' + datenumber;
     }
-      if(date == 7){
+      if(datevalue  === 7){
         this.valueTarget.innerHTML = new Date().toISOString().slice(0, 10);
       } else {
-        this.valueTarget.innerHTML = getaDate((7-date));
+        this.valueTarget.innerHTML = getaDate(( 7 - datevalue));
       }
     });
   };
