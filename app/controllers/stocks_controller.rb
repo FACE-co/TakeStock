@@ -7,7 +7,7 @@ class StocksController < ApplicationController
   end
 
   # /stocks(.:format)
-  def create
+def create
     ## TODO RE-ENABLE :PRODUCTION CODE - TO WORK WITH API
     # @new_stock = Stock.new(call_ticker_api(stock_params))
 
