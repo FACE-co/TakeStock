@@ -18,17 +18,12 @@
       <div id="stock-info" class="row-span-1 bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
           <div class="flex items-center justify-between mb-4">
             <div class="flex-shrink-0">
-                <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">Stock Info Here</span>
-                <h3 class="text-base font-normal text-gray-500">Sales this week</h3>
-            </div>
-            <div class="flex items-center justify-end flex-1 text-green-500 text-base font-bold">
-                12.5%
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                </svg>
+              <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">Stock Info Here</span>
             </div>
           </div>
-          <div id="main-chart"></div>
+          <div id="basic-info">
+            <%= render "basic_info", stock: @stock %>
+          </div>
       </div>
       <%# TWITTER %>
       <div id="twitter" class="row-span-2 bg-white shadow rounded-lg p-4 sm:p-4 xl:p-6">
