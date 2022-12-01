@@ -140,6 +140,8 @@ GEM
     mini_mime (1.1.2)
     minitest (5.16.3)
     msgpack (1.6.0)
+    net-http (0.3.0)
+      uri
     net-imap (0.3.1)
       net-protocol
     net-pop (0.1.2)
@@ -157,6 +159,7 @@ GEM
       stringio
       time
       uri
+    openssl (3.0.1)
     orm_adapter (0.5.0)
     pg (1.4.5)
     public_suffix (5.0.0)
@@ -275,7 +278,9 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   json
+  net-http
   open-uri
+  openssl
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.4)
@@ -287,6 +292,7 @@ DEPENDENCIES
   tailwindcss-rails (~> 2.0)
   turbo-rails
   tzinfo-data
+  uri
   web-console
   webdrivers
 

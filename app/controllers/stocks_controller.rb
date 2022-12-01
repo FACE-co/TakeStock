@@ -4,10 +4,11 @@ class StocksController < ApplicationController
     @stock = Stock.friendly.find(params[:id])
     @new_stock = Stock.new
     # @news_hash = news(@stock)
+    @medium_articles = get_articles('tesla')
   end
 
   # /stocks(.:format)
-def create
+  def create
     ## TODO RE-ENABLE :PRODUCTION CODE - TO WORK WITH API
     # @new_stock = Stock.new(call_ticker_api(stock_params))
 
@@ -67,5 +68,45 @@ def create
     stock_news = URI.open(query).read
     news_hash = JSON.parse(stock_news)
     return news_hash
+  end
+
+  def get_articles(stock)
+    # url = URI("https://medium2.p.rapidapi.com/topfeeds/#{stock.ticker}+stock/new")
+    url = URI("https://medium2.p.rapidapi.com/topfeeds/#{stock}/new")
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+    request = Net::HTTP::Get.new(url)
+    request["X-RapidAPI-Key"] = 'f7ec49b0abmshdcd8f7286f9abd2p1b5af4jsn9353c237af81'
+    request["X-RapidAPI-Host"] = 'medium2.p.rapidapi.com'
+
+    response = http.request(request)
+    articles_hash = JSON.parse(response.body)
+    results = []
+
+    articles_hash["topfeeds"].each do |article|
+      results << get_article_info(article)
+    end
+
+    return results
+  end
+
+  def get_article_info(article)
+    url = URI("https://medium2.p.rapidapi.com/article/#{article}")
+
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+
+    request = Net::HTTP::Get.new(url)
+    request["X-RapidAPI-Key"] = 'f7ec49b0abmshdcd8f7286f9abd2p1b5af4jsn9353c237af81'
+    request["X-RapidAPI-Host"] = 'medium2.p.rapidapi.com'
+
+    response = http.request(request)
+
+    article_info = JSON.parse(response.body)
+    # return article_info if article_info["lang"] == "en"
+    return article_info
   end
 end
