@@ -99,6 +99,6 @@ def create
 
     final_hash = stock_fundamental_hash.merge(stock_today).merge(temp_hash)
 
-    return final_hash.to_s
+    return final_hash
   end
 end
