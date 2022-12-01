@@ -1,8 +1,7 @@
 <!-- TradingView Widget BEGIN -->
-  <div class="container w-50 mx-auto">
-    <div class="tradingview-widget-container h-96">
+  <div class="container w-50 h-full mx-auto">
+    <div class="tradingview-widget-container h-full">
       <div id="tradingview_12904 h-full"></div>
-      <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/<%= @stock.ticker %>/" rel="noopener" target="_blank"><span class="blue-text"><%= @stock.ticker.upcase %> Chart</span></a> by TradingView</div>
       <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
       <script type="text/javascript">
       let stock = "<%= @stock.ticker %>"

@@ -1,4 +1,6 @@
 class Stock < ApplicationRecord
+  include ActionView::Helpers::NumberHelper
+
   has_many :portfolio_stocks
   has_many :portfolios, through: :portfolio_stocks
   extend FriendlyId
