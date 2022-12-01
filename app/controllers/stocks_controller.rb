@@ -11,24 +11,16 @@ class StocksController < ApplicationController
     ## TODO RE-ENABLE :PRODUCTION CODE - TO WORK WITH API
     # @new_stock = Stock.new(call_ticker_api(stock_params))
 
-    # Temporary new_stock for local/testing
-    # @new_stock = Stock.new(stock_params)
-    # if @new_stock.save
-    #   redirect_to stock_path(@new_stock)
-    #   @stock = Stock.find_by(ticker: params[:stock][:ticker])
-    # elsif @stock
-    #   redirect_to @stock, status: :see_other
-    # else
-      @new_stock = Stock.new(stock_params)
-      # @new_stock = Stock.new(call_ticker_api(stock_params))
-      if @new_stock.save
-        redirect_to stock_path(@new_stock), status: :see_other
-      else
-        @portfolios = []
-        @stock = Stock.find_by(ticker: params[:stock][:ticker]) || Stock.find_by(ticker: request.referrer.split('/').last)
-        render :show, status: :unprocessable_entity
-        # redirect_to request.referrer, notice: "Can't create duplicate stock"
-      end
+    ## TODO COMMENT BELOW OUT DURING PRODUCTION - USE API CALL METHOD ABOVE
+    @new_stock = Stock.new(stock_params)
+    if @new_stock.save
+      redirect_to stock_path(@new_stock), status: :see_other
+    else
+      @portfolios = []
+      @stock = Stock.find_by(ticker: params[:stock][:ticker]) || Stock.find_by(ticker: request.referrer.split('/').last)
+      render :show, status: :unprocessable_entity
+      # redirect_to request.referrer, notice: "Can't create duplicate stock"
+    end
   end
 
   # /stocks/:id(.:format)
