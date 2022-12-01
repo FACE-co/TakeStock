@@ -4,7 +4,7 @@ class StocksController < ApplicationController
     @stock = Stock.friendly.find(params[:id])
     @new_stock = Stock.new
     # @news_hash = news(@stock)
-    @medium_articles = get_articles('tesla')
+    @reddit_articles = get_reddit_articles(@stock)
   end
 
   # /stocks(.:format)
@@ -70,43 +70,45 @@ class StocksController < ApplicationController
     return news_hash
   end
 
-  def get_articles(stock)
-    # url = URI("https://medium2.p.rapidapi.com/topfeeds/#{stock.ticker}+stock/new")
-    url = URI("https://medium2.p.rapidapi.com/topfeeds/#{stock}/new")
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+  def get_reddit_articles(stock)
+    ## the app should make a request to the following endpoint to retrieve your access token:
+    #https://www.reddit.com/api/v1/access_token
 
-    request = Net::HTTP::Get.new(url)
-    request["X-RapidAPI-Key"] = 'f7ec49b0abmshdcd8f7286f9abd2p1b5af4jsn9353c237af81'
-    request["X-RapidAPI-Host"] = 'medium2.p.rapidapi.com'
+    DEVICE_ID = "eOaIJSfYUq33vHSLLPclKg"
+    ## When using the https://oauth.reddit.com/grants/installed_client grant, include the following information in your POST data:
+    grant_type=https://oauth.reddit.com/grants/installed_client&\
+    device_id=DEVICE_ID
 
-    response = http.request(request)
-    articles_hash = JSON.parse(response.body)
-    results = []
+    client_secret = "xfn_f-JNfn-8ry_zXbMv1jV81rPfbg"
 
-    articles_hash["topfeeds"].each do |article|
-      results << get_article_info(article)
-    end
+    user: client_id
+    password: client_secret
 
-    return results
+    open("https://oauth.reddit.com/grants/installed_client", http_basic_authentication:["user", "password"])
+
+    query = "https://www.reddit.com/search.json?q=#{stock.ticker}&t=week&sort=top"
+    info = URI.open(query).read
+    hash = JSON.parse(info)
+    articles = hash['data']['children']
+
+    return articles
+    #hash['data']['children'][0]['data']['selftext']
   end
 
-  def get_article_info(article)
-    url = URI("https://medium2.p.rapidapi.com/article/#{article}")
-
-    http = Net::HTTP.new(url.host, url.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-
-    request = Net::HTTP::Get.new(url)
-    request["X-RapidAPI-Key"] = 'f7ec49b0abmshdcd8f7286f9abd2p1b5af4jsn9353c237af81'
-    request["X-RapidAPI-Host"] = 'medium2.p.rapidapi.com'
-
-    response = http.request(request)
-
-    article_info = JSON.parse(response.body)
-    # return article_info if article_info["lang"] == "en"
-    return article_info
+  def get_access_token()
+    puts "getting reddit access token"
+    begin
+      resp = RestClient::Request.execute(
+        method: :post,
+        url: 'https://www.reddit.com/api/v1/access_token',
+        user: @client_id,
+        password: @client_secret,
+        payload: 'grant_type=client_credentials'
+      )
+      response = JSON.parse(resp.body)
+      response['access_token']
+    rescue StandardError => e
+      raise StandardError.new 'Error getting Reddit OAuth2 token.'
+    end
   end
 end
