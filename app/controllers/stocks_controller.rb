@@ -15,8 +15,8 @@ class StocksController < ApplicationController
     @new_stock = Stock.new(params[:id])
     if @new_stock.save
       redirect_to stock_path(@new_stock)
-    @stock = Stock.find_by(ticker: params[:stock][:ticker])
-    if @stock
+      @stock = Stock.find_by(ticker: params[:stock][:ticker])
+    elsif @stock
       redirect_to @stock, status: :see_other
     else
       @new_stock = Stock.new(call_ticker_api(stock_params))
@@ -50,8 +50,6 @@ class StocksController < ApplicationController
   # /stocks/trending(.:format)
   def trending
   end
-
-
 
   private
 
