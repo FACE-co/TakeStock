@@ -18,10 +18,10 @@ class StocksController < ApplicationController
     if @new_stock.save
       redirect_to stock_path(@new_stock), status: :see_other
     else
-      @portfolios = Portfolio.where(user_id: current_user.id)
+      @portfolios = []
       @stock = Stock.find_by(ticker: params[:stock][:ticker]) || Stock.find_by(ticker: request.referrer.split('/').last)
-      @news_hash = news(@stock, @enddate)
-      @basic_info = basic_info(@stock)
+      @news_hash = {}
+      @basic_info = {}
       # render :show, status: :unprocessable_entity
       redirect_to stock_path(@stock), status: :see_other
       # redirect_to request.referrer, notice: "Can't create duplicate stock"
