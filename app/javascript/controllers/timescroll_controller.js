@@ -12,6 +12,7 @@ export default class extends Controller {
   };
 
   select() {
+    const timerange = this.timeTarget.max
     this.timeTarget.addEventListener("click", e =>{
       let datevalue = this.timeTarget.value
       function getaDate(i) {
@@ -27,11 +28,28 @@ export default class extends Controller {
         }
         return dateToday.getFullYear() + '-' + monthnumber + '-' + datenumber;
     }
-      if(datevalue  === 7){
+      if(datevalue  === timerange){
         this.valueTarget.innerHTML = new Date().toISOString().slice(0, 10);
       } else {
-        this.valueTarget.innerHTML = getaDate(( 7 - datevalue));
+        this.valueTarget.innerHTML = getaDate(( timerange - datevalue));
       }
     });
+    // changenews()
+
   };
+  // changenews(){
+  //   event.preventDefault()
+  //   let enddate = this.valueTarget.innerHTML
+  //   let ticker = this.tickernameTarget.innerText
+  //   url = `https://newsapi.org/v2/everything?q=${ticker}&from=${enddate}&to=${enddate}&sortBy=popularity&apiKey=${ENV['NEWS_API_KEY']}`
+  //   fetch(url, {
+  //     method: "GET",
+  //     headers: { "Accept": "application/json" },
+  //     body: {??? }
+  //   })
+  //     .then(response => response.json())
+  //     .then((data) => {
+  //       console.log(data)
+  //     })
+  // }
 }
