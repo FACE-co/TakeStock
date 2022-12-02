@@ -30,6 +30,10 @@ gem "jbuilder"
 # Open URI
 gem "open-uri"
 gem "json"
+
+# restclient for reddit api
+gem 'rest-client'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -64,6 +68,11 @@ end
 
 # to change url from id to ticker
 gem 'friendly_id', '~> 5.4.0'
+
+# gems for medium api from rapidapi
+gem 'net-http'
+gem 'openssl'
+gem 'uri'
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
