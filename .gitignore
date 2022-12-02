@@ -39,3 +39,6 @@
 # Ignore Mac and Linux file system files
 *.swp
 .DS_Store
+
+# ignore test file for medium and reddit apis
+medium-test.rb

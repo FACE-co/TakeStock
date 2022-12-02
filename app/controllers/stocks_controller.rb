@@ -4,7 +4,7 @@ class StocksController < ApplicationController
     @stock = Stock.friendly.find(params[:id])
     @new_stock = Stock.new
     # @news_hash = news(@stock)
-    @reddit_articles = get_reddit_articles(@stock)
+    @reddit_articles = RedditSearch.call(@stock.ticker)
   end
 
   # /stocks(.:format)
@@ -69,30 +69,4 @@ class StocksController < ApplicationController
     news_hash = JSON.parse(stock_news)
     return news_hash
   end
-
-  def get_reddit_articles(stock)
-    ## the app should make a request to the following endpoint to retrieve your access token:
-    #https://www.reddit.com/api/v1/access_token
-
-    ## When using the https://oauth.reddit.com/grants/installed_client grant, include the following information in your POST data:
-    grant_type=https://oauth.reddit.com/grants/installed_client&\
-    device_id=DEVICE_ID
-
-    client_id = "eOaIJSfYUq33vHSLLPclKg"
-    client_secret = "xfn_f-JNfn-8ry_zXbMv1jV81rPfbg"
-
-    user: client_id
-    password: client_secret
-
-    open("https://oauth.reddit.com/grants/installed_client", http_basic_authentication:["user", "password"])
-
-    query = "https://www.reddit.com/search.json?q=#{stock.ticker}&t=week&sort=top"
-    info = URI.open(query).read
-    hash = JSON.parse(info)
-    articles = hash['data']['children']
-
-    return articles
-    #hash['data']['children'][0]['data']['selftext']
-  end
-
 end

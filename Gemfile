@@ -30,6 +30,10 @@ gem "jbuilder"
 # Open URI
 gem "open-uri"
 gem "json"
+
+# restclient for reddit api
+gem 'rest-client'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
