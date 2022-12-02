@@ -1,9 +1,31 @@
+<script>
+  window.twttr = (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
+
+    t._e = [];
+    t.ready = function(f) {
+      t._e.push(f);
+    };
+
+    return t;
+  }(document, "script", "twitter-wjs"));
+</script>
+
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
+</script>
+
 <div class="grid grid-rows-1 grid-cols-1 grid-flow-col gap-4">
   <div class="col-start-1 px-3 py-3 lg:px-5 lg:pl-3">
     <%= render "stocks/form", stock: @new_stock %>
   </div>
   <div class=" px-3 py-3 lg:px-5 lg:pl-3">
-  <%= render "add", stock: @stock %>
+    <%= render "add", stock: @stock %>
   </div>
 </div>
 
@@ -28,16 +50,12 @@
       </div>
       <%# TWITTER %>
       <div id="twitter" class="row-span-2 bg-white shadow rounded-lg p-4 sm:p-4 xl:p-6">
-          <div class="flex items-center justify-between mb-4">
-            <div class="flex-shrink-0">
-                <span class="text-2xl sm:text-3xl leading-none font-bold text-gray-900">This is for TWITTER</span>
-                <h3 class="text-base font-normal text-gray-500">Sales this week</h3>
-            </div>
-            <div class="flex items-center justify-end flex-1 text-green-500 text-base font-bold">
-                12.5%
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                </svg>
+          <div class="w-full flex items-center justify-between mb-4">
+            <div class="flex-shrink-0 w-full">
+              <div class="w-full" data-controller="twitter" data-twitter-ticker="<%= @stock.ticker %>">
+                <div id="tweet" class="w-full">
+                </div>
+              </div>
             </div>
           </div>
           <div id="main-chart"></div>
