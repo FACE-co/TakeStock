@@ -29,10 +29,11 @@
   </div>
 </div>
 
-<div class="w-2/4" data-controller="timescroll" data-action="change->timescroll#select" >
- <%= render "timescroll", stock: @stock %>
-</div>
 
+  <div class="w-full" data-controller="timescroll" data-action="change->timescroll#select" >
+  <%= render "timescroll", stock: @stock %>
+  <p data-timescroll-target="tickername"><% @stock.ticker %></p>
+  </div>
 
 <div class="h-full w-full bg-gray-50 relative overflow-y-auto">
   <div class="w-full shadow p-6 grid-rows-3">
@@ -44,7 +45,7 @@
           <%= render "price_widget", stock: @stock %>
         </div>
         <div id="basic-info", class="flex items-center justify-between mb-4">
-          <%= render "basic_info", stock: @stock %>
+          <%# <%= render "basic_info", stock: @stock %> %>
         </div>
       </div>
       <%# TWITTER %>
@@ -86,9 +87,11 @@
         <div class="flex items-center justify-between mb-4">
           <h3 class="text-xl font-bold leading-none text-gray-900">Latest News Here</h3>
         </div>
-        <div>
+
+        <div data-timescroll-target="news">
           <%= render "news", stock: @stock, enddate: @enddate %>
         </div>
+
       </div>
     </div>
   </div>
