@@ -1,7 +1,7 @@
 <%= simple_form_for stock, data: { turbo: false } do |f| %>
   <div class="xl:w-70">
     <div class="input-group relative flex flex-wrap items-stretch w-full rounded">
-      <%= f.input :ticker, wrapper_html: {style: "margin-bottom: 0px; border-radius: "},class:"form-control relative flex-auto min-w-0 block w-50 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-l transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none", placeholder:"Search for a ticker", label: false %>
+      <%= f.input :ticker, wrapper_html: {style: "margin-bottom: 0px;"},class:"form-control relative flex-auto min-w-0 block w-50 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-l transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none", placeholder:"Search for a ticker", label: false %>
       <%= f.submit "Search", class:"btn inline-block px-6 py-2.5 bg-indigo-600 text-white font-medium text-xs leading-tight uppercase rounded-r shadow-md hover:bg-indigo-700 hover:shadow-lg focus:bg-indigo-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-indigo-800 active:shadow-lg transition duration-150 ease-in-out flex items-center mr-4" %>
     </div>
   </div>
