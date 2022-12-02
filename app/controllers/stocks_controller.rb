@@ -3,7 +3,7 @@ class StocksController < ApplicationController
     @portfolios = Portfolio.where(user_id: current_user.id)
     @stock = Stock.friendly.find(params[:id])
     @new_stock = Stock.new
-    # @news_hash = news(@stock, @enddate)
+    @news_hash = news(@stock, @enddate)
     @basic_info = basic_info(@stock)
   end
 
@@ -18,9 +18,12 @@ class StocksController < ApplicationController
     if @new_stock.save
       redirect_to stock_path(@new_stock), status: :see_other
     else
-      @portfolios = []
+      @portfolios = Portfolio.where(user_id: current_user.id)
       @stock = Stock.find_by(ticker: params[:stock][:ticker]) || Stock.find_by(ticker: request.referrer.split('/').last)
-      render :show, status: :unprocessable_entity
+      @news_hash = news(@stock, @enddate)
+      @basic_info = basic_info(@stock)
+      # render :show, status: :unprocessable_entity
+      redirect_to stock_path(@stock), status: :see_other
       # redirect_to request.referrer, notice: "Can't create duplicate stock"
     end
   end
