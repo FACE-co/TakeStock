@@ -65,15 +65,19 @@
             <%= render "price_chart", stock:@stock %>
           </div>
       </div>
-      <%# MEDIUM %>
-      <div id="medium" class="row-span-1 bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+      <%# REDDIT %>
+      <div id="reddit" class="row-span-1 bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
           <div class="mb-4 flex items-center justify-between">
             <div>
-                <h3 class="text-xl font-bold text-gray-900 mb-2">Hi this is medium</h3>
-                <span class="text-base font-normal text-gray-500">This is a list of latest transactions</span>
-            </div>
-            <div class="flex-shrink-0">
-                <a href="#" class="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg p-2">View all</a>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">This is Reddit</h3>
+                <ul>
+                <% @reddit_articles.each do |article|  %>
+                  <li><%= article['data']['title'] %></li>
+                  <li><%= article['data']['subreddit_name_prefixed'] %></li>
+                  <li>Posted by <%= article['data']['author'] %> <%= article['data']['created'] %> </li>
+
+                  <% end %>
+                </ul>
             </div>
           </div>
       </div>
