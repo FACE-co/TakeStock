@@ -16,8 +16,9 @@
     return t;
   }(document, "script", "twitter-wjs"));
 </script>
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
-  </script>
+
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
+</script>
 
 <div class="grid grid-rows-1 grid-cols-1 grid-flow-col gap-4">
   <div class="col-start-1 px-3 py-3 lg:px-5 lg:pl-3">
@@ -48,11 +49,10 @@
       </div>
       <%# TWITTER %>
       <div id="twitter" class="row-span-2 bg-white shadow rounded-lg p-4 sm:p-4 xl:p-6">
-          <div class="flex items-center justify-between mb-4">
-            <div class="flex-shrink-0">
-              <div data-controller="twitter">
-                <div id="tweet">
-
+          <div class="w-full flex items-center justify-between mb-4">
+            <div class="flex-shrink-0 w-full">
+              <div class="w-full" data-controller="twitter" data-twitter-ticker="<%= @stock.ticker %>">
+                <div id="tweet" class="w-full">
                 </div>
               </div>
             </div>
