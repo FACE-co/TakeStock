@@ -4,7 +4,8 @@ class StocksController < ApplicationController
     @stock = Stock.friendly.find(params[:id])
     @new_stock = Stock.new
     @news_hash = news(@stock, @enddate)
-    # @basic_info = basic_info(@stock)
+    @basic_info = basic_info(@stock)
+    @reddit_articles = RedditSearch.call(@stock.ticker)
   end
 
   # /stocks(.:format)
