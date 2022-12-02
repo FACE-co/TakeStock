@@ -11,8 +11,6 @@
       </div>
 
       <%# STOCK INFO %>
-      <% if false %>
-
       <div id="stock-info" class="row-span-1 bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
         <div class="flex items-center justify-between mb-4">
           <%= render "price_widget", stock: @stock %>
@@ -21,7 +19,6 @@
           <%= render "basic_info", stock: @stock %>
         </div>
       </div>
-      <% end %>
       <%# TWITTER %>
       <div id="twitter" class="row-span-2 bg-white shadow rounded-lg p-4 sm:p-4 xl:p-6">
           <div class="flex items-center justify-between mb-4">
@@ -49,7 +46,6 @@
         <%= render "stocks/reddit-section", reddit_articles: @reddit_articles %>
       </div>
       <%# NEWS %>
-      <% if false %>
       <div id="news" class="row-span-1 bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
         <div class="flex items-center justify-between mb-4">
           <h3 class="text-xl font-bold leading-none text-gray-900">Latest News Here</h3>
@@ -58,8 +54,6 @@
           <%= render "news", stock: @stock, enddate: @enddate %>
         </div>
       </div>
-
-      <% end %>
     </div>
   </div>
 </div>
