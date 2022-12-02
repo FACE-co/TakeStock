@@ -1,0 +1,30 @@
+<div class="mb-4">
+<% if false %>
+  <div>
+    <h3 class="text-xl font-bold text-gray-900 mb-2">This is Reddit</h3>
+    <ul>
+      <li><%= article['data']['title'] %></li>
+      <li><%= article['data']['subreddit_name_prefixed'] %></li>
+      <li>Posted by <%= article['data']['author'] %> <%= article['data']['created'] %> </li>
+
+    </ul>
+  </div>
+
+<% end %>
+  <div class="">
+    <h3 class="text-lg font-medium leading-6 text-gray-900">Reddit</h3>
+    <p class="mt-1 max-w-2xl text-sm text-gray-500">Top Trending by Week</p>
+  </div>
+  <div class="border-t border-gray-200">
+    <dl>
+    <% reddit_articles.each do |article|  %>
+      <%=  %>
+      <div class="pt-5 border-b mb-3 cursor-pointer hover:bg-indigo-500 group" onclick="window.location='<%= article['data']['url'] %>'">
+        <dt class="group-hover:text-white text-sm font-medium text-gray-500 mb-3"><%= article['data']['title'] %></dt>
+        <dd class="group-hover:text-white mt-1 text-sm text-gray-900 mb-3"><%= article['data']['subreddit_name_prefixed'] %></dd>
+        <dd class="group-hover:text-white mt-1 text-sm text-gray-900 mb-3">Posted by <%= article['data']['author'] %> at <%= article['data']['created'] %></dd>
+      </div>
+      <% end %>
+    </dl>
+  </div>
+</div>

@@ -7,6 +7,7 @@ class StocksController < ApplicationController
     # @basic_info = basic_info(@stock)
     # @news_hash = news(@stock)
     @reddit_articles = RedditSearch.call(@stock.ticker)
+  end
 
   # /stocks(.:format)
   def create

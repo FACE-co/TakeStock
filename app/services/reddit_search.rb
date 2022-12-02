@@ -5,7 +5,7 @@ class RedditSearch < ApplicationService
   end
 
   # get the access token
-  def access_token()
+  def access_token
     begin
       resp = RestClient::Request.execute(
         method: :post,
