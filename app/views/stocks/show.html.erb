@@ -11,13 +11,15 @@
  <%= render "timescroll", stock: @stock %>
 </div>
 
+
 <div class="h-full w-full bg-gray-50 relative overflow-y-auto">
   <div class="w-full shadow p-6 grid-rows-3">
     <div class="w-full row-span-1 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-4">
+
       <%# STOCK INFO %>
       <div id="stock-info" class="row-span-1 bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
         <div class="flex items-center justify-between mb-4">
-          <%= render "price_widget", stock:@stock %>
+          <%= render "price_widget", stock: @stock %>
         </div>
         <div id="basic-info", class="flex items-center justify-between mb-4">
           <%= render "basic_info", stock: @stock %>
@@ -45,15 +47,19 @@
             <%= render "price_chart", stock:@stock %>
           </div>
       </div>
-      <%# MEDIUM %>
-      <div id="medium" class="row-span-1 bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
+      <%# REDDIT %>
+      <div id="reddit" class="row-span-1 bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
           <div class="mb-4 flex items-center justify-between">
             <div>
-                <h3 class="text-xl font-bold text-gray-900 mb-2">Hi this is medium</h3>
-                <span class="text-base font-normal text-gray-500">This is a list of latest transactions</span>
-            </div>
-            <div class="flex-shrink-0">
-                <a href="#" class="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg p-2">View all</a>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">This is Reddit</h3>
+                <ul>
+                <% @reddit_articles.each do |article|  %>
+                  <li><%= article['data']['title'] %></li>
+                  <li><%= article['data']['subreddit_name_prefixed'] %></li>
+                  <li>Posted by <%= article['data']['author'] %> <%= article['data']['created'] %> </li>
+
+                  <% end %>
+                </ul>
             </div>
           </div>
       </div>
@@ -63,7 +69,7 @@
           <h3 class="text-xl font-bold leading-none text-gray-900">Latest News Here</h3>
         </div>
         <div>
-          <%# <%= render "news", stock: @stock, enddate: @enddate %> %>
+          <%= render "news", stock: @stock, enddate: @enddate %>
         </div>
       </div>
     </div>
