@@ -1,4 +1,6 @@
 class PortfoliosController < ApplicationController
+  skip_before_action :authenticate_user!, only: [ :create ]
+
   def show
     @portfolio = Portfolio.find(params[:id])
     @portfolio_stocks = PortfolioStock.where(portfolio_id: @portfolio.id)

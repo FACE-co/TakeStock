@@ -1,0 +1,60 @@
+// Specific CSS for your home-page
+.full-page {
+  height: 90vh;
+  font-family: $body-font;
+  color: black;
+
+  .hero-container {
+    display: unset;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    z-index: -100;
+    overflow: hidden;
+    position: absolute;
+    flex-direction: column;
+
+    .hero-image {
+      object-position: unset;
+      height: 100vh;
+      object-fit: cover;
+      -moz-transform: scale(-1, 1);
+      -webkit-transform: scale(-1, 1);
+      -o-transform: scale(-1, 1);
+      -ms-transform: scale(-1, 1);
+      transform: scale(-1, 1);
+    }
+  }
+
+  .hero-text-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 4rem;
+
+    .hero-text {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+
+    .secondary-text {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .scroll-container {
+      position: absolute;
+      // bottom: 5rem;
+      align-self: center;
+      color: black;
+      bottom: 39rem;
+
+      img {
+        position: absolute;
+        left: 30%;
+
+      }
+    }
+  }
+}

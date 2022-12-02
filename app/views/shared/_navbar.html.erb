@@ -1,15 +1,12 @@
-<div class="relative bg-white w-full">
+<div class="relative w-full">
   <div class="mx-auto px-4 sm:px-6">
-    <div class="flex items-center justify-between border-b-2 border-gray-100 py-6">
+    <div class="flex items-center justify-between py-4">
       <div class="flex justify-start">
         <a href=<%= root_path %>>
           <span class="text-2xl font-bold">TakeStock</span>
           <%# <img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt=""> %>
         </a>
       </div>
-
-        <%= render "stocks/form", stock: Stock.new %>
-
 
     <div class="relative">
       <div class="items-center justify-end">

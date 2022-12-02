@@ -1,3 +1,6 @@
+<% if current_user.nil? %>
+  <%= render "dashboard/hero" %>
+<% end %>
 
 <div class="mt-8 flex flex-col px-6">
   <%= turbo_frame_tag "portfolio_turbo_frame" do %>
