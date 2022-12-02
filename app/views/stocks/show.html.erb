@@ -7,15 +7,6 @@
   </div>
 </div>
 
-<div class="bg-white border-b border-gray-200 z-30 w-full">
-  <p><%= @stock.name %></p>
-  <p><%= @stock.slug %></p>
-</div>
-
-<div class="px-3 py-3 lg:px-5 lg:pl-3">
- <%= render "add", stock: @stock %>
-</div>
-
 <div class="w-2/4" data-controller="timescroll" data-action="change->timescroll#select" >
  <%= render "timescroll", stock: @stock %>
 </div>
@@ -28,7 +19,7 @@
       <%# STOCK INFO %>
       <div id="stock-info" class="row-span-1 bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
         <div class="flex items-center justify-between mb-4">
-          <%= render "price_widget", stock:@stock %>
+          <%= render "price_widget", stock: @stock %>
         </div>
         <div id="basic-info", class="flex items-center justify-between mb-4">
           <%= render "basic_info", stock: @stock %>
@@ -74,7 +65,7 @@
           <h3 class="text-xl font-bold leading-none text-gray-900">Latest News Here</h3>
         </div>
         <div>
-          <%# <%= render "news", stock: @stock, enddate: @enddate %> %>
+          <%= render "news", stock: @stock, enddate: @enddate %>
         </div>
       </div>
     </div>
