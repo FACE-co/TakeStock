@@ -1,4 +1,4 @@
-<div class="flex">
+<div class="flex mb-5">
   <%# SEARCH BAR %>
   <div class="flex justify-center">
     <div class="xl:w-70">
@@ -27,18 +27,18 @@
     </button>
     <div
       data-dropdown-target="menu"
-      class="absolute left-0 z-10 mt-2 w-100 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+      class="hidden transition transform absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
       data-transition-enter-from="opacity-0 scale-95"
       data-transition-enter-to="opacity-100 scale-100"
       data-transition-leave-from="opacity-100 scale-100"
       data-transition-leave-to="opacity-0 scale-95">
-      <div class="py-1 px-5" role="none">
-        <% @portfolios.each do |portfolio| %>
+      <% @portfolios.each do |portfolio| %>
+        <li class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">
           <%= link_to portfolio.name,
               portfolio_path(portfolio),
               data_action:"dropdown#toggle" %>
-        <% end %>
-      </div>
+        </li>
+      <% end %>
     </div>
   </div>
 </div>

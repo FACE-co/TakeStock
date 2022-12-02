@@ -1,13 +1,16 @@
-
-<div class="relative bg-white">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+<div class="relative bg-white w-full">
+  <div class="mx-auto px-4 sm:px-6">
     <div class="flex items-center justify-between border-b-2 border-gray-100 py-6">
-      <div class="flex justify-start lg:w-0 lg:flex-1">
-        <a href="#">
+      <div class="flex justify-start">
+        <a href=<%= root_path %>>
           <span class="text-2xl font-bold">TakeStock</span>
           <%# <img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt=""> %>
         </a>
       </div>
+
+        <%= render "stocks/form", stock: Stock.new %>
+
+
     <div class="relative">
       <div class="items-center justify-end">
         <% if current_user.present? %>
@@ -19,10 +22,9 @@
           <%= link_to "Sign up", new_user_registration_path, class: "ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700" %>
         <% end %>
       </div>
+    </div>
   </div>
 </div>
-
-
 
 
 <%# THIS IS THE OLD LEWAGON NAVBAR %>
