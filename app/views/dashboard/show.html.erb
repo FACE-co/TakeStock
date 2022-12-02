@@ -1,8 +1,7 @@
-<div>
-  <div class="mt-8 flex flex-col">
-    <%= turbo_frame_tag "portfolio_turbo_frame" do %>
-      <%= render "shared/filter-table" %>
-      <%= render "shared/stocks-container", stocks: @stocks %>
-    <% end %>
-  </div>
+
+<div class="mt-8 flex flex-col px-6">
+  <%= turbo_frame_tag "portfolio_turbo_frame" do %>
+    <%= render "shared/filter-table" %>
+    <%= render "shared/stocks-container", stocks: @stocks %>
+  <% end %>
 </div>

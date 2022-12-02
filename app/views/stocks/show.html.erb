@@ -20,25 +20,16 @@
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
 </script>
 
-<div class="grid grid-rows-1 grid-cols-1 grid-flow-col gap-4">
-  <div class="col-start-1 px-3 py-3 lg:px-5 lg:pl-3">
-    <%= render "stocks/form", stock: @new_stock %>
-  </div>
-  <div class=" px-3 py-3 lg:px-5 lg:pl-3">
-    <%= render "add", stock: @stock %>
-  </div>
+<div class="w-100 px-4" data-controller="timescroll" data-action="change->timescroll#select" >
+ <%= render "timescroll", stock: @stock %>
 </div>
-
-
-  <div class="w-full" data-controller="timescroll" data-action="change->timescroll#select" >
-  <%= render "timescroll", stock: @stock %>
-  <p data-timescroll-target="tickername"><% @stock.ticker %></p>
-  </div>
 
 <div class="h-full w-full bg-gray-50 relative overflow-y-auto">
   <div class="w-full shadow p-6 grid-rows-3">
     <div class="w-full row-span-1 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-4">
-
+       <div class="absolute top-0 right-0 px-3 py-3 lg:px-5 lg:pl-3">
+        <%= render "add", stock: @stock %>
+      </div>
       <%# STOCK INFO %>
       <div id="stock-info" class="row-span-1 bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
         <div class="flex items-center justify-between mb-4">
@@ -68,19 +59,7 @@
       </div>
       <%# REDDIT %>
       <div id="reddit" class="row-span-1 bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
-          <div class="mb-4 flex items-center justify-between">
-            <div>
-                <h3 class="text-xl font-bold text-gray-900 mb-2">This is Reddit</h3>
-                <ul>
-                <% @reddit_articles.each do |article|  %>
-                  <li><%= article['data']['title'] %></li>
-                  <li><%= article['data']['subreddit_name_prefixed'] %></li>
-                  <li>Posted by <%= article['data']['author'] %> <%= article['data']['created'] %> </li>
-
-                  <% end %>
-                </ul>
-            </div>
-          </div>
+        <%= render "stocks/reddit-section", reddit_articles: @reddit_articles %>
       </div>
       <%# NEWS %>
       <div id="news" class="row-span-1 bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">

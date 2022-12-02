@@ -2,6 +2,7 @@ class DashboardController < ApplicationController
   def show
     @portfolios = Portfolio.where(user: current_user)
     @stocks = Stock.all
+    @new_stock = Stock.new
   end
 
   def basic_info
