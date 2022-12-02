@@ -13,13 +13,17 @@ class StocksController < ApplicationController
     # @new_stock = Stock.new(call_ticker_api(stock_params))
 
     ## TODO COMMENT BELOW OUT DURING PRODUCTION - USE API CALL METHOD ABOVE
+    stock_params[:ticker].upcase!
     @new_stock = Stock.new(stock_params)
     if @new_stock.save
       redirect_to stock_path(@new_stock), status: :see_other
     else
       @portfolios = []
       @stock = Stock.find_by(ticker: params[:stock][:ticker]) || Stock.find_by(ticker: request.referrer.split('/').last)
-      render :show, status: :unprocessable_entity
+      @news_hash = {}
+      @basic_info = {}
+      # render :show, status: :unprocessable_entity
+      redirect_to stock_path(@stock), status: :see_other
       # redirect_to request.referrer, notice: "Can't create duplicate stock"
     end
   end
@@ -63,10 +67,41 @@ class StocksController < ApplicationController
   end
 
   # /stock_news
-  def news(stock)
-    query = "https://newsapi.org/v2/everything?q=#{stock.ticker}&from=2022-10-30&sortBy=publishedAt&apiKey=#{ENV['NEWS_API_KEY']}"
+  def news(stock, enddate)
+    query = "https://newsapi.org/v2/everything?q=#{stock.ticker}&from=#{enddate}&sortBy=publishedAt&apiKey=#{ENV['NEWS_API_KEY']}"
     stock_news = URI.open(query).read
     news_hash = JSON.parse(stock_news)
     return news_hash
+  end
+
+  def basic_info(stock)
+    api_key = "R4E0Q2VIZSLUWL6Q"
+
+    # getting fundamental data
+    query_fundamental = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=#{stock.ticker}&apikey=#{api_key}"
+    stock_fundamental = URI.open(query_fundamental).read
+    stock_fundamental_hash = JSON.parse(stock_fundamental)
+
+    # getting daily price data
+    query_daily = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=#{stock.ticker}&apikey=#{api_key}"
+    stock_daily = URI.open(query_daily).read
+    stock_daily_hash = JSON.parse(stock_daily)
+    stock_daily_hash_only_first_two_days = stock_daily_hash["Time Series (Daily)"].first(2).to_h
+    stock_today = stock_daily_hash_only_first_two_days.first[1]
+
+    # calculating change and change%
+    stock_today_close = stock_daily_hash_only_first_two_days.values[0]["4. close"].to_f
+    stock_yesterday_close = stock_daily_hash_only_first_two_days.values[1]["4. close"].to_f
+    change = stock_yesterday_close - stock_today_close
+    change_percentage = change / stock_yesterday_close
+
+    # making change/change% a hash
+    temp_hash = {}
+    temp_hash["change"] = "#{change.round(2)}"
+    temp_hash["change%"] = "#{change_percentage.round(2)}%"
+
+    final_hash = stock_fundamental_hash.merge(stock_today).merge(temp_hash)
+
+    return final_hash
   end
 end
