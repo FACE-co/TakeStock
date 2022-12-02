@@ -40,10 +40,12 @@
                                 portfolio_id: portfolio.id,
                                 stock_id: stock.id),
                                 data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete this stock?"},
-                                class: 'btn btn-light btn-sm border text-right' do %>
+                                class: 'btn btn-light btn-sm text-right' do %>
                                 <i class="fa-regular fa-trash-can"></i>
                                 <% end %>
                     </td>
+                  <% else %>
+                    <%= render "shared/add-stock", stock: stock %>
                   <% end %>
               </tr>
             <% end %>
@@ -57,3 +59,14 @@
       </div>
     </div>
   </div>
+
+<% if false %>
+
+            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 table-cell">
+                      <%= link_to portfolio_portfolio_stocks_path(
+                                  stock_id: stock.id),
+                                  class: 'btn btn-light btn-sm text-right' do %>
+                                  <i class="fa-regular fa-circle-plus"></i>
+                                  <% end %>
+                    </td>
+<% end %>
