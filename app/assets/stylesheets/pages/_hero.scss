@@ -1,12 +1,12 @@
 // Specific CSS for your home-page
 .full-page {
-  height: 90vh;
+  height: 92vh;
   font-family: $body-font;
   color: black;
 
   .hero-container {
     display: unset;
-    height: 100vh;
+    height: 100%;
     width: 100vw;
     display: flex;
     z-index: -100;
@@ -34,13 +34,14 @@
     padding-left: 4rem;
 
     .hero-text {
-      font-size: 3rem;
+      font-size: 2.5rem;
       font-weight: 700;
+      margin-bottom: 0.5rem;
     }
 
     .secondary-text {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
     }
 
     .scroll-container {
@@ -48,7 +49,7 @@
       // bottom: 5rem;
       align-self: center;
       color: black;
-      bottom: 39rem;
+      bottom: 2rem;
 
       img {
         position: absolute;
