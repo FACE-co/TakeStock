@@ -43,7 +43,7 @@
         <% end %>
         <li class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">
           <%= link_to " Create New Portfolio ＋",
-              portfolios_path(name: "New Portfolio", user_id: current_user),
+              Portfolio.create(name: "New Portfolio", user_id: current_user),
               data_action:"dropdown#toggle" %>
         </li>
       <% else %>
