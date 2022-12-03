@@ -8,6 +8,7 @@ class PortfoliosController < ApplicationController
     @portfolios = Portfolio.where(user: current_user)
   end
 
+  # /portfolios/:id
   def create
     @portfolio = Portfolio.new(portfolio_params)
     @portfolio.user = current_user
@@ -37,6 +38,6 @@ class PortfoliosController < ApplicationController
   private
 
   def portfolio_params
-    params.require(:portfolio).permit(:name)
+    params.require(:portfolio).permit(:name, :user_id)
   end
 end

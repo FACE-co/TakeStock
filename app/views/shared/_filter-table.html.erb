@@ -27,15 +27,30 @@
     </button>
     <div
       data-dropdown-target="menu"
-      class="hidden transition transform absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-full bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+      class="hidden transition transform absolute left-0 z-10 mt-2 w-72 origin-top-right rounded-sm bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
       data-transition-enter-from="opacity-0 scale-95"
       data-transition-enter-to="opacity-100 scale-100"
       data-transition-leave-from="opacity-100 scale-100"
       data-transition-leave-to="opacity-0 scale-95">
-      <% @portfolios.each do |portfolio| %>
+      <% if current_user.present? %>
+       <%# DISPLAYS PORTFOLIOS IF USER IS PRESENT %>
+        <% @portfolios.each do |portfolio| %>
+          <li class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">
+            <%= link_to portfolio.name,
+                portfolio_path(portfolio),
+                data_action:"dropdown#toggle" %>
+          </li>
+        <% end %>
         <li class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">
-          <%= link_to portfolio.name,
-              portfolio_path(portfolio),
+          <%= link_to " Create New Portfolio ＋",
+              portfolios_path(name: "New Portfolio", user_id: current_user),
+              data_action:"dropdown#toggle" %>
+        </li>
+      <% else %>
+      <%# PROMPTS USER TO LOG IN OR SIGN UP %>
+        <li class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">
+          <%= link_to "Log in or Sign up to manage portfolios",
+              new_user_registration_path,
               data_action:"dropdown#toggle" %>
         </li>
       <% end %>

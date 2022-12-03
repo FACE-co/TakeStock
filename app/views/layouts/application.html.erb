@@ -13,8 +13,19 @@
   </head>
 
   <body>
-    <%= render "shared/navbar" %>
+    <div class="flex flex-col h-screen justify-between">
+    <header class=""><%= render "shared/navbar" %></header>
     <%= render "shared/flashes" %>
-    <%= yield %>
+    <main class="mb-auto"><%= yield %></main>
+    <footer class="mt-36"><%= render "shared/footer" %></footer>
+  </div>
+
   </body>
 <%# </html> %>
+
+<% if false %>
+  <%= render "shared/navbar" %>
+  <%= render "shared/flashes" %>
+  <%= yield %>
+  <%= render "shared/footer" %>
+<% end %>

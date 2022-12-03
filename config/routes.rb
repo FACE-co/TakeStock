@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :dashboard
   # get "stocks/:ticker", to: "stocks#show"
 
   resources :portfolios, only: [:show, :create, :update, :destroy] do
