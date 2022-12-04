@@ -27,22 +27,17 @@
           <li class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1">
             <%= link_to "Add to #{portfolio.name}",
               portfolio_portfolio_stocks_path(portfolio, stock_id: @stock.id),
-              data: { turbo_method: :post, turbo_confirm: "Are you sure to add this new stock to #{portfolio.name}?" },
+              data: { turbo_method: :post, turbo_confirm: "Add #{@stock.ticker} to #{portfolio.name}?" },
               data_action:"dropdown#toggle" %>
           </li>
         <% end %>
-          <li class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">
-            <%= link_to "Create New Portfolio",
-                Portfolio.create(name: "New Portfolio", user_id: current_user),
-                data_action:"dropdown#toggle" %>
-          </li>
-        <% else %>
-          <%# PROMPTS USER TO LOG IN OR SIGN UP %>
-          <li class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">
-            <%= link_to "Log in or Sign up to manage portfolios",
-                new_user_registration_path,
-                data_action:"dropdown#toggle" %>
-          </li>
+      <% else %>
+        <%# PROMPTS USER TO LOG IN OR SIGN UP %>
+        <li class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">
+          <%= link_to "Log in or Sign up to manage portfolios",
+              new_user_registration_path,
+              data_action:"dropdown#toggle" %>
+        </li>
       <% end %>
     </div>
   </div>
