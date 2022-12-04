@@ -13,8 +13,26 @@
   </head>
 
   <body>
-    <%= render "shared/navbar" %>
-    <%= render "shared/flashes" %>
-    <%= yield %>
+    <%# Overall Container Styling for all content %>
+    <div class="flex flex-col h-screen justify-between">
+      <%# Renders NavBar %>
+      <header class=""><%= render "shared/navbar" %></header>
+      <%= render "shared/flashes" %>
+      <%# Renders Body %>
+      <main class="mb-auto"><%= yield %></main>
+      <%# Render Footer %>
+      <footer class="mt-36"><%= render "shared/footer" %></footer>
+    </div>
+
+    <%# Custom Confirm - Generates Modal %>
+    <%= render "shared/confirm_modals" %>
+
   </body>
-<%# </html> %>
+</html>
+
+<% if false %>
+  <%= render "shared/navbar" %>
+  <%= render "shared/flashes" %>
+  <%= yield %>
+  <%= render "shared/footer" %>
+<% end %>
