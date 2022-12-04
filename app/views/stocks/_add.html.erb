@@ -1,6 +1,8 @@
+<% @portfolios ||= nil %>
+
 <div data-controller="dropdown" class="relative inline-block text-left">
   <div>
-    <button type="button" data-action="dropdown#toggle click@window->dropdown#hide" class="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100" id="menu-button" aria-expanded="true" aria-haspopup="true">
+    <button type="button" data-action="dropdown#toggle click@window->dropdown#hide" class="inline-flex w-full justify-center rounded-md border border-gray-400 bg-white px-4 py-2 text-sm font-medium text-gray-900 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100" id="menu-button" aria-expanded="true" aria-haspopup="true">
       <i class="fa-regular fa-plus"></i>
     </button>
   </div>
@@ -15,18 +17,28 @@
       From: "transform opacity-100 scale-100"
       To: "transform opacity-0 scale-95"
   -->
+
   <div data-dropdown-target="menu"
-  class="hidden transition transform absolute right-4 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+  class="hidden transition transform absolute right-4 z-10 mt-2 w-72 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
     <div class="py-1" role="none">
       <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-      <% @portfolios.each do |portfolio| %>
-        <li class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1">
-          <%= link_to "+ #{portfolio.name}",
-            portfolio_portfolio_stocks_path(portfolio, stock_id: @stock.id),
-            data: { turbo_method: :post, turbo_confirm: "Are you sure to add this new stock?" },
-            data_action:"dropdown#toggle" %>
-        </li>
+      <% if current_user.present? %>
+        <% @portfolios.each do |portfolio| %>
+          <li class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1">
+            <%= link_to "Add to #{portfolio.name}",
+              portfolio_portfolio_stocks_path(portfolio, stock_id: @stock.id),
+              data: { turbo_method: :post, turbo_confirm: "Add #{@stock.ticker} to #{portfolio.name}?" },
+              data_action:"dropdown#toggle" %>
+          </li>
         <% end %>
+      <% else %>
+        <%# PROMPTS USER TO LOG IN OR SIGN UP %>
+        <li class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">
+          <%= link_to "Log in or Sign up to manage portfolios",
+              new_user_registration_path,
+              data_action:"dropdown#toggle" %>
+        </li>
+      <% end %>
     </div>
   </div>
 </div>

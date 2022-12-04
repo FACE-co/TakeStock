@@ -1,28 +1,30 @@
-This is TakeStock! Proudly brought to you by Farah, Ambery, Casey and Elliott (FACE-co)
+<h2>This is TakeStock! Proudly brought to you by Farah, Ambery, Casey and Elliott (FACE-co)</h2>
 
 
-This app has been completed with the following:
-Front-end: HTML, SCSS, Javascript and Tailwind CSS
-Back-end: Ruby on Rails, RESTful APIs
-Hosted on: Heroku
-Cloud-Based Services used: AWS
-Workflow: Trello
-Design & Development: Figma
+<h3>This app has been completed with the following:</h3>
+<ul>
+<li>Front-end: HTML, SCSS, Javascript and Tailwind CSS</li>
+<li>Back-end: Ruby on Rails, RESTful APIs</li>
+<li>Hosted on: Heroku</li>
+<li>Cloud-Based Services used: AWS</li>
+<li>Workflow: Trello</li>
+<li>Design & Development: Figma</li>
+</ul>
 
 
-Farah Masri -
-https://www.linkedin.com/in/farah-masri-72b329141/
-https://github.com/fmasri1
+<strong> Farah Masri - </strong>
+<p>https://www.linkedin.com/in/farah-masri-72b329141/ </p>
+<p>https://github.com/fmasri1 </p>
 
-Ambery Harris -
-https://www.linkedin.com/in/amberyharris/
-https://github.com/the-ham
+<strong> Ambery Harris - </strong>
+<p>https://www.linkedin.com/in/amberyharris/ </p>
+<p>https://github.com/the-ham </p>
 
-Casey Qingyun Dai -
-https://www.linkedin.com/in/casey-qingyun-dai/
-https://github.com/CaaaseyD
+<strong> Casey Qingyun Dai - </strong>
+<p>https://www.linkedin.com/in/casey-qingyun-dai/ </p>
+<p>https://github.com/CaaaseyD </p>
 
 
-Elliott Kan -
-https://www.linkedin.com/in/elliottkan/
-https://github.com/elliottkan
+<strong> Elliott Kan - </strong>
+<p>https://www.linkedin.com/in/elliottkan/ </p>
+<p>https://github.com/elliottkan </p>

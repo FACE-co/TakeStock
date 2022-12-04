@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :dashboard
   # get "stocks/:ticker", to: "stocks#show"
 
   resources :portfolios, only: [:show, :create, :update, :destroy] do
@@ -22,6 +23,9 @@ Rails.application.routes.draw do
   resources :stocks, only: [:show, :create, :update, :destroy] do
     collection do
       get :trending
+    end
+    member do
+      get :tweets
     end
   end
 

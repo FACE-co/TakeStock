@@ -19,14 +19,15 @@
 
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
 </script>
-
+<%# TIMELINE SCROLLER %>
 <div class="w-100 px-4" data-controller="timescroll" data-action="change->timescroll#select" >
  <%= render "timescroll", stock: @stock %>
 </div>
-
+<%# CONTAINER TO HOUSE ALL STOCK INFO %>
 <div class="h-full w-full bg-gray-50 relative overflow-y-auto">
   <div class="w-full shadow p-6 grid-rows-3">
     <div class="w-full row-span-1 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-4">
+      <%# ADD STOCK TO PORTFOLIO BUTTON %>
        <div class="absolute top-0 right-0 px-3 py-3 lg:px-5 lg:pl-3">
         <%= render "add", stock: @stock %>
       </div>
@@ -45,6 +46,7 @@
             <div class="flex-shrink-0 w-full">
               <div class="w-full" data-controller="twitter" data-twitter-ticker="<%= @stock.ticker %>">
                 <div id="tweet" class="w-full">
+
                 </div>
               </div>
             </div>
