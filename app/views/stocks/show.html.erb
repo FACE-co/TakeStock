@@ -20,7 +20,9 @@
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
 </script>
 
-<div class="w-100 px-4" data-controller="timescroll" data-action="change->timescroll#select" >
+<div data-controller="timescroll">
+
+<div class="w-100 px-4" data-action="change->timescroll#select" >
  <%= render "timescroll", stock: @stock %>
 </div>
 
@@ -69,9 +71,12 @@
 
         <div data-timescroll-target="news">
           <%= render "news", stock: @stock, enddate: @enddate %>
+          <p data-timescroll-target="tickername" class="hidden"><%= @stock.ticker %></p>
         </div>
 
       </div>
     </div>
   </div>
+</div>
+
 </div>
