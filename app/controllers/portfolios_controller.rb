@@ -1,4 +1,6 @@
 class PortfoliosController < ApplicationController
+  skip_before_action :authenticate_user!, only: [ :create ]
+
   def show
     @portfolio = Portfolio.find(params[:id])
     @portfolio_stocks = PortfolioStock.where(portfolio_id: @portfolio.id)
@@ -6,6 +8,7 @@ class PortfoliosController < ApplicationController
     @portfolios = Portfolio.where(user: current_user)
   end
 
+  # /portfolios/:id
   def create
     @portfolio = Portfolio.new(portfolio_params)
     @portfolio.user = current_user
@@ -35,6 +38,6 @@ class PortfoliosController < ApplicationController
   private
 
   def portfolio_params
-    params.require(:portfolio).permit(:name)
+    params.require(:portfolio).permit(:name, :user_id)
   end
 end
