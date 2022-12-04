@@ -1,6 +1,6 @@
 <% if current_user.nil? %>
   <div class=" w-full">
-    <div class="mx-auto px-4 sm:px-6">
+    <div class="mx-auto px-16 sm:px-10">
       <div class="flex items-center justify-between py-4">
         <div class="flex justify-start">
           <a href=<%= root_path %>>
@@ -18,7 +18,7 @@
   </div>
 <% else %>
   <div class="w-full">
-    <div class="mx-auto px-4 sm:px-6">
+    <div class="mx-auto px-16 sm:px-10">
       <div class="grid grid-cols-3 py-4">
         <div class="flex justify-start content-center">
           <%= render "stocks/form", stock: Stock.new %>

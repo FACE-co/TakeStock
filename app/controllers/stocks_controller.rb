@@ -2,7 +2,7 @@ class StocksController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :show, :create ]
 
   def show
-    @portfolios = Portfolio.where(user_id: current_user.id)
+    @portfolios = Portfolio.where(user_id: current_user.id) if current_user.present?
     @stock = Stock.friendly.find(params[:id])
     @new_stock = Stock.new
     @news_hash = news(@stock, @enddate)
