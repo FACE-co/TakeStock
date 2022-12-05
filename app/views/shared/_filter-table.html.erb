@@ -16,19 +16,19 @@
   <%# TRENDING %>
   <div class="flex space-x-2 justify-center">
     <div>
-      <%= link_to "Trending", root_path, class: "inline-flex w-25 justify-center rounded-full border border-gray-300 bg-white px-6 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100 mr-4"  %>
+      <%= link_to "Trending", root_path, class: "inline-flex w-25 justify-center rounded-full border border-gray-300 bg-white px-6 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100 mr-4"  %>
     </div>
   </div>
 
   <%# PORTFOLIOS DROPDOWN %>
   <div data-controller="dropdown" class="relative">
-    <button type="button" data-action="dropdown#toggle click@window->dropdown#hide" class="inline-flex w-25 justify-center items-center rounded-full border border-gray-300 bg-white px-6 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
+    <button type="button" data-action="dropdown#toggle click@window->dropdown#hide" class="inline-flex w-25 justify-center items-center rounded-full border border-gray-300 bg-white px-6 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
       Portfolios
       <i class="fa-solid fa-chevron-down ml-2"></i>
     </button>
     <div
       data-dropdown-target="menu"
-      class="hidden transition transform absolute left-0 z-10 mt-2 w-72 origin-top-right rounded-sm bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+      class="hidden transition transform absolute left-0 z-10 mt-2 w-80 origin-top-right rounded-sm bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
       data-transition-enter-from="opacity-0 scale-95"
       data-transition-enter-to="opacity-100 scale-100"
       data-transition-leave-from="opacity-100 scale-100"
@@ -36,20 +36,40 @@
       <% if current_user.present? %>
        <%# DISPLAYS PORTFOLIOS IF USER IS PRESENT %>
         <% @portfolios.each do |portfolio| %>
-          <li class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">
-            <%= link_to portfolio.name,
-                portfolio_path(portfolio),
-                data_action:"dropdown#toggle" %>
+          <li class="flex justify-between text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">
+            <div>
+              <%= link_to portfolio.name,
+                  portfolio_path(portfolio),
+                  data_action:"dropdown#toggle"
+                  %>
+            </div>
+            <div class="flex">
+              <div>
+                <%= link_to "Edit",
+                    edit_portfolio_path(portfolio),
+                    data_action:"dropdown#toggle",
+                    class: "mr-3"
+                    %>
+              </div>
+              <div>
+                <%= link_to "Delete",
+                    portfolio_path(portfolio),
+                    data: { turbo_method: :delete,
+                            turbo_confirm: "Are you sure you want to delete #{portfolio.name}?" },
+                    data_action:"dropdown#toggle" %>
+              </div>
+            </div>
           </li>
         <% end %>
-        <li class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">
+        <li class="text-gray-700 block px-4 py-3 border-t-1 border-gray-200 bg-gray-50 text-sm hover:bg-gray-100" role="menuitem">
           <%= link_to " Create New Portfolio ＋",
-              Portfolio.create(name: "New Portfolio", user_id: current_user),
-              data_action:"dropdown#toggle" %>
+              new_portfolio_path,
+              data_action:"dropdown#toggle"
+             %>
         </li>
       <% else %>
       <%# PROMPTS USER TO LOG IN OR SIGN UP %>
-        <li class="text-gray-700 block px-4 py-2 text-sm" role="menuitem">
+        <li class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">
           <%= link_to "Log in or Sign up to manage portfolios",
               new_user_registration_path,
               data_action:"dropdown#toggle" %>

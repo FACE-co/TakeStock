@@ -34,6 +34,9 @@ gem "json"
 # restclient for reddit api
 gem 'rest-client'
 
+# Algolia (Search Function)
+gem 'algolia'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

@@ -76,6 +76,11 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
+    algolia (2.3.1)
+      faraday (>= 0.15, < 3)
+      faraday-net_http_persistent (>= 0.15, < 3)
+      multi_json (~> 1.0)
+      net-http-persistent
     autoprefixer-rails (10.4.7.0)
       execjs (~> 2)
     bcrypt (3.1.18)
@@ -94,6 +99,7 @@ GEM
       xpath (~> 3.2)
     childprocess (4.1.0)
     concurrent-ruby (1.1.10)
+    connection_pool (2.3.0)
     crass (1.0.6)
     date (3.2.2)
     debug (1.6.3)
@@ -113,6 +119,13 @@ GEM
       railties (>= 3.2)
     erubi (1.11.0)
     execjs (2.8.1)
+    faraday (2.7.1)
+      faraday-net_http (>= 2.0, < 3.1)
+      ruby2_keywords (>= 0.0.4)
+    faraday-net_http (3.0.2)
+    faraday-net_http_persistent (2.1.0)
+      faraday (~> 2.5)
+      net-http-persistent (~> 4.0)
     ffi (1.15.5)
     font-awesome-sass (6.2.1)
       sassc (~> 2.0)
@@ -148,8 +161,11 @@ GEM
     mini_mime (1.1.2)
     minitest (5.16.3)
     msgpack (1.6.0)
+    multi_json (1.15.0)
     net-http (0.3.0)
       uri
+    net-http-persistent (4.0.1)
+      connection_pool (~> 2.2)
     net-imap (0.3.1)
       net-protocol
     net-pop (0.1.2)
@@ -217,6 +233,7 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.2.5)
+    ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -284,6 +301,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  algolia
   autoprefixer-rails
   bootsnap
   capybara

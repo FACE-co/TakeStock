@@ -8,7 +8,11 @@ class PortfoliosController < ApplicationController
     @portfolios = Portfolio.where(user: current_user)
   end
 
-  # /portfolios/:id
+  def new
+    @portfolio = Portfolio.new
+  end
+
+  # /portfolios
   def create
     @portfolio = Portfolio.new(portfolio_params)
     @portfolio.user = current_user
@@ -20,9 +24,15 @@ class PortfoliosController < ApplicationController
     end
   end
 
+  # /portfolios/:id
+  def edit
+    @portfolio = Portfolio.find(params[:id])
+  end
+
+  # /portfolios/:id
   def update
     @portfolio = Portfolio.find(params[:id])
-    if @Portfolio.update(portfolio_params)
+    if @portfolio.update(portfolio_params)
       redirect_to root_path, notice: "Portfolio name was successfully updated."
     else
       render root_path, status: :unprocessable_entity

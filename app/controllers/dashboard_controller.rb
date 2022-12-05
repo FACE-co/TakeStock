@@ -2,7 +2,7 @@ class DashboardController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :show ]
 
   def show
-    @portfolios = Portfolio.where(user: current_user)
+    @portfolios = Portfolio.where(user: current_user).order(:created_at)
     @stocks = Stock.all
   end
 
@@ -20,4 +20,5 @@ class DashboardController < ApplicationController
 
   def ticker_news
   end
+
 end
