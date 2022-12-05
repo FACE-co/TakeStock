@@ -2,6 +2,7 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="twitter"
 export default class extends Controller {
+
   connect() {
     console.log("twitter ok")
 
@@ -15,7 +16,9 @@ export default class extends Controller {
           id,
           document.getElementById("tweet"),
           {
-            theme: "light"
+            theme: "light",
+            cards: "hidden",
+            conversastion: "none"
           }
         );
       });
