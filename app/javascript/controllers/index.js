@@ -21,3 +21,6 @@ application.register("timescroll", TimescrollController)
 
 import TwitterController from "./twitter_controller"
 application.register("twitter", TwitterController)
+
+import YahooapiController from "./yahooapi_controller"
+application.register("yahooapi", YahooapiController)

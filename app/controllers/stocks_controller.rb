@@ -5,8 +5,9 @@ class StocksController < ApplicationController
     @portfolios = Portfolio.where(user_id: current_user.id) if current_user.present?
     @stock = Stock.friendly.find(params[:id])
     @new_stock = Stock.new
-    @news_hash = news(@stock, @enddate)
+    # @news_hash = news(@stock, @enddate)
     # @basic_info = basic_info(@stock)
+    # @yahooinfo = yahooapi(@stock)
     @reddit_articles = RedditSearch.call(@stock.ticker)
   end
 

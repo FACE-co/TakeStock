@@ -73,7 +73,7 @@ gem 'friendly_id', '~> 5.4.0'
 gem 'net-http'
 gem 'openssl'
 gem 'uri'
-
+gem 'basic_yahoo_finance'
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"

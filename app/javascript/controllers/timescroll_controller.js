@@ -36,8 +36,6 @@ export default class extends Controller {
     // });
     let enddate = this.valueTarget.innerHTML
     let ticker = this.tickernameTarget.innerHTML
-    console.log(enddate)
-    console.log(ticker)
 
     const replace = (data) => {
       let array = data["articles"]
