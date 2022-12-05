@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :dashboard
   # get "stocks/:ticker", to: "stocks#show"
 
-  resources :portfolios, only: [:show, :create, :update, :destroy] do
+  resources :portfolios, only: [:new, :show, :create, :edit, :update, :destroy] do
     # nested bec
     resources :portfolio_stocks, only: [:create]
   end

@@ -1,0 +1,8 @@
+<%= form_with url: stocks_path, method: :get do %>
+  <%= text_field_tag :query,
+    params[:query],
+    class: "form-control",
+    placeholder: "Filter Table e.g: Tesla"
+  %>
+  <%= submit_tag "Search", class: "btn btn-primary" %>
+<% end %>
