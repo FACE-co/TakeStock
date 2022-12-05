@@ -19,61 +19,67 @@
 
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
 </script>
-<%# TIMELINE SCROLLER %>
-<div class="w-100 px-4" data-controller="timescroll" data-action="change->timescroll#select" >
- <%= render "timescroll", stock: @stock %>
-</div>
-<%# CONTAINER TO HOUSE ALL STOCK INFO %>
-<div class="h-full w-full bg-gray-50 relative overflow-y-auto">
-  <div class="w-full shadow p-6 grid-rows-3">
-    <div class="w-full row-span-1 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-4">
-      <%# ADD STOCK TO PORTFOLIO BUTTON %>
-       <div class="absolute top-0 right-0 px-3 py-3 lg:px-5 lg:pl-3">
-        <%= render "add", stock: @stock %>
-      </div>
-      <%# STOCK INFO %>
-      <div id="stock-info" class="row-span-1 bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
-        <div class="flex items-center justify-between mb-4">
-          <%= render "price_widget", stock: @stock %>
-        </div>
-        <div id="basic-info", class="flex items-center justify-between mb-4">
-          <%= render "basic_info", stock: @stock %>
-        </div>
-      </div>
-      <%# TWITTER %>
-      <div id="twitter" class="row-span-2 bg-white shadow rounded-lg p-4 sm:p-4 xl:p-6">
-          <div class="w-full flex items-center justify-between mb-4">
-            <div class="flex-shrink-0 w-full">
-              <div class="w-full" data-controller="twitter" data-twitter-ticker="<%= @stock.ticker %>">
-                <div id="tweet" class="w-full">
 
+<%# TIMELINE SCROLLER %>
+<div data-controller="timescroll">
+
+  <div class="w-100 px-4" data-action="change->timescroll#select" >
+    <%= render "timescroll", stock: @stock %>
+  </div>
+<%# CONTAINER TO HOUSE ALL STOCK INFO %>
+  <div class="h-full w-full bg-gray-50 relative overflow-y-auto">
+    <div class="w-full shadow p-6 grid-rows-3">
+      <div class="w-full row-span-1 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-4">
+        <%# ADD STOCK TO PORTFOLIO BUTTON %>
+        <div class="absolute top-0 right-0 px-3 py-3 lg:px-5 lg:pl-3">
+          <%= render "add", stock: @stock %>
+        </div>
+        <%# STOCK INFO %>
+        <div id="stock-info" class="row-span-1 bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
+          <div class="flex items-center justify-between mb-4">
+            <%= render "price_widget", stock: @stock %>
+          </div>
+          <div id="basic-info", class="flex items-center justify-between mb-4">
+            <%# <%= render "basic_info", stock: @stock %> %>
+          </div>
+        </div>
+        <%# TWITTER %>
+        <div id="twitter" class="row-span-2 bg-white shadow rounded-lg p-4 sm:p-4 xl:p-6">
+            <div class="w-full flex items-center justify-between mb-4">
+              <div class="flex-shrink-0 w-full">
+                <div class="w-full" data-controller="twitter" data-twitter-ticker="<%= @stock.ticker %>">
+                  <div id="tweet" class="w-full">
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div id="main-chart"></div>
-      </div>
-      <%# PRICE CHART %>
-      <div id="price-chart" class="row-span-1 bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
-          <div class="flex items-center justify-between mb-4 h-full">
-            <%= render "price_chart", stock:@stock %>
-          </div>
-      </div>
-      <%# REDDIT %>
-      <div id="reddit" class="row-span-1 bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
-        <%= render "stocks/reddit-section", reddit_articles: @reddit_articles %>
-      </div>
-      <%# NEWS %>
-      <div id="news" class="row-span-1 bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
-        <div class="flex items-center justify-between mb-4">
-          <h3 class="text-xl font-bold leading-none text-gray-900">Latest News Here</h3>
+            <div id="main-chart"></div>
         </div>
-
-        <div data-timescroll-target="news">
-          <%= render "news", stock: @stock, enddate: @enddate %>
+        <%# PRICE CHART %>
+        <div id="price-chart" class="row-span-1 bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
+            <div class="flex items-center justify-between mb-4 h-full">
+              <%= render "price_chart", stock:@stock %>
+            </div>
         </div>
+        <%# REDDIT %>
+        <div id="reddit" class="row-span-1 bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
+          <%= render "stocks/reddit-section", reddit_articles: @reddit_articles %>
+        </div>
+        <%# NEWS %>
+        <div id="news" class="row-span-1 bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-bold leading-none text-gray-900">Latest News Here</h3>
+          </div>
 
+          <div data-timescroll-target="news">
+            <%= render "news", stock: @stock, enddate: @enddate %>
+          </div>
+
+           <p data-timescroll-target="tickername" class="hidden"><%= @stock.ticker %></p>
+
+        </div>
       </div>
     </div>
   </div>
+
 </div>
