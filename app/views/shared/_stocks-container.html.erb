@@ -30,11 +30,11 @@
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white/50">$<%= stock.yahooapi["regularMarketDayLow"].round(2) %></td>
                   <%# Display Green or Red depending on whether Up or Down %>
                   <% if stock.yahooapi["regularMarketChange"].negative? %>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-emerald-500 group-hover:text-white/50">$<%= stock.yahooapi["regularMarketChange"].round(2).abs %></td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-emerald-500 group-hover:text-white/50"><%= stock.yahooapi["postMarketChangePercent"].round(2).abs %>%</td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-rose-500 group-hover:text-white/50">- $<%= stock.yahooapi["regularMarketChange"].round(2).abs %></td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-rose-500 group-hover:text-white/50">- <%= stock.yahooapi["postMarketChangePercent"].round(2).abs %>%</td>
                   <% else %>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-rose-500 group-hover:text-white/50">$<%= stock.yahooapi["regularMarketChange"].round(2).abs %></td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-rose-500 group-hover:text-white/50"><%= stock.yahooapi["postMarketChangePercent"].round(2).abs %>%</td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-emerald-500 group-hover:text-white/50">+ $<%= stock.yahooapi["regularMarketChange"].round(2).abs %></td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-emerald-500 group-hover:text-white/50">+ <%= stock.yahooapi["postMarketChangePercent"].round(2).abs %>%</td>
                   <% end %>
                   <%# Only Display Delete Option if Portfolio is present %>
                   <% if portfolio %>
