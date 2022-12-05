@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
   def index
     @stock = Stock.friendly.find(params[:stock_id])
-    @tweets = get_tweet_ids(@stock, 100)
+    @tweets = get_tweet_ids(@stock, 10)
   end
 
   private
@@ -19,9 +19,14 @@ class TweetsController < ApplicationController
     response = https.request(request).read_body.force_encoding("UTF-8")
     response_json = JSON.parse(response)
     response_array = response_json["data"] # this returns an array of hashes
-    filtered_response_array = response_array.select { |e| (e["entities"].nil?) || (e["entities"]["cashtags"].nil? || e["entities"]["cashtags"].count <= 3) && (e["lang"] == "en") && (e["entities"]["urls"].nil?) }
+
+    # no filter
+    filtered_response_array = response_array
+
+    # yes filter
+    # filtered_response_array = response_array.select { |e| (e["entities"].nil?) || (e["entities"]["cashtags"].nil? || e["entities"]["cashtags"].count <= 3) && (e["lang"] == "en") && (e["entities"]["urls"].nil?) }
     id_array = filtered_response_array.map { |hash| hash["id"] }
 
-    return [id_array.first(10), filtered_response_array]
+    return [id_array.first(3), filtered_response_array]
   end
 end

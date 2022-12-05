@@ -26,14 +26,17 @@
   <div class="w-100 px-4" data-action="change->timescroll#select" >
     <%= render "timescroll", stock: @stock %>
   </div>
+
+<%# ADD STOCK TO PORTFOLIO BUTTON %>
+<div class="absolute top-0 right-0 px-3 py-3 lg:px-5 lg:pl-3">
+  <%= render "add", stock: @stock %>
+</div>
+
 <%# CONTAINER TO HOUSE ALL STOCK INFO %>
   <div class="h-full w-full bg-gray-50 relative overflow-y-auto">
     <div class="w-full shadow p-6 grid-rows-3">
       <div class="w-full row-span-1 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-4">
-        <%# ADD STOCK TO PORTFOLIO BUTTON %>
-        <div class="absolute top-0 right-0 px-3 py-3 lg:px-5 lg:pl-3">
-          <%= render "add", stock: @stock %>
-        </div>
+
         <%# STOCK INFO %>
         <div id="stock-info" class="row-span-1 bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
           <div class="flex items-center justify-between mb-4">
@@ -43,18 +46,18 @@
             <%# <%= render "basic_info", stock: @stock %> %>
           </div>
         </div>
+
         <%# TWITTER %>
         <div id="twitter" class="row-span-2 bg-white shadow rounded-lg p-4 sm:p-4 xl:p-6">
             <div class="w-full flex items-center justify-between mb-4">
               <div class="flex-shrink-0 w-full">
                 <%# tweets here %>
                 <%= turbo_frame_tag dom_id(@stock, :tweets), src: stock_tweets_path(@stock) do %>
-
                 <% end %>
               </div>
-            </div
-            <div id="main-chart"></div>
+            </div>
         </div>
+
         <%# PRICE CHART %>
         <div id="price-chart" class="row-span-1 bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
             <div class="flex items-center justify-between mb-4 h-full">
