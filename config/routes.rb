@@ -24,9 +24,7 @@ Rails.application.routes.draw do
     collection do
       get :trending
     end
-    member do
-      get :tweets
-    end
+    resources :tweets, only: [:index]
   end
 
   # only need id of portfolio_stock to destroy (So we don't nest this route)
