@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
-import { ContextReplacementPlugin } from "webpack";
+// import { ContextReplacementPlugin } from "webpack";
 // import flatpickr from "flatpickr";
 // Connects to data-controller="timescroll"
 const NEWS_API_KEY = "e261e54b338c4a6a95e2b57a942b9445"

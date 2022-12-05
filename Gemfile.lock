@@ -81,6 +81,9 @@ GEM
       faraday-net_http_persistent (>= 0.15, < 3)
       multi_json (~> 1.0)
       net-http-persistent
+    algoliasearch-rails (2.2.1)
+      algolia (< 3.0.0)
+      json (>= 1.5.1)
     autoprefixer-rails (10.4.7.0)
       execjs (~> 2)
     bcrypt (3.1.18)
@@ -301,7 +304,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  algolia
+  algoliasearch-rails
   autoprefixer-rails
   bootsnap
   capybara

@@ -45,9 +45,14 @@
             </div>
             <div class="flex">
               <div>
+              <% edit_form = render('portfolios/portfolio-form', portfolio: portfolio) %>
                 <%= link_to "Edit",
                     edit_portfolio_path(portfolio),
-                    data_action:"dropdown#toggle",
+                    data: {
+                      action:"dropdown#toggle click->dialog#open",
+                      modal_content: edit_form,
+                      controller: 'dialog'
+                    },
                     class: "mr-3"
                     %>
               </div>

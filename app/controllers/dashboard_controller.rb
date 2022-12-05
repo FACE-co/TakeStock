@@ -6,9 +6,6 @@ class DashboardController < ApplicationController
     @stocks = Stock.all
   end
 
-  def basic_info
-  end
-
   def twitter_feed
   end
 
