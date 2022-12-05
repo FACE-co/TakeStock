@@ -81,3 +81,4 @@ index = client.init_index("TakeStock")
 # query = form.input.value
 results = index.search("TES")
 puts results[:hits][0]
+

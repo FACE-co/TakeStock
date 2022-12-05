@@ -37,6 +37,9 @@ gem 'rest-client'
 # Algolia (Search Function)
 gem "algoliasearch-rails"
 
+# Basic Yahoo Finance
+gem 'basic_yahoo_finance'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

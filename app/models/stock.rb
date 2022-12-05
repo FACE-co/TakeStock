@@ -1,14 +1,17 @@
 class Stock < ApplicationRecord
   include ActionView::Helpers::NumberHelper
-  # include AlgoliaSearch
+  include AlgoliaSearch
 
-  has_many :portfolio_stocks
   has_many :portfolios, through: :portfolio_stocks
   extend FriendlyId
   friendly_id :ticker, use: :slugged
   validates :ticker, uniqueness: true
 
   before_validation :upcase_ticker
+
+  algoliasearch do
+    # Use all default configuration
+  end
 
   def upcase_ticker
     self.ticker = self.ticker.upcase
@@ -45,4 +48,9 @@ class Stock < ApplicationRecord
     return final_hash
   end
 
+  def yahooapi
+    query = BasicYahooFinance::Query.new
+    data = query.quotes(self.ticker)
+    return data["#{self.ticker}"]
+  end
 end
