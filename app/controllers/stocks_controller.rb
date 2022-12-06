@@ -5,11 +5,11 @@ class StocksController < ApplicationController
     @portfolios = Portfolio.where(user_id: current_user.id) if current_user.present?
     @stock = Stock.friendly.find(params[:id])
     @new_stock = Stock.new
-    @news_hash = {'articles': 'peanuts'}
-    # @news_hash = news(@stock, @enddate)
+
+    @news_hash = news(@stock, @enddate)
     @basic_info = @stock.basic_info
     @reddit_articles = RedditSearch.call(@stock.ticker)
-
+    # @date_param = param[:enddate]
   end
 
   # /stocks(.:format)

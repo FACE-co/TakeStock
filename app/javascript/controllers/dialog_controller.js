@@ -15,6 +15,11 @@ export default class extends Controller {
     this.dialog.showModal()
   }
 
+  close(event) {
+    console.log(this.element.closest("dialog"))
+    this.element.closest("dialog").close()
+  }
+
   initDialog() {
     const modalHTML = this.element.dataset.modalContent
     const dialog = document.createElement('dialog')
