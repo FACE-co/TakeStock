@@ -8,7 +8,6 @@ class StocksController < ApplicationController
     @news_hash = news(@stock, @enddate)
     @basic_info = @stock.basic_info
     @reddit_articles = RedditSearch.call(@stock.ticker)
-
   end
 
   # /stocks(.:format)

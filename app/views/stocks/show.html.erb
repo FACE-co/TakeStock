@@ -48,11 +48,11 @@
             <div class="w-full flex items-center justify-between mb-4">
               <div class="flex-shrink-0 w-full">
                 <%# tweets here %>
-                <%= turbo_frame_tag dom_id(@stock, :tweets), src: stock_tweets_path(@stock) do %>
+                <%# <%= turbo_frame_tag dom_id(@stock, :tweets), src: stock_tweets_path(@stock) do %> %>
 
-                <% end %>
+                <%# <% end %> %>
               </div>
-            </div
+            </div>
             <div id="main-chart"></div>
         </div>
         <%# PRICE CHART %>
