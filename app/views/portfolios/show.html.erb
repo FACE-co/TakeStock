@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "portfolio_turbo_frame" do %>
-  <h3 class="text-4xl">Markets</h3>
+  <h3 class="text-4xl font-bold">Markets</h3>
   <p class="text-lg">View by: <%= @portfolio.name %></p>
   <%= render "shared/filter-table"%>
   <%= render "shared/stocks-container", stocks: @portfolio.stocks, portfolio: @portfolio %>

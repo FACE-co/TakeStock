@@ -5,8 +5,13 @@ class StocksController < ApplicationController
     @portfolios = Portfolio.where(user_id: current_user.id) if current_user.present?
     @stock = Stock.friendly.find(params[:id])
     @new_stock = Stock.new
+<<<<<<< HEAD
     #@news_hash = news(@stock, @enddate)
     @basic_info = basic_info(@stock)
+=======
+    @news_hash = news(@stock, @enddate)
+    @basic_info = @stock.basic_info
+>>>>>>> 0cd7976e452c1fd425a3441959a992c1d1b33ff5
     @reddit_articles = RedditSearch.call(@stock.ticker)
 
   end
@@ -92,6 +97,7 @@ class StocksController < ApplicationController
     return news_hash
   end
 
+<<<<<<< HEAD
   def basic_info(stock)
     api_key = "R4E0Q2VIZSLUWL6Q"
 
@@ -124,4 +130,6 @@ class StocksController < ApplicationController
   end
 
 
+=======
+>>>>>>> 0cd7976e452c1fd425a3441959a992c1d1b33ff5
 end

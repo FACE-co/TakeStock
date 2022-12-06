@@ -1,6 +1,6 @@
 class Stock < ApplicationRecord
   include ActionView::Helpers::NumberHelper
-  # include AlgoliaSearch
+  include AlgoliaSearch
 
   has_many :portfolios, through: :portfolio_stocks
   extend FriendlyId
@@ -9,9 +9,9 @@ class Stock < ApplicationRecord
 
   before_validation :upcase_ticker
 
-  # algoliasearch do
-  #   # Use all default configuration
-  # end
+  algoliasearch do
+    # Use all default configuration
+  end
 
   def upcase_ticker
     self.ticker = self.ticker.upcase

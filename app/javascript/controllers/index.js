@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import DialogController from "./dialog_controller"
+application.register("dialog", DialogController)
+
 import DropdownController from "./dropdown_controller"
 application.register("dropdown", DropdownController)
 
@@ -21,3 +24,4 @@ application.register("timescroll", TimescrollController)
 
 import TwitterController from "./twitter_controller"
 application.register("twitter", TwitterController)
+// 
