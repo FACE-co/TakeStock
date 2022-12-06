@@ -39,6 +39,15 @@ export default class extends Controller {
     console.log(enddate)
     console.log(ticker)
 
+    let current_url = new URL(document.URL);
+    console.log(current_url)
+    let params = new URLSearchParams(current_url.search);
+    console.log(params)
+
+    //Add a second foo parameter.
+    params.append('foo', 4);
+
+
     const replace = (data) => {
       let array = data["articles"]
       let top3 = array.slice(0, 3)
