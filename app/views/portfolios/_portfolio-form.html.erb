@@ -1,8 +1,12 @@
   <%= simple_form_for [portfolio] do |form| %>
     <div class="xl:w-70">
       <div class="input-group relative items-stretch w-full">
-        <%= form.input :name %>
+        <%= form.input :name, label: 'Portfolio Name&nbsp&nbsp' %>
         <%= form.submit %>
+        <%# <%= link_to "Cancel", :back %>
+        <%# <%= link_to 'Back', 'javascript:history.go(-1);' %>
+        <%= link_to "Cancel", data_action:"click->dialog#close" %>
+        <%# <%= link_to "Cancel", root_path, class: "btn btn--light" %> %>
       </div>
     </div>
   <% end %>

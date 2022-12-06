@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
   def index
-    @stock = Stock.friendly.find(params[:stock_id])
-    @tweets = get_tweet_ids(@stock, 100)
+    # @stock = Stock.friendly.find(params[:stock_id])
+    # @tweets = get_tweet_ids(@stock, 10)
   end
 
   private
