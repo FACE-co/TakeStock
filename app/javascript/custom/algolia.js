@@ -14,11 +14,42 @@ const initAlgolia = () => {
 
   search.addWidgets([
     searchBox({
-      container: "#searchbox"
+      container: "#searchbox",
+      placeholder: 'Filter Table',
+      autofocus: true,
+      templates: {
+
+      },
     }),
 
     hits({
-      container: "#hits"
+      container: "#hits",
+      templates: {
+        item(hit, { html }) {
+          for (let i = 1; i < 10; i += 1) {
+          const positiveOrNegativeChange = hit.yahooapi["regularMarketChange"] < 0
+          const color = positiveOrNegativeChange ? 'text-rose-500' : 'text-emerald-500'
+          const plusOrMinus = positiveOrNegativeChange ? '-' : '+'
+          const absoluteNumber = (query) => {
+            const result = parseFloat(Math.abs(query)).toFixed(2);
+            return result
+          };
+
+          return html`
+            <div class="group hover:bg-indigo-500 text-white cursor-pointer table-row">
+              <div class="div-table-col whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 group-hover:text-white">${i++}</div>
+              <div class="div-table-col whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white">${hit["name"]}</div>
+              <div class="div-table-col whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white">${hit["ticker"]}</div>
+              <div class="div-table-col whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white">${hit.yahooapi["regularMarketPrice"]}</div>
+              <div class="div-table-col whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white">${hit.yahooapi["regularMarketDayHigh"]}</div>
+              <div class="div-table-col whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white">${hit.yahooapi["regularMarketDayLow"]}</div>
+              <div class='div-table-col whitespace-nowrap px-3 py-4 text-sm ${color} group-hover:text-white'>${plusOrMinus}$ ${absoluteNumber(hit.yahooapi['regularMarketChange'])}</div>
+              <div class='div-table-col whitespace-nowrap px-3 py-4 text-sm ${color} group-hover:text-white'>${plusOrMinus} ${absoluteNumber(hit.yahooapi['postMarketChangePercent'])} %</div>
+            </div>
+          `;
+          }
+        },
+      }
     })
   ]);
 
