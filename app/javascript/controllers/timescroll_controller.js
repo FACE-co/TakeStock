@@ -43,7 +43,7 @@ export default class extends Controller {
     console.log("old url", current_url);
     let search_params = current_url.searchParams;
     console.log(search_params);
-    search_params.append("enddate", enddate);
+    search_params.set("enddate", enddate);
     current_url.search = search_params.toString();
     console.log("new url", current_url);
 
