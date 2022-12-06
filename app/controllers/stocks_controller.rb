@@ -5,9 +5,9 @@ class StocksController < ApplicationController
     @portfolios = Portfolio.where(user_id: current_user.id) if current_user.present?
     @stock = Stock.friendly.find(params[:id])
     @new_stock = Stock.new
+
     @news_hash = news(@stock, @enddate)
-    # @basic_info = @stock.basic_info
-    @basic_info = []
+    @basic_info = @stock.basic_info
     @reddit_articles = RedditSearch.call(@stock.ticker)
     # @date_param = param[:enddate]
   end
@@ -16,16 +16,18 @@ class StocksController < ApplicationController
   def create
     ## TODO RE-ENABLE :PRODUCTION CODE - TO WORK WITH API
     # @new_stock = Stock.new(call_ticker_api(stock_params))
-    @new_stock['trending'] = trending(stock_params)
 
     ## TODO COMMENT BELOW OUT DURING PRODUCTION - USE API CALL METHOD ABOVE
     stock_params[:ticker].upcase!
     @new_stock = Stock.new(stock_params)
+    @new_stock['trending'] = trending_count(stock_params["ticker"])
     if @new_stock.save
       redirect_to stock_path(@new_stock), status: :see_other
     else
       @portfolios = []
       @stock = Stock.find_by(ticker: params[:stock][:ticker]) || Stock.find_by(ticker: request.referrer.split('/').last)
+      # social = trending_count(stock_params[:ticker])
+      # @stock.update(trending: social)
       @news_hash = {}
       @basic_info = {}
       # render :show, status: :unprocessable_entity
@@ -72,16 +74,16 @@ class StocksController < ApplicationController
     end
   end
 
-  def trending(ticker)
+  def trending_count(ticker)
     resp = RestClient::Request.execute(
       :method => :get,
-      :url => "https://api.stockgeist.ai/stock/us/hist/message-metrics?symbols=#{self.ticker}&start=2022-12-03T00%3A00&end=2022-12-04T00%3A00&metrics=total_count",
-      :headers => {Accept: "application/jsonl",
-                  token: "W90qSwmmaTvEYOVOozGgQdXjmcuj8ws0"}
+      :url => "https://api.stockgeist.ai/stock/us/hist/message-metrics?symbols=#{ticker}&start=2022-12-03T00%3A00&end=2022-12-04T00%3A00&metrics=total_count",
+      :headers => {Accept: "application/json",
+                  Token: ENV['STOCKGIEST_TOKEN']}
       )
     response = JSON.parse(resp.body)
-    pos_count = response['data'][self.ticker][0]['pos_total_count']
-    return pos_count
+    count = response['data'][ticker][0]['total_count']
+    return count
   end
 
   # /stock_news

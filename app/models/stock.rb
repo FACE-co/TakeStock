@@ -5,7 +5,7 @@ class Stock < ApplicationRecord
   has_many :portfolios, through: :portfolio_stocks
   extend FriendlyId
   friendly_id :ticker, use: :slugged
-  validates :ticker, uniqueness: true
+  validates :ticker, uniqueness: true, presence: true
 
   before_validation :upcase_ticker
 
