@@ -1,4 +1,4 @@
-<% array = @news_hash["articles"].first(3) %>
+<% array = @news_hash["articles"].first(5) %>
 <% array.each do |a| %>
   <div class="">
     <div class="mb-2 p-4 border rounded-lg border-gray-200 cursor-pointer hover:bg-gray-100 group" onclick="window.location='<%= a['url'] %>'">

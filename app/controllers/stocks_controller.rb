@@ -16,6 +16,7 @@ class StocksController < ApplicationController
   def create
     ## TODO RE-ENABLE :PRODUCTION CODE - TO WORK WITH API
     # @new_stock = Stock.new(call_ticker_api(stock_params))
+    @new_stock['trending'] = trending(stock_params)
 
     ## TODO COMMENT BELOW OUT DURING PRODUCTION - USE API CALL METHOD ABOVE
     stock_params[:ticker].upcase!
@@ -71,6 +72,18 @@ class StocksController < ApplicationController
     end
   end
 
+  def trending(ticker)
+    resp = RestClient::Request.execute(
+      :method => :get,
+      :url => "https://api.stockgeist.ai/stock/us/hist/message-metrics?symbols=#{self.ticker}&start=2022-12-03T00%3A00&end=2022-12-04T00%3A00&metrics=total_count",
+      :headers => {Accept: "application/jsonl",
+                  token: "W90qSwmmaTvEYOVOozGgQdXjmcuj8ws0"}
+      )
+    response = JSON.parse(resp.body)
+    pos_count = response['data'][self.ticker][0]['pos_total_count']
+    return pos_count
+  end
+
   # /stock_news
   def news(stock, enddate)
     query = "https://newsapi.org/v2/everything?q=#{stock.ticker}&from=#{enddate}&sortBy=publishedAt&apiKey=#{ENV['NEWS_API_KEY']}"
@@ -79,5 +92,4 @@ class StocksController < ApplicationController
     news_hash = JSON.parse(stock_news)
     return news_hash
   end
-
 end

@@ -15,6 +15,12 @@ export default class extends Controller {
     this.dialog.showModal()
   }
 
+  close(event) {
+    event.preventDefault()
+    this.element.remove()
+    this.element.closest.src = undefined
+  }
+
   initDialog() {
     const modalHTML = this.element.dataset.modalContent
     const dialog = document.createElement('dialog')

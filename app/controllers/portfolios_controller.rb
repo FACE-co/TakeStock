@@ -18,7 +18,7 @@ class PortfoliosController < ApplicationController
     @portfolio.user = current_user
 
     if @portfolio.save
-      redirect_to root_path, status: :see_other
+      redirect_to "/portfolios/#{@portfolio.id}", status: :see_other
     else
       render root_path, status: :unprocessable_entity
     end
@@ -33,7 +33,7 @@ class PortfoliosController < ApplicationController
   def update
     @portfolio = Portfolio.find(params[:id])
     if @portfolio.update(portfolio_params)
-      redirect_to root_path, notice: "Portfolio name was successfully updated."
+      redirect_to "/portfolios/#{@portfolio.id}", notice: "Portfolio name was successfully updated."
     else
       render root_path, status: :unprocessable_entity
     end

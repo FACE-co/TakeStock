@@ -51,9 +51,9 @@ export default class extends Controller {
 
     const replace = (data) => {
       let array = data["articles"]
-      let top3 = array.slice(0, 3)
+      let top5 = array.slice(0, 5)
       let replacecontent = ''
-      top3.forEach(a => {
+      top5.forEach(a => {
         replacecontent = replacecontent +
         `<div class="pt-2">
         <div class="flex items-start rounded-xl bg-white p-4 shadow-lg">
