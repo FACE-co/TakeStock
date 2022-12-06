@@ -11,6 +11,8 @@ User.create!(email: "a@gmail.com", password: "123456")
 User.create!(email: "b@gmail.com", password: "123456")
 User.create!(email: "c@gmail.com", password: "123456")
 
+Stock.destroy_all
+
 Stock.create!({
   name: "APPLE INC",
   ticker: "AAPL",
@@ -51,25 +53,25 @@ Stock.create!({
   api_id: "eaeafc4ffc04a49da153adebf1f6960a"
 })
 
-Stock.create!({
-  name: "INVESCO QQQ TRUST SERIES 1",
-  ticker: "QQQ",
-  cik: "1067839",
-  cusip: "46090E103 73935A104 631100104",
-  exchange: "NASDAQ",
-  isDelisted: false,
-  category: "ETF",
-  sector: "",
-  industry: "",
-  sic: "",
-  sicSector: "",
-  sicIndustry: "",
-  famaSector: "",
-  famaIndustry: "",
-  currency: "USD",
-  location: "Illinois; U.S.A",
-  api_id: "7ed37b31dd7157289bac8114b3a9f788"
-})
+# Stock.create!({
+#   name: "INVESCO QQQ TRUST SERIES 1",
+#   ticker: "QQQ",
+#   cik: "1067839",
+#   cusip: "46090E103 73935A104 631100104",
+#   exchange: "NASDAQ",
+#   isDelisted: false,
+#   category: "ETF",
+#   sector: "",
+#   industry: "",
+#   sic: "",
+#   sicSector: "",
+#   sicIndustry: "",
+#   famaSector: "",
+#   famaIndustry: "",
+#   currency: "USD",
+#   location: "Illinois; U.S.A",
+#   api_id: "7ed37b31dd7157289bac8114b3a9f788"
+# })
 
 Stock.create!({
   name: "JPMORGAN CHASE & CO",
@@ -125,16 +127,16 @@ Portfolio.create!(name: "My portfolio 2", user_id: 4)
 
 PortfolioStock.create!(portfolio_id: 1, stock_id: 1)
 PortfolioStock.create!(portfolio_id: 1, stock_id: 2)
-PortfolioStock.create!(portfolio_id: 1, stock_id: 3)
+PortfolioStock.create!(portfolio_id: 1, stock_id: 4)
 
 PortfolioStock.create!(portfolio_id: 3, stock_id: 1)
 PortfolioStock.create!(portfolio_id: 3, stock_id: 2)
-PortfolioStock.create!(portfolio_id: 3, stock_id: 3)
+PortfolioStock.create!(portfolio_id: 3, stock_id: 4)
 
 PortfolioStock.create!(portfolio_id: 5, stock_id: 1)
 PortfolioStock.create!(portfolio_id: 5, stock_id: 2)
-PortfolioStock.create!(portfolio_id: 5, stock_id: 3)
+PortfolioStock.create!(portfolio_id: 5, stock_id: 4)
 
 PortfolioStock.create!(portfolio_id: 7, stock_id: 1)
 PortfolioStock.create!(portfolio_id: 7, stock_id: 2)
-PortfolioStock.create!(portfolio_id: 7, stock_id: 3)
+PortfolioStock.create!(portfolio_id: 7, stock_id: 4)

@@ -8,16 +8,6 @@ class StocksController < ApplicationController
     #@news_hash = news(@stock, @enddate)
     @basic_info = basic_info(@stock)
     @reddit_articles = RedditSearch.call(@stock.ticker)
-
-    stocks = Stock.all
-    @trending = []
-    stocks.each do |stock|
-
-      sentiment = sentiment_api(stock.ticker, '2022-12-03', '2022-12-04')
-      @trending << sentiment
-    end
-    raise
-    @trending.sort
   end
 
   # /stocks(.:format)
@@ -119,16 +109,5 @@ class StocksController < ApplicationController
     return final_hash
   end
 
-  # date format is yyyy-mm-dd
-  def sentiment_api(query, start_date, end_date)
-    resp = RestClient::Request.execute(
-      :method => :get,
-      :url => "https://api.stockgeist.ai/stock/us/hist/message-metrics?symbols=#{query}&start=#{start_date}T00%3A00&end=#{end_date}T00%3A00&metrics=pos_total_count",
-      :headers => {Accept: "application/jsonl",
-                  token: "JtBFPn3VgU9UWO4SrhRFBZG35zUJRmGt"}
-      )
-    response = JSON.parse(resp.body)
-    pos_count = response['data'][query][0]['pos_total_count']
-    return pos_count
-  end
+
 end
