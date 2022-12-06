@@ -5,10 +5,11 @@ class StocksController < ApplicationController
     @portfolios = Portfolio.where(user_id: current_user.id) if current_user.present?
     @stock = Stock.friendly.find(params[:id])
     @new_stock = Stock.new
-    @news_hash = news(@stock, @enddate)
+
+    # @news_hash = news(@stock, @enddate)
     @basic_info = @stock.basic_info
     @reddit_articles = RedditSearch.call(@stock.ticker)
-
+    # @date_param = param[:enddate]
   end
 
   # /stocks(.:format)
@@ -19,11 +20,14 @@ class StocksController < ApplicationController
     ## TODO COMMENT BELOW OUT DURING PRODUCTION - USE API CALL METHOD ABOVE
     stock_params[:ticker].upcase!
     @new_stock = Stock.new(stock_params)
+
     if @new_stock.save
       redirect_to stock_path(@new_stock), status: :see_other
     else
       @portfolios = []
       @stock = Stock.find_by(ticker: params[:stock][:ticker]) || Stock.find_by(ticker: request.referrer.split('/').last)
+      # social = trending_count(stock_params[:ticker])
+      # @stock.update(trending: social)
       @news_hash = {}
       @basic_info = {}
       # render :show, status: :unprocessable_entity
@@ -78,5 +82,4 @@ class StocksController < ApplicationController
     news_hash = JSON.parse(stock_news)
     return news_hash
   end
-
 end

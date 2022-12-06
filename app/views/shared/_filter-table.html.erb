@@ -67,10 +67,15 @@
           </li>
         <% end %>
         <li class="text-gray-700 block px-4 py-3 border-t-1 border-gray-200 bg-gray-50 text-sm hover:bg-gray-100" role="menuitem">
+          <% new_form = render('portfolios/portfolio-form', portfolio: Portfolio.new) %>
           <%= link_to " Create New Portfolio ＋",
               new_portfolio_path,
-              data_action:"dropdown#toggle"
-             %>
+              data: {
+                      action:"dropdown#toggle click->dialog#open",
+                      modal_content: new_form,
+                      controller: 'dialog'
+                    },
+                    class: "mr-3" %>
         </li>
       <% else %>
       <%# PROMPTS USER TO LOG IN OR SIGN UP %>

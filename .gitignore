@@ -43,4 +43,5 @@
 # ignore test file for medium and reddit apis
 medium-test.rb
 
+# ignore byebug history
 .byebug_history
