@@ -20,7 +20,7 @@ class StocksController < ApplicationController
     ## TODO COMMENT BELOW OUT DURING PRODUCTION - USE API CALL METHOD ABOVE
     stock_params[:ticker].upcase!
     @new_stock = Stock.new(stock_params)
-    @new_stock['trending'] = trending_count(stock_params["ticker"])
+
     if @new_stock.save
       redirect_to stock_path(@new_stock), status: :see_other
     else
@@ -72,18 +72,6 @@ class StocksController < ApplicationController
         return stock
       end
     end
-  end
-
-  def trending_count(ticker)
-    resp = RestClient::Request.execute(
-      :method => :get,
-      :url => "https://api.stockgeist.ai/stock/us/hist/message-metrics?symbols=#{ticker}&start=2022-12-03T00%3A00&end=2022-12-04T00%3A00&metrics=total_count",
-      :headers => {Accept: "application/json",
-                  Token: ENV['STOCKGIEST_TOKEN']}
-      )
-    response = JSON.parse(resp.body)
-    count = response['data'][ticker][0]['total_count']
-    return count
   end
 
   # /stock_news

@@ -8,6 +8,7 @@ class Stock < ApplicationRecord
   validates :ticker, uniqueness: true, presence: true
 
   before_validation :upcase_ticker
+  before_save :trending_count
 
   algoliasearch do
     # Use all default configuration
@@ -52,5 +53,17 @@ class Stock < ApplicationRecord
     query = BasicYahooFinance::Query.new
     data = query.quotes(self.ticker)
     return data["#{self.ticker}"]
+  end
+
+  def trending_count
+    resp = RestClient::Request.execute(
+      :method => :get,
+      :url => "https://api.stockgeist.ai/stock/us/hist/message-metrics?symbols=#{self.ticker}&start=2022-12-03T00%3A00&end=2022-12-04T00%3A00&metrics=total_count",
+      :headers => {Accept: "application/json",
+                  Token: "U4BnhJrYhPjUbKABSAiX6eedb0plrAI2"}
+      )
+    response = JSON.parse(resp.body)
+    count = response['data'][self.ticker][0]['total_count']
+    self.trending = count
   end
 end
