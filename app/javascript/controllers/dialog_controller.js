@@ -16,9 +16,8 @@ export default class extends Controller {
   }
 
   close(event) {
-    event.preventDefault()
-    this.element.remove()
-    this.element.closest.src = undefined
+    console.log(this.element.closest("dialog"))
+    this.element.closest("dialog").close()
   }
 
   initDialog() {
