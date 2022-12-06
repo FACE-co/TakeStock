@@ -13,6 +13,12 @@ export default class extends Controller {
   open(event) {
     event.preventDefault()
     this.dialog.showModal()
+    let cancelButton = document.querySelectorAll("#cancel")
+    cancelButton.forEach(b => b.addEventListener("click", (e) => {
+      console.log(cancelButton)
+      let openeddialog = document.querySelectorAll("#thisdialog");
+      openeddialog.forEach(e => e.close())
+    }))
   }
 
   // close(event) {
@@ -25,6 +31,7 @@ export default class extends Controller {
     const dialog = document.createElement('dialog')
     document.body.insertAdjacentElement('beforeend', dialog)
     dialog.innerHTML = modalHTML
+    dialog.setAttribute("id", "thisdialog");
     return dialog
   }
 }
