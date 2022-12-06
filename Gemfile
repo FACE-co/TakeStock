@@ -35,7 +35,10 @@ gem "json"
 gem 'rest-client'
 
 # Algolia (Search Function)
-gem "algoliasearch-rails"
+# gem "algoliasearch-rails"
+
+# PG Search
+gem "pg_search"
 
 # Basic Yahoo Finance
 gem 'basic_yahoo_finance'

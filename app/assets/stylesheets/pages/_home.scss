@@ -1,2 +1,17 @@
 // Specific CSS for your home-page
 @import "hero";
+
+.div-table {
+  display: table;
+  // width: auto;
+  // border-spacing: 5px; /* cellspacing:poor IE support for  this */
+}
+.div-table-row {
+  display: table-row;
+  width: auto;
+  clear: both;
+}
+.div-table-col {
+  float: left; /* fix for  buggy browsers */
+  display: table-column;
+}
