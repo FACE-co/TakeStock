@@ -5,13 +5,8 @@ class StocksController < ApplicationController
     @portfolios = Portfolio.where(user_id: current_user.id) if current_user.present?
     @stock = Stock.friendly.find(params[:id])
     @new_stock = Stock.new
-<<<<<<< HEAD
-    #@news_hash = news(@stock, @enddate)
-    @basic_info = basic_info(@stock)
-=======
     @news_hash = news(@stock, @enddate)
     @basic_info = @stock.basic_info
->>>>>>> 0cd7976e452c1fd425a3441959a992c1d1b33ff5
     @reddit_articles = RedditSearch.call(@stock.ticker)
 
   end
@@ -96,40 +91,4 @@ class StocksController < ApplicationController
     news_hash = JSON.parse(stock_news)
     return news_hash
   end
-
-<<<<<<< HEAD
-  def basic_info(stock)
-    api_key = "R4E0Q2VIZSLUWL6Q"
-
-    # getting fundamental data
-    query_fundamental = "https://www.alphavantage.co/query?function=OVERVIEW&symbol=#{stock.ticker}&apikey=#{api_key}"
-    stock_fundamental = URI.open(query_fundamental).read
-    stock_fundamental_hash = JSON.parse(stock_fundamental)
-
-    # getting daily price data
-    query_daily = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=#{stock.ticker}&apikey=#{api_key}"
-    stock_daily = URI.open(query_daily).read
-    stock_daily_hash = JSON.parse(stock_daily)
-    stock_daily_hash_only_first_two_days = stock_daily_hash["Time Series (Daily)"].first(2).to_h
-    stock_today = stock_daily_hash_only_first_two_days.first[1]
-
-    # calculating change and change%
-    stock_today_close = stock_daily_hash_only_first_two_days.values[0]["4. close"].to_f
-    stock_yesterday_close = stock_daily_hash_only_first_two_days.values[1]["4. close"].to_f
-    change = stock_yesterday_close - stock_today_close
-    change_percentage = change / stock_yesterday_close
-
-    # making change/change% a hash
-    temp_hash = {}
-    temp_hash["change"] = "#{change.round(2)}"
-    temp_hash["change%"] = "#{change_percentage.round(2)}%"
-
-    final_hash = stock_fundamental_hash.merge(stock_today).merge(temp_hash)
-
-    return final_hash
-  end
-
-
-=======
->>>>>>> 0cd7976e452c1fd425a3441959a992c1d1b33ff5
 end

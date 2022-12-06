@@ -22,12 +22,7 @@
               <% stocks.each_with_index do |stock, index| %>
                 <tr class="group hover:bg-indigo-500 text-white cursor-pointer" onclick="window.location='<%= stock_url(stock) %>'">
                   <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 group-hover:text-white"> <%= index + 1 %></td>
-<<<<<<< HEAD
-                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 group-hover:text-white"> <%= stock.trending %></td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white"><%= stock.name %></td>
-=======
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white"><%= stock.yahooapi["shortName"] %></td>
->>>>>>> 0cd7976e452c1fd425a3441959a992c1d1b33ff5
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white"><%= stock.ticker %></td>
                   <%# Interpolate data from API to Last, High & Low Below %>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white/50">$<%= stock.yahooapi["regularMarketPrice"].round(2) %></td>
