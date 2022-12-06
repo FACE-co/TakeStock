@@ -9,7 +9,6 @@ class StocksController < ApplicationController
     # @basic_info = @stock.basic_info
     @basic_info = []
     @reddit_articles = RedditSearch.call(@stock.ticker)
-
   end
 
   # /stocks(.:format)
