@@ -9,8 +9,9 @@ class Stock < ApplicationRecord
 
   before_validation :upcase_ticker
 
-  algoliasearch do
-    # Use all default configuration
+  algoliasearch per_environment: true do # index name will be "Stock_#{Rails.env}"
+    attribute :name, :ticker, :sector
+    add_attribute :yahooapi
   end
 
   def upcase_ticker

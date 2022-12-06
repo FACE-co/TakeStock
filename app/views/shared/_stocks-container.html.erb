@@ -16,7 +16,7 @@
               <th class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"></th>
             </tr>
           </thead>
-          <div class="divide-y divide-gray-200 bg-white">
+          <div class="divide-y divide-gray-200 bg-white" id="hits">
           <%# Display all the stock information if Portfolio has stocks, ELSE display string to notify user of empty portfolio L50-52 %>
             <% if stocks.any? %>
               <% stocks.each_with_index do |stock, index| %>
@@ -65,14 +65,3 @@
       </div>
     </div>
   </div>
-
-<% if false %>
-
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 table-cell">
-                      <%= link_to portfolio_portfolio_stocks_path(
-                                  stock_id: stock.id),
-                                  class: 'btn btn-light btn-sm text-right' do %>
-                                  <i class="fa-regular fa-circle-plus"></i>
-                                  <% end %>
-                    </td>
-<% end %>
