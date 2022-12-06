@@ -13,55 +13,84 @@ SimpleForm.setup do |config|
   # wrapper, change the order or even add your own to the
   # stack. The options given below are used to wrap the
   # whole input.
-  config.wrappers :default, class: :input,
-    hint_class: :field_with_hint, error_class: :field_with_errors, valid_class: :field_without_errors do |b|
-    ## Extensions enabled by default
-    # Any of these extensions can be disabled for a
-    # given input by passing: `f.input EXTENSION_NAME => false`.
-    # You can make any of these extensions optional by
-    # renaming `b.use` to `b.optional`.
 
-    # Determines whether to use HTML5 (:email, :url, ...)
-    # and required attributes
+  config.wrappers :default, tag: 'div', class: '', error_class: '', valid_class: '' do |b|
     b.use :html5
-
-    # Calculates placeholders automatically from I18n
-    # You can also pass a string as f.input placeholder: "Placeholder"
     b.use :placeholder
-
-    ## Optional extensions
-    # They are disabled unless you pass `f.input EXTENSION_NAME => true`
-    # to the input. If so, they will retrieve the values from the model
-    # if any exists. If you want to enable any of those
-    # extensions by default, you can change `b.optional` to `b.use`.
-
-    # Calculates maxlength from length validations for string inputs
-    # and/or database column lengths
     b.optional :maxlength
-
-    # Calculate minlength from length validations for string inputs
     b.optional :minlength
-
-    # Calculates pattern from format validations for string inputs
     b.optional :pattern
-
-    # Calculates min and max from length validations for numeric inputs
     b.optional :min_max
-
-    # Calculates readonly automatically from readonly attributes
     b.optional :readonly
 
-    ## Inputs
-    # b.use :input, class: 'input', error_class: 'is-invalid', valid_class: 'is-valid'
-    b.use :label_input
-    b.use :hint,  wrap_with: { tag: :span, class: :hint }
-    b.use :error, wrap_with: { tag: :span, class: :error }
+    b.use :label, class: "block text-sm font-medium text-gray-700"
+    b.use :input,
+      class: 'appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm',
+      error_class: 'block w-full pr-10 border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded-md'
+    b.use :full_error, wrap_with: { tag: 'p', class: 'mt-2 text-sm text-red-600' }
+    b.use :hint,  wrap_with: { tag: :p, class: "mt-2 text-sm text-gray-500" }
+  end
 
-    ## full_messages_for
-    # If you want to display the full error message for the attribute, you can
-    # use the component :full_error, like:
-    #
-    # b.use :full_error, wrap_with: { tag: :span, class: :error }
+  config.wrappers :prepend_string, tag: 'div', class: '', error_class: '', valid_class: '' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.optional :maxlength
+    b.optional :minlength
+    b.optional :pattern
+    b.optional :min_max
+    b.optional :readonly
+
+    b.use :label, class: "block text-sm font-medium text-gray-700"
+
+    b.wrapper tag: 'div', class: 'mt-1 flex rounded-md shadow-sm' do |d|
+      d.use :prepend
+      d.use :input,
+        class: "flex-1 min-w-0 block w-full px-3 py-2 rounded-none rounded-r-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300",
+        error_class: "flex-1 min-w-0 block w-full px-3 py-2 rounded-none rounded-r-md focus:ring-red-500 focus:border-red-500 sm:text-sm border-red-300 text-red-900 placeholder-red-300"
+    end
+    b.use :full_error, wrap_with: { tag: "p", class: "mt-2 text-sm text-red-600" }
+    b.use :hint,  wrap_with: { tag: :p, class: "mt-2 text-sm text-gray-500" }
+  end
+
+  config.wrappers :append_string, tag: 'div', class: '', error_class: '', valid_class: '' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.optional :maxlength
+    b.optional :minlength
+    b.optional :pattern
+    b.optional :min_max
+    b.optional :readonly
+
+    b.use :label, class: "block text-sm font-medium text-gray-700"
+
+    b.wrapper tag: 'div', class: 'mt-1 flex rounded-md shadow-sm' do |d|
+      d.use :input,
+        class: "flex-1 min-w-0 block w-full px-3 py-2 rounded-none rounded-l-md focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-gray-300",
+        error_class: "flex-1 min-w-0 block w-full px-3 py-2 rounded-none rounded-l-md focus:ring-red-500 focus:border-red-500 sm:text-sm border-red-300 text-red-900 placeholder-red-300"
+      d.use :append
+    end
+    b.use :full_error, wrap_with: { tag: "p", class: "mt-2 text-sm text-red-600" }
+    b.use :hint,  wrap_with: { tag: :p, class: "mt-2 text-sm text-gray-500" }
+  end
+
+  config.wrappers :corner_hint, tag: :div do |b|
+    b.use :html5
+    b.use :placeholder
+    b.optional :maxlength
+    b.optional :minlength
+    b.optional :pattern
+    b.optional :min_max
+    b.optional :readonly
+
+    b.wrapper tag: :div, class: "flex justify-between", error_class: nil, valid_class: nil do |c|
+      c.use :label, class: "block text-sm font-medium text-gray-700"
+      c.use :hint,  wrap_with: { tag: :span, class: "text-sm text-gray-500" }
+    end
+
+    b.use :input,
+      class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm",
+      error_class: "block w-full pr-10 border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded-md"
+    b.use :full_error, wrap_with: { tag: "p", class: "mt-2 text-sm text-red-600" }
   end
 
   # The default wrapper to be used by the FormBuilder.
@@ -74,7 +103,7 @@ SimpleForm.setup do |config|
   config.boolean_style = :nested
 
   # Default class for buttons
-  config.button_class = 'btn'
+  config.button_class = nil
 
   # Method used to tidy up errors. Specify any Rails Array method.
   # :first lists the first message for each field.
@@ -85,7 +114,7 @@ SimpleForm.setup do |config|
   config.error_notification_tag = :div
 
   # CSS class to add for error notification helper.
-  config.error_notification_class = 'error_notification'
+  config.error_notification_class = ''
 
   # Series of attempts to detect a default label method for collection.
   # config.collection_label_methods = [ :to_label, :name, :title, :to_s ]
@@ -107,17 +136,18 @@ SimpleForm.setup do |config|
   # config.item_wrapper_class = nil
 
   # How the label text should be generated altogether with the required text.
-  # config.label_text = lambda { |label, required, explicit_label| "#{required} #{label}" }
+  config.label_text = lambda { |label, required, explicit_label| "#{label}" }
 
   # You can define the class to use on all labels. Default is nil.
   # config.label_class = nil
 
-  # You can define the default class to be used on forms. Can be overridden
+  # You can define the default class to be used on forms. Can be overriden
   # with `html: { :class }`. Defaulting to none.
-  # config.default_form_class = nil
+  config.default_form_class = nil
+  config.form_class = nil
 
   # You can define which elements should obtain additional classes
-  # config.generate_additional_classes_for = [:wrapper, :label, :input]
+  config.generate_additional_classes_for = []
 
   # Whether attributes are required by default (or not). Default is true.
   # config.required_by_default = true
@@ -136,7 +166,11 @@ SimpleForm.setup do |config|
 
   # Custom wrappers for input types. This should be a hash containing an input
   # type as key and the wrapper that will be used for all inputs with specified type.
-  # config.wrapper_mappings = { string: :prepend }
+  config.wrapper_mappings = {
+    string: :default,
+    prepend_string: :prepend_string,
+    append_string: :append_string,
+  }
 
   # Namespaces where SimpleForm should look for custom input classes that
   # override default inputs.
