@@ -21,10 +21,10 @@ class TweetsController < ApplicationController
     response_array = response_json["data"] # this returns an array of hashes
 
     # no filter
-    filtered_response_array = response_array
+    # filtered_response_array = response_array
 
     # yes filter
-    # filtered_response_array = response_array.select { |e| (e["entities"].nil?) || (e["entities"]["cashtags"].nil? || e["entities"]["cashtags"].count <= 3) && (e["lang"] == "en") && (e["entities"]["urls"].nil?) }
+    filtered_response_array = response_array.select { |e| (e["entities"].nil?) || (e["entities"]["cashtags"].nil? || e["entities"]["cashtags"].count <= 3) && (e["lang"] == "en") && (e["entities"]["urls"].nil?) }
     id_array = filtered_response_array.map { |hash| hash["id"] }
 
     return [id_array.first(3), filtered_response_array]

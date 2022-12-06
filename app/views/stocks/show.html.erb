@@ -22,13 +22,13 @@
 
 <%# TIMELINE SCROLLER %>
 <div data-controller="timescroll">
-
   <div class="w-100 px-4" data-action="change->timescroll#select" >
     <%= render "timescroll", stock: @stock %>
   </div>
+</div>
 
 <%# ADD STOCK TO PORTFOLIO BUTTON %>
-<div class="absolute top-0 right-0 px-3 py-3 lg:px-5 lg:pl-3">
+<div class="fixed top-1/2 -mr-9 hover:-mr-3 ease-in-out duration-100 z-50 right-0 px-3 py-3 lg:px-5 lg:pl-3">
   <%= render "add", stock: @stock %>
 </div>
 
@@ -64,10 +64,12 @@
               <%= render "price_chart", stock:@stock %>
             </div>
         </div>
+
         <%# REDDIT %>
         <div id="reddit" class="row-span-1 bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8">
           <%= render "stocks/reddit-section", reddit_articles: @reddit_articles %>
         </div>
+
         <%# NEWS %>
         <div id="news" class="row-span-1 bg-white shadow rounded-lg mb-4 p-4 sm:p-6 h-full">
           <div class="flex items-center justify-between mb-4">
