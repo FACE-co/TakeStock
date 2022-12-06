@@ -6,7 +6,7 @@ export default class extends Controller {
   static targets = ["time", "value", "news", "tickername"]
 
   connect() {
-    console.log("timescroll connected");
+    // console.log("timescroll connected");
     // flatpickr(this.timeTarget, {
     //   altInput: true
     // })
@@ -36,8 +36,18 @@ export default class extends Controller {
     // });
     let enddate = this.valueTarget.innerHTML
     let ticker = this.tickernameTarget.innerHTML
-    console.log(enddate)
-    console.log(ticker)
+    // console.log(enddate, "this is the enddate")
+    // console.log(ticker, "this is the ticker")
+
+    let current_url = new URL(document.URL);
+    console.log("old url", current_url);
+    let search_params = current_url.searchParams;
+    console.log(search_params);
+    search_params.append("enddate", enddate);
+    current_url.search = search_params.toString();
+    console.log("new url", current_url);
+
+    window.history.pushState({}, '', current_url.search);
 
     const replace = (data) => {
       let array = data["articles"]
