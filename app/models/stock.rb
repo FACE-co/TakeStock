@@ -1,6 +1,7 @@
 class Stock < ApplicationRecord
   include ActionView::Helpers::NumberHelper
-  include AlgoliaSearch
+  # include AlgoliaSearch
+  include PgSearch::Model
 
   has_many :portfolios, through: :portfolio_stocks
   extend FriendlyId
@@ -9,10 +10,17 @@ class Stock < ApplicationRecord
 
   before_validation :upcase_ticker
 
-  algoliasearch per_environment: true do # index name will be "Stock_#{Rails.env}"
-    attribute :name, :ticker, :sector
-    add_attribute :yahooapi
-  end
+  # algoliasearch per_environment: true do # index name will be "Stock_#{Rails.env}"
+  #   attribute :name, :ticker, :sector
+  #   add_attribute :yahooapi
+  # end
+
+  pg_search_scope :search_by_name_and_ticker_and_sector,
+    against: [ :name, :ticker, :sector ],
+    using: {
+      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+    }
+
 
   def upcase_ticker
     self.ticker = self.ticker.upcase

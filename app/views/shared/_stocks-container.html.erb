@@ -2,29 +2,7 @@
   <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
     <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
       <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
-        <div class="min-w-full divide-y divide-gray-300 div-table">
-          <div class="bg-gray-50 div-table-row">
-              <div class="div-table-col py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">#</div>
-              <div class="div-table-col px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Name</div>
-              <div class="div-table-col px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Ticker</div>
-              <div class="div-table-col px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Last</div>
-              <div class="div-table-col px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Daily High</div>
-              <div class="div-table-col px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Daily Low</div>
-              <div class="div-table-col px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Change $</div>
-              <div class="div-table-col px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Change %</div>
-              <div class="div-table-col px-3 py-3.5 text-left text-sm font-semibold text-gray-900"></div>
-          </div>
-          <div class="divide-y divide-gray-200 bg-white table-row" id="hits">
-            <%# Display all the stock information if Portfolio has stocks, ELSE display string to notify user of empty portfolio L50-52 %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <% if false %>
-     <table class="min-w-full divide-y divide-gray-300">
+        <table class="min-w-full divide-y divide-gray-300">
           <thead class="bg-gray-50">
             <tr>
               <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">#</th>
@@ -38,10 +16,10 @@
               <th class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"></th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-gray-200 bg-white" id="hits">
+          <tbody class="divide-y divide-gray-200 bg-white min-h-max">
             <%# Display all the stock information if Portfolio has stocks, ELSE display string to notify user of empty portfolio L50-52 %>
             <tr class="group hover:bg-indigo-500 text-white cursor-pointer">
-               <% if stocks.any? %>
+              <% if stocks.any? %>
               <% stocks.each_with_index do |stock, index| %>
                 <tr class="group hover:bg-indigo-500 text-white cursor-pointer" onclick="window.location='<%= stock_url(stock) %>'">
                   <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 group-hover:text-white"> <%= index + 1 %></td>
@@ -63,7 +41,7 @@
                   <% if portfolio %>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 table-cell">
                     <%= link_to portfolio_stock_path(
-                                portfolio_id: portfolio.id,
+                      portfolio_id: portfolio.id,
                                 stock_id: stock.id),
                                 data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete this stock?"},
                                 class: 'btn btn-light btn-sm text-right' do %>
@@ -86,4 +64,28 @@
             </tr>
           </tbody>
         </table>
+      </div>
+    </div>
+  </div>
+
+
+  <% if false %>
+
+        <div class="min-w-full divide-y divide-gray-300 div-table">
+          <div class="bg-gray-50 grid grid-cols-11">
+              <div class=" py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">#</div>
+              <div class="col-span-3 px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Name</div>
+              <div class=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Ticker</div>
+              <div class=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Last</div>
+              <div class=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Daily High</div>
+              <div class=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Daily Low</div>
+              <div class=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Change $</div>
+              <div class=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Change %</div>
+              <div class=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900"></div>
+          </div>
+          <div class="divide-y divide-gray-200 bg-white" id="hits">
+            <%# Display all the stock information if Portfolio has stocks, ELSE display string to notify user of empty portfolio L50-52 %>
+          </div>
+        </div>
+
   <% end %>

@@ -2,8 +2,8 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import "bootstrap"
-import { initAlgolia } from "./custom/algolia"
+// import { initAlgolia } from "./custom/algolia"
 
-document.addEventListener("turbo:load", () => {
-  initAlgolia()
-})
+// document.addEventListener("turbo:load", () => {
+//   initAlgolia()
+// })
