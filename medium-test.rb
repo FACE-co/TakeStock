@@ -103,22 +103,22 @@ require 'yaml'
 #   return doc
 # end
 
-def call
-  resp = RestClient::Request.execute(
-    :method => :get,
-    :url => "https://api.stockgeist.ai/stock/us/hist/message-metrics?symbols=AAPL&start=2022-12-03T00%3A00&end=2022-12-04T00%3A00&metrics=pos_total_count",
-    :headers => {Accept: "application/jsonl",
-                token: "JtBFPn3VgU9UWO4SrhRFBZG35zUJRmGt"}
-  )
-  response = JSON.parse(resp.body)
-  pos_count = response['data']['AAPL'][0]['pos_total_count']
-  return pos_count
-end
+# def call
+#   resp = RestClient::Request.execute(
+#     :method => :get,
+#     :url => "https://api.stockgeist.ai/stock/us/hist/message-metrics?symbols=AAPL&start=2022-12-03T00%3A00&end=2022-12-04T00%3A00&metrics=pos_total_count",
+#     :headers => {Accept: "application/jsonl",
+#                 token: "JtBFPn3VgU9UWO4SrhRFBZG35zUJRmGt"}
+#   )
+#   response = JSON.parse(resp.body)
+#   pos_count = response['data']['AAPL'][0]['pos_total_count']
+#   return pos_count
+# end
 
 # response = RestClient.get 'https://api.stockgeist.ai/stock/us/stream/message-metrics?symbols=AAPL', {:Authorization => 'Bearer sAnxob5DibFF04qpdTPvyigsgVlnKfBO'}
 # puts response
 
-puts call
+# puts call
 
 # puts get_article_ids('tsla')
 # def get_reddit_articles(stock)
@@ -218,3 +218,44 @@ puts call
 # end
 
 # puts call('aapl')
+
+def access_token
+  # begin
+    resp = RestClient::Request.execute(
+      method: :post,
+      url: 'https://www.reddit.com/api/v1/access_token',
+      user: 'EeOaIJSfYUq33vHSLLPclKg',
+      password: 'xfn_f-JNfn-8ry_zXbMv1jV81rPfbg',
+      payload: 'grant_type=client_credentials'
+    )
+    response = JSON.parse(resp.body)
+    byebug
+    return response['access_token']
+  # rescue StandardError => e
+  #   raise StandardError.new 'Error getting Reddit OAuth2 token.'
+  # end
+end
+
+def call(query)
+  token = access_token
+  begin
+    raw = RestClient::Request.execute(
+      :method => :get,
+      :url => "https://www.reddit.com/search.json?q=#{@query}&t=week&sort=top",
+      :headers => { Authorization: token }
+    )
+
+    # json file of reddit articles
+    reddit_hash = JSON.parse(raw)
+
+    # parsed json into ruby hash
+    # returns hash of hashes post via ['data']['children']
+    articles = reddit_hash['data']['children']
+   return articles
+
+  rescue StandardError => e
+    raise StandardError.new 'Error getting Reddit articles.'
+  end
+end
+
+puts call('AAPL')

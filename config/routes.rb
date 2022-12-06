@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'errors/not_found'
+  get 'errors/internal_server_error'
+  get 'errors/bad_request'
   devise_for :users
 
   root to: "dashboard#show"
@@ -29,4 +32,8 @@ Rails.application.routes.draw do
 
   # only need id of portfolio_stock to destroy (So we don't nest this route)
   resources :portfolio_stocks, only: [:destroy]
+
+  match "/404", via: :all, to: "errors#not_found"
+  match "/500", via: :all, to: "errors#internal_server_error"
+  match "/400", via: :all, to: "errors#bad_request"
 end

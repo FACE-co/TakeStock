@@ -60,7 +60,8 @@ class Stock < ApplicationRecord
       :method => :get,
       :url => "https://api.stockgeist.ai/stock/us/hist/message-metrics?symbols=#{self.ticker}&start=2022-12-03T00%3A00&end=2022-12-04T00%3A00&metrics=total_count",
       :headers => {Accept: "application/json",
-                  Token: "U4BnhJrYhPjUbKABSAiX6eedb0plrAI2"}
+                  #Token: "U4BnhJrYhPjUbKABSAiX6eedb0plrAI2"
+                }
       )
     response = JSON.parse(resp.body)
     count = response['data'][self.ticker][0]['total_count']
