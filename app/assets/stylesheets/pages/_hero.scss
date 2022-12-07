@@ -32,11 +32,13 @@
     flex-direction: column;
     justify-content: center;
     padding-left: 4rem;
+    padding-bottom: 6rem;
 
     .hero-text {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      line-height: 3rem;
     }
 
     .secondary-text {
@@ -49,7 +51,7 @@
       // bottom: 5rem;
       align-self: center;
       color: black;
-      bottom: 2rem;
+      bottom: 0;
 
       img {
         position: absolute;

@@ -3,17 +3,17 @@
   <%= render "dashboard/call-to-action-banner" %>
 <% end %>
 
-<div class="mt-8 flex flex-col px-16 sm:px-10">
+<div class="mt-16 flex flex-col px-16 sm:px-20">
   <%= turbo_frame_tag "portfolio_turbo_frame" do %>
-  <div class="flex items-baseline">
+  <div class="flex items-baseline justify-between">
     <h3 class="text-4xl font-bold">Markets</h3>
     <p class="ml-8 text-xl font-semibold">View by: <span class="ml-2 underline decoration-amber-500 decoration-4 underline-offset-8">Trending<span></p>
   </div>
     <%= render "shared/filter-table" %>
     <%= render "shared/stocks-container", stocks: @stocks %>
+    <%= render "dashboard/trading_view_widget" %>
+  <% end %>
+  <% if current_user.nil? %>
+    <%= render "dashboard/call_to_action_2" %>
   <% end %>
 </div>
-
-<% if current_user.nil? %>
-  <%= render "dashboard/call_to_action_2" %>
-<% end %>

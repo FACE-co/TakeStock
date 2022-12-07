@@ -18,7 +18,7 @@ module.exports = {
         '152': '38rem',
         '160': '40rem',
       },
-      display: ["group-hover"]
+      display: ["group-hover"],
     },
     fontSize: {
       xxs: "0.7rem",
@@ -32,6 +32,8 @@ module.exports = {
       "4xl": "2.25rem",
       "5xl": "3rem",
       "6xl": "4rem",
+      "7xl": "4.5rem",
+      "9xl": "8rem",
     },
   },
   plugins: [

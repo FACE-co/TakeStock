@@ -14,13 +14,13 @@
         <%= form_tag root_path, method: :get do %>
           <%= text_field_tag :query,
               params[:query],
-              class: "form_input form-control relative min-w-0 block w-50 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none",
+              class: "form_input form-control relative min-w-0 block w-50 px-3 py-1.5 text-sm text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none",
               placeholder: "Filter Table"
           %>
           </div>
           <div>
           <%= submit_tag "Search",
-              class: "form_input btn w-50 inline-block mr-4 px-6 py-2.5 bg-indigo-600 text-white font-medium text-xs leading-tight uppercase rounded-r-full shadow-md hover:bg-indigo-700 hover:shadow-lg focus:bg-indigo-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-indigo-800 active:shadow-lg transition duration-150 ease-in-out"%>
+              class: "form_input btn inline-block h-100 px-4 py-2.5 bg-indigo-600 text-white text-sm leading-tight rounded-r-full shadow-md hover:bg-indigo-700 hover:shadow-lg focus:bg-indigo-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-indigo-800 active:shadow-lg transition duration-150 ease-in-out flex items-center mr-4"%>
         <% end %>
           </div>
       </div>
@@ -30,14 +30,14 @@
   <%# TRENDING %>
   <div class="flex space-x-2 justify-center">
     <div>
-      <%= link_to "Trending", root_path, class: "inline-flex w-25 justify-center rounded-full border border-gray-300 bg-white px-6 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100 mr-4"  %>
+      <%= link_to "Trending", root_path, class: "inline-flex w-25 justify-center rounded-full border border-gray-300 bg-white px-6 py-2 text-sm text-gray-700 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100 mr-4"  %>
     </div>
   </div>
 
   <%# PORTFOLIOS DROPDOWN %>
   <div data-controller="dropdown" class="relative">
     <button type="button" data-action="dropdown#toggle click@window->dropdown#hide" class="inline-flex w-25 justify-center items-center rounded-full border border-gray-300 bg-white px-6 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
-      Portfolios
+      My Portfolios
       <i class="fa-solid fa-chevron-down ml-2"></i>
     </button>
     <div
