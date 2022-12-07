@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
   def index
     @stock = Stock.friendly.find(params[:stock_id])
-    @date_param = [Date.parse(params[:enddate]).to_time.utc.beginning_of_day.iso8601, Date.parse(params[:enddate]).to_time.utc.end_of_day.iso8601]
+    @date_param = [(Date.parse(params[:enddate]).to_time - 11*60*60).utc.beginning_of_day.iso8601, (Date.parse(params[:enddate]).to_time - 11*60*60).utc.end_of_day.iso8601]
     @tweets = get_tweet_ids(@stock, 100)
     # 2022-12-01T04:42:30.000Z
   end
