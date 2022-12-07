@@ -20,21 +20,14 @@ class TweetsController < ApplicationController
 
     response = https.request(request).read_body.force_encoding("UTF-8")
     response_json = JSON.parse(response)
+    response_array = response_json["data"]
 
-    if response_json.present?
-      response_array = response_json["data"] # this returns an array of hashes
-
-      # no filter
-      # filtered_response_array = response_array
-
-      # yes filter
+    if response_array.present?
       response_array_unique_authors = response_array.uniq { |tweet| tweet["text"] }
       filter_only_en = response_array_unique_authors.select { |tweet| tweet["lang"] == "en" }
       filter_no_entities_then_no_spam = filter_only_en.select { |tweet|  (tweet["entities"].nil?) || ((tweet["entities"]["cashtags"].nil? || tweet["entities"]["cashtags"].count <= 3) && (tweet["entities"]["urls"].nil?)) }
       id_array = filter_no_entities_then_no_spam.map { |hash| hash["id"] }
-
       return [id_array.first(10), filter_no_entities_then_no_spam]
-
     else
       return [["20"], {nothing: "here"}]
     end
