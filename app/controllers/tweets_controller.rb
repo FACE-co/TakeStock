@@ -12,7 +12,7 @@ class TweetsController < ApplicationController
     url = URI("https://api.twitter.com/2/tweets/search/recent?query=#{stock.ticker}&max_results=#{max_results}&tweet.fields=public_metrics,lang,entities,referenced_tweets&expansions=author_id&sort_order=recency&start_time=#{@date_param[0]}&end_time=#{@date_param[1]}")
     # url = URI("https://api.twitter.com/2/tweets/search/recent?query=#{stock.ticker}&max_results=#{max_results}&tweet.fields=public_metrics,lang,entities,referenced_tweets&sort_order=relevancy")
     https = Net::HTTP.new(url.host, url.port)
-    # https.use_ssl = true
+    https.use_ssl = true
 
     request = Net::HTTP::Get.new(url)
     request["Authorization"] = "Bearer #{ENV['TWITTER_BEARER_TOKEN']}"
