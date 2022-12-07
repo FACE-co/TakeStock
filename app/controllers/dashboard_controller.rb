@@ -3,19 +3,10 @@ class DashboardController < ApplicationController
 
   def show
     @portfolios = Portfolio.where(user: current_user).order(:created_at)
-    @stocks = Stock.all
+    if params[:query].present?
+      @stocks = Stock.search_by_name_and_ticker_and_sector(params[:query])
+    else
+      @stocks = Stock.all
+    end
   end
-
-  def twitter_feed
-  end
-
-  def live_chart
-  end
-
-  def medium_feed
-  end
-
-  def ticker_news
-  end
-
 end
