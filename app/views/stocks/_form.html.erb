@@ -2,7 +2,14 @@
   <div class="xl:w-70">
     <div class="input-group relative flex flex-wrap items-stretch w-full rounded">
       <%= f.input :ticker, wrapper_html: {style: "margin-bottom: 0px"},class:"form-control relative flex-auto min-w-0 block w-50 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-l-full transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none", placeholder:"Search, e.g TSLA", label: false %>
-      <%= f.submit "Search", class:"btn inline-block px-4 py-2.5 bg-indigo-600 text-white font-medium text-medium leading-tight rounded-r-full shadow-md hover:bg-indigo-700 hover:shadow-lg focus:bg-indigo-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-indigo-800 active:shadow-lg transition duration-150 ease-in-out flex items-center mr-4" %>
+      <%= f.submit "Search", class:"btn inline-block h-100 px-4 py-2.5 bg-indigo-600 text-white font-medium text-medium leading-tight rounded-r-full shadow-md hover:bg-indigo-700 hover:shadow-lg focus:bg-indigo-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-indigo-800 active:shadow-lg transition duration-150 ease-in-out flex items-center mr-4" %>
     </div>
   </div>
+
+  <%# <div class="flex">
+    <div class="relative w-full"> %>
+      <%# <%= f.input :ticker, wrapper_html: {style: "margin-bottom: 0px"}, class:"form-control relative flex-auto min-w-0 block w-50 px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded-l-full transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-indigo-600 focus:outline-none", placeholder:"Search, e.g TSLA", label: false %>
+      <%# <%= f.submit "Search", class: "block p-2.5 w-50 z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" %>
+    <%# </div> %>
+  <%# </div> %>
 <% end %>
