@@ -32,10 +32,10 @@
                   <%# Display Green or Red depending on whether Up or Down %>
                   <% if stock.yahooapi["regularMarketChange"].negative? %>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-rose-500 group-hover:text-white/50">- $<%= stock.yahooapi["regularMarketChange"].round(2).abs %></td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-rose-500 group-hover:text-white/50">- <%= stock.yahooapi["preMarketChangePercent"].round(2).abs %>%</td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-rose-500 group-hover:text-white/50">- <%= stock.yahooapi["regularMarketChangePercent"].round(2).abs %>%</td>
                   <% else %>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-emerald-500 group-hover:text-white/50">+ $<%= stock.yahooapi["regularMarketChange"].round(2).abs %></td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-emerald-500 group-hover:text-white/50">+ <%= stock.yahooapi["preMarketChangePercent"].round(2).abs %>%</td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-emerald-500 group-hover:text-white/50">+ <%= stock.yahooapi["regularMarketChangePercent"].round(2).abs %>%</td>
                   <% end %>
                   <%# Only Display Delete Option if Portfolio is present %>
                   <% if portfolio %>
@@ -68,6 +68,14 @@
     </div>
   </div>
 
+  <%# DISPLAY CALL TO ACTION TO GET USER TO SIGN UP %>
+  <% if current_user.nil? %>
+    <div>
+      <p class="text-lg text-gray-900">Sign up now to build your own portfolio for free!</p>
+      <%= link_to "Get Started", new_user_registration_path, class: "text-white mt-6 ml-6 inline-flex items-center justify-center w-40 h-10 whitespace-nowrap rounded-full border border-transparent bg-indigo-700 px-4 py-1 text-base font-medium text-indigo-600 hover:bg-gray-200" %>
+    </div>
+  <% end %>
+  <%# DISPLAY CALL TO ACTION TO GET USER TO SIGN UP END %>
 
   <% if false %>
 
