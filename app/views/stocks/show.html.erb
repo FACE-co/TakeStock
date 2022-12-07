@@ -50,7 +50,8 @@
           <div class="stock-internal-div xl:row-span-6 h-full bg-white shadow-inner rounded-lg p-1 sm:p-2 xl:p-4 overflow-y-auto">
             <div class="flex-shrink-0 w-full">
               <%# tweets here %>
-              <%= turbo_frame_tag "tweets_stock", src: stock_tweets_path(@stock, enddate: "2022-12-07") do %>
+              <%=  %>
+              <%= turbo_frame_tag "tweets_stock", src: stock_tweets_path(@stock, enddate: Time.now.strftime("%Y-%m-%d")) do %>
               <% end %>
             </div>
           </div>

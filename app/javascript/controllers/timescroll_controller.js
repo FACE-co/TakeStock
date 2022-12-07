@@ -27,10 +27,10 @@ export default class extends Controller {
       }
       return dateToday.getFullYear() + '-' + monthnumber + '-' + datenumber;
   }
-    if(datevalue  === 10){
+    if(datevalue  === 6){
       this.valueTarget.innerHTML = new Date().toISOString().slice(0, 10);
     } else {
-      this.valueTarget.innerHTML = getaDate(( 10 - datevalue));
+      this.valueTarget.innerHTML = getaDate(( 6 - datevalue));
     }
     // this.timeTarget.addEventListener("click", e =>{
     // });
