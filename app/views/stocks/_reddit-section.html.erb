@@ -6,28 +6,26 @@
       <li><%= article['data']['title'] %></li>
       <li><%= article['data']['subreddit_name_prefixed'] %></li>
       <li>Posted by <%= article['data']['author'] %> <%= article['data']['created'] %> </li>
-
     </ul>
   </div>
-
 <% end %>
 
-  <div class="mb-5">
-    <h3 class="text-2xl font-medium leading-6 text-gray-900">Reddit</h3>
-    <p class="mt-1 max-w-2xl text-md text-gray-600">Top Trending by Week</p>
-  </div>
-  <div class="">
-    <dl>
-    <% reddit_articles.first(5).each do |article|  %>
-      <% time_posted = Time.at(article['data']['created']).to_date %>
-      <div class="mb-2 p-4 border rounded-lg border-gray-200 cursor-pointer hover:bg-gray-100 group" onclick="window.location='<%= article['data']['url'] %>'">
-        <dd class="mt-1 text-sm text-gray-400 mb-3"><%= article['data']['subreddit_name_prefixed'] %></dd>
-        <dt class="text-sm font-medium text-gray-900 mb-3"><%= article['data']['title'] %></dt>
-        <dd class="mt-1 text-sm text-gray-400 mb-3">Posted by <%= article['data']['author'] %> at <%= time_posted %></dd>
-      </div>
-      <% end %>
-    </dl>
-  </div>
+<%= reddit_articles %>
+<div class="mb-5">
+  <%= image_tag "Reddit_logo_new.svg", width:"30%" %>
+</div>
+<div class="">
+  <dl>
+  <% reddit_articles.first(5).each do |article|  %>
+    <% time_posted = Time.at(article['data']['created']).to_date %>
+    <div class="mb-2 p-4 border rounded-lg border-gray-200 cursor-pointer hover:bg-gray-100 group" onclick="window.location='<%= article['data']['permalink'] %>'">
+      <dd class="mt-1 text-sm text-gray-500 mb-3"><%= article['data']['subreddit_name_prefixed'] %></dd>
+      <dt class="text-sm font-medium text-gray-900 mb-3"><%= article['data']['title'] %></dt>
+      <dd class="mt-1 text-sm text-gray-500 mb-3">Posted by <%= article['data']['author'] %> at <%= time_posted %></dd>
+    </div>
+    <% end %>
+  </dl>
+</div>
 </div>
 
 <% if false %>
