@@ -76,7 +76,7 @@ export default class extends Controller {
             <div class="flex flex-col h-20 justify-between">
               <div>
                 <a href="${a["url"]}" target="_blank">
-                  <p class="text-sm font-medium text-gray-900 dark:text-white"
+                  <p class="text-sm font-medium text-gray-900 "
                   style="display: -webkit-box; -webkit-box-orient: vertical;
                   -webkit-line-clamp: 3; overflow: hidden;">
                     ${a["title"]}
@@ -84,7 +84,7 @@ export default class extends Controller {
                 </a>
               </div>
               <div>
-                <p class="text-sm text-gray-500 truncate dark:text-gray-400">
+                <p class="text-sm text-gray-500 truncate">
                   ${a["publishedAt"]}
                 </p>
               </div>

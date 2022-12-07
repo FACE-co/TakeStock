@@ -16,9 +16,10 @@
               <th class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"></th>
             </tr>
           </thead>
-          <div class="divide-y divide-gray-200 bg-white">
-          <%# Display all the stock information if Portfolio has stocks, ELSE display string to notify user of empty portfolio L50-52 %>
-            <% if stocks.any? %>
+          <tbody class="divide-y divide-gray-200 bg-white min-h-max">
+            <%# Display all the stock information if Portfolio has stocks, ELSE display string to notify user of empty portfolio L50-52 %>
+            <tr class="group hover:bg-indigo-500 text-white cursor-pointer">
+              <% if stocks.any? %>
               <% stocks.each_with_index do |stock, index| %>
                 <tr class="group hover:bg-indigo-500 text-white cursor-pointer" onclick="window.location='<%= stock_url(stock) %>'">
                   <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 group-hover:text-white"> <%= index + 1 %></td>
@@ -30,17 +31,17 @@
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white/50">$<%= stock.yahooapi["regularMarketDayLow"].round(2) %></td>
                   <%# Display Green or Red depending on whether Up or Down %>
                   <% if stock.yahooapi["regularMarketChange"].negative? %>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-emerald-500 group-hover:text-white/50">$<%= stock.yahooapi["regularMarketChange"].round(2).abs %></td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-emerald-500 group-hover:text-white/50"><%= stock.yahooapi["postMarketChangePercent"].round(2).abs %>%</td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-rose-500 group-hover:text-white/50">- $<%= stock.yahooapi["regularMarketChange"].round(2).abs %></td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-rose-500 group-hover:text-white/50">- <%= stock.yahooapi["postMarketChangePercent"].round(2).abs %>%</td>
                   <% else %>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-rose-500 group-hover:text-white/50">$<%= stock.yahooapi["regularMarketChange"].round(2).abs %></td>
-                    <td class="whitespace-nowrap px-3 py-4 text-sm text-rose-500 group-hover:text-white/50"><%= stock.yahooapi["postMarketChangePercent"].round(2).abs %>%</td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-emerald-500 group-hover:text-white/50">+ $<%= stock.yahooapi["regularMarketChange"].round(2).abs %></td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-emerald-500 group-hover:text-white/50">+ <%= stock.yahooapi["postMarketChangePercent"].round(2).abs %>%</td>
                   <% end %>
                   <%# Only Display Delete Option if Portfolio is present %>
                   <% if portfolio %>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 table-cell">
                     <%= link_to portfolio_stock_path(
-                                portfolio_id: portfolio.id,
+                      portfolio_id: portfolio.id,
                                 stock_id: stock.id),
                                 data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete this stock?"},
                                 class: 'btn btn-light btn-sm text-right' do %>
@@ -60,19 +61,31 @@
               Portfolio is currently empty
               </td>
             <% end %>
-          </div>
+            </tr>
+          </tbody>
         </table>
       </div>
     </div>
   </div>
 
-<% if false %>
 
-            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 table-cell">
-                      <%= link_to portfolio_portfolio_stocks_path(
-                                  stock_id: stock.id),
-                                  class: 'btn btn-light btn-sm text-right' do %>
-                                  <i class="fa-regular fa-circle-plus"></i>
-                                  <% end %>
-                    </td>
-<% end %>
+  <% if false %>
+
+        <div class="min-w-full divide-y divide-gray-300 div-table">
+          <div class="bg-gray-50 grid grid-cols-11">
+              <div class=" py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">#</div>
+              <div class="col-span-3 px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Name</div>
+              <div class=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Ticker</div>
+              <div class=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Last</div>
+              <div class=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Daily High</div>
+              <div class=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Daily Low</div>
+              <div class=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Change $</div>
+              <div class=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Change %</div>
+              <div class=" px-3 py-3.5 text-left text-sm font-semibold text-gray-900"></div>
+          </div>
+          <div class="divide-y divide-gray-200 bg-white" id="hits">
+            <%# Display all the stock information if Portfolio has stocks, ELSE display string to notify user of empty portfolio L50-52 %>
+          </div>
+        </div>
+
+  <% end %>

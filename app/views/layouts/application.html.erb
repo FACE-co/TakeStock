@@ -32,7 +32,7 @@
     </script>
   </head>
 
-  <body>
+  <%# <body data-algolia-public-key="<%= ENV["ALGOLIA_FRONT_END_ID"] %>
     <%# Overall Container Styling for all content %>
     <div class="flex flex-col h-screen justify-between">
       <%# Renders NavBar %>
@@ -46,13 +46,5 @@
 
     <%# Custom Confirm - Generates Modal %>
     <%= render "shared/confirm_modals" %>
-
   </body>
 </html>
-
-<% if false %>
-  <%= render "shared/navbar" %>
-  <%= render "shared/flashes" %>
-  <%= yield %>
-  <%= render "shared/footer" %>
-<% end %>

@@ -1,6 +1,7 @@
 class Stock < ApplicationRecord
   include ActionView::Helpers::NumberHelper
-  include AlgoliaSearch
+  # include AlgoliaSearch
+  include PgSearch::Model
 
   has_many :portfolios, through: :portfolio_stocks
   extend FriendlyId
@@ -8,10 +9,19 @@ class Stock < ApplicationRecord
   validates :ticker, uniqueness: true, presence: true
 
   before_validation :upcase_ticker
+  before_save :trending_count
 
-  algoliasearch do
-    # Use all default configuration
-  end
+  # algoliasearch per_environment: true do # index name will be "Stock_#{Rails.env}"
+  #   attribute :name, :ticker, :sector
+  #   add_attribute :yahooapi
+  # end
+
+  pg_search_scope :search_by_name_and_ticker_and_sector,
+    against: [ :name, :ticker, :sector ],
+    using: {
+      tsearch: { prefix: true } # <-- now `superman batm` will return something!
+    }
+
 
   def upcase_ticker
     self.ticker = self.ticker.upcase
@@ -58,5 +68,18 @@ class Stock < ApplicationRecord
     else
       return "nothing here"
     end
+  end
+
+  def trending_count
+    resp = RestClient::Request.execute(
+      :method => :get,
+      :url => "https://api.stockgeist.ai/stock/us/hist/message-metrics?symbols=#{self.ticker}&start=2022-12-03T00%3A00&end=2022-12-04T00%3A00&metrics=total_count",
+      :headers => {Accept: "application/json",
+                  #Token: "U4BnhJrYhPjUbKABSAiX6eedb0plrAI2"
+                }
+      )
+    response = JSON.parse(resp.body)
+    count = response['data'][self.ticker][0]['total_count']
+    self.trending = count
   end
 end

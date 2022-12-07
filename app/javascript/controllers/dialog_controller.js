@@ -13,19 +13,25 @@ export default class extends Controller {
   open(event) {
     event.preventDefault()
     this.dialog.showModal()
+    let cancelButton = document.querySelectorAll("#cancel")
+    cancelButton.forEach(b => b.addEventListener("click", (e) => {
+      console.log(cancelButton)
+      let openeddialog = document.querySelectorAll("#thisdialog");
+      openeddialog.forEach(e => e.close())
+    }))
   }
 
-  close(event) {
-    event.preventDefault()
-    this.element.remove()
-    this.element.closest.src = undefined
-  }
+  // close(event) {
+  //   this.element.closest("dialog").close()
+  //   document.URL = "/#"
+  // }
 
   initDialog() {
     const modalHTML = this.element.dataset.modalContent
     const dialog = document.createElement('dialog')
     document.body.insertAdjacentElement('beforeend', dialog)
     dialog.innerHTML = modalHTML
+    dialog.setAttribute("id", "thisdialog");
     return dialog
   }
 }

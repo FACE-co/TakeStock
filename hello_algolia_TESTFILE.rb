@@ -71,7 +71,7 @@ client = Algolia::Search::Client.create('K0X97I2FU8', '8a7a37583a0a64ec1bad468b4
 
 # # Create a new index and add a record
 ## Define your index for search(Can be found under index (Next to Application in Headers))
-index = client.init_index("TakeStock")
+index = client.init_index("Stock")
 
 ## Save your records => This must be a JSON format - Generates an Object ID if one does not already exist)
 # json_records = JSON.parse(records.to_json)
@@ -79,6 +79,5 @@ index = client.init_index("TakeStock")
 
 # # Search the index and print the results
 # query = form.input.value
-results = index.search("TES")
+results = index.search("qqq")
 puts results[:hits][0]
-

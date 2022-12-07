@@ -8,6 +8,7 @@ class StocksController < ApplicationController
 
     # @news_hash = news(@stock, @enddate)
     # @basic_info = @stock.basic_info
+
     @reddit_articles = RedditSearch.call(@stock.ticker)
     @date_param = params[:enddate]
     session[:datetime] = params[:enddate]
@@ -69,18 +70,6 @@ class StocksController < ApplicationController
         return stock
       end
     end
-  end
-
-  def trending_count(ticker)
-    resp = RestClient::Request.execute(
-      :method => :get,
-      :url => "https://api.stockgeist.ai/stock/us/hist/message-metrics?symbols=#{ticker}&start=2022-12-03T00%3A00&end=2022-12-04T00%3A00&metrics=total_count",
-      :headers => {Accept: "application/json",
-                  Token: ENV['STOCKGIEST_TOKEN']}
-      )
-    response = JSON.parse(resp.body)
-    count = response['data'][ticker][0]['total_count']
-    return count
   end
 
   # /stock_news

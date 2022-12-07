@@ -2,11 +2,13 @@
     <div class="xl:w-70">
       <div class="input-group relative items-stretch w-full">
         <%= form.input :name, label: 'Portfolio Name&nbsp&nbsp' %>
-        <%= form.submit %>
+        <div class="flex mt-2 gap-x-2">
+        <button class="text-gray-600 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded-full border border-gray-200 text-sm font-medium py-2.5 hover:text-gray-900 focus:z-10 w-1/2" id="cancel" type="reset">Cancel</button>
+        <%= form.button :button, class: "text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-full text-sm py-2.5 text-center w-1/2"%>
         <%# <%= link_to "Cancel", :back %>
         <%# <%= link_to 'Back', 'javascript:history.go(-1);' %>
-        <%= link_to "Cancel", data_action:"click->dialog#close" %>
-        <%# <%= link_to "Cancel", root_path, class: "btn btn--light" %> %>
+        <%# <%= link_to "Cancel", root_path, class: "btn btn--light" %>
+        </div>
       </div>
     </div>
   <% end %>
