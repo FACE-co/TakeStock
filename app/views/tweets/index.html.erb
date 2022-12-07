@@ -1,34 +1,20 @@
 <%# TWITTER %>
-<%= turbo_frame_tag dom_id(@stock, :tweets) do %>
-  <script>
-    window.twttr = (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0],
-        t = window.twttr || {};
-      if (d.getElementById(id)) return t;
-      js = d.createElement(s);
-      js.id = id;
-      js.src = "https://platform.twitter.com/widgets.js";
-      fjs.parentNode.insertBefore(js, fjs);
+<div data-timescroll-target="twitterpage">
+</div>
 
-      t._e = [];
-      t.ready = function(f) {
-        t._e.push(f);
-      };
+<%= @tweets[1] %>
 
-      return t;
-    }(document, "script", "twitter-wjs"));
-  </script>
-
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
-  </script>
-
+<%= turbo_frame_tag "tweets_stock" do %>
   <div id="twitter" class="w-full flex items-center justify-between mb-4">
     <div class="flex-shrink-0 w-full">
-      <div class="w-full" data-controller="twitter" data-twitter-tweets="<%= @tweets[0] %>">
+      <div class="w-full" data-controller="twitter" data-twitter-tweets-value="<%= @tweets[0] %>">
         <div id="tweet" class="w-full">
           <%# here goes the tweets %>
         </div>
       </div>
     </div>
   </div>
+  <script>
+    twttr.widgets.load()
+  </script>
 <% end %>
