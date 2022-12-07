@@ -28,7 +28,6 @@
           <div class="stock-internal-div xl:row-span-6 h-full bg-white shadow-inner-enhanced rounded-lg p-1 sm:p-2 xl:px-3 xl:py-1 overflow-y-auto">
             <div class="flex-shrink-0 w-full">
               <%# tweets here %>
-              <%=  %>
               <%= turbo_frame_tag "tweets_stock", src: stock_tweets_path(@stock, enddate: Time.now.strftime("%Y-%m-%d")) do %>
               <% end %>
             </div>

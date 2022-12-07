@@ -35,19 +35,7 @@ class RedditSearch < ApplicationService
       # parsed json into ruby hash
       # returns hash of hashes post via ['data']['children']
 
-      # icons_urls = []
 
-      # articles.each do |article|
-      #   icons = RestClient::Request.execute(
-      #     :method => :get,
-      #     :url => "https://www.reddit.com/r/#{article['data']['subreddit']}/about.json",
-      #     :headers => { Authorization: token }
-      #     )
-
-      #   icons_hash = JSON.parse(icons)
-      #   icon_url = icons_hash['icon_img']
-      #   icons_urls.append(icon_url)
-      #  end
 
        articles = posts
       #  articles = [posts, icons_urls]
