@@ -1,25 +1,3 @@
-<script>
-  window.twttr = (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0],
-      t = window.twttr || {};
-    if (d.getElementById(id)) return t;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "https://platform.twitter.com/widgets.js";
-    fjs.parentNode.insertBefore(js, fjs);
-
-    t._e = [];
-    t.ready = function(f) {
-      t._e.push(f);
-    };
-
-    return t;
-  }(document, "script", "twitter-wjs"));
-</script>
-
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
-</script>
-
 <%# TIMELINE SCROLLER %>
 <div data-controller="timescroll">
   <div class="w-100 px-4" data-action="change->timescroll#select" >
@@ -32,50 +10,49 @@
   </div>
 
   <%# CONTAINER TO HOUSE ALL STOCK INFO %>
-    <div class="h-152 w-full relative overflow-y-auto">
+    <div class="md:h-136 3xl:h-elliott w-full relative overflow-y-auto px-4">
 
         <div class="w-full h-full grid xl:grid-rows-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-2 p-1">
 
           <%# STOCK INFO %>
-          <div id="stock-info" class="xl:row-span-3 bg-white shadow-inner rounded-lg p-1 sm:p-2 xl:p-4">
+          <div id="stock-info" class="xl:row-span-3 3xl:row-span-2 bg-white shadow-inner-enhanced rounded-lg p-1 sm:p-2 xl:p-4">
             <div class="flex items-center justify-between mb-4">
               <%= render "price_widget", stock: @stock %>
             </div>
             <div id="basic-info", class="flex items-center justify-between mb-4">
-              <%# <%= render "basic_info", stock: @stock %> %>
+              <%= render "basic_info", stock: @stock %>
             </div>
           </div>
 
           <%# TWITTER %>
-          <div class="stock-internal-div xl:row-span-6 h-full bg-white shadow-inner rounded-lg p-1 sm:p-2 xl:p-4 overflow-y-auto">
+          <div class="stock-internal-div xl:row-span-6 h-full bg-white shadow-inner-enhanced rounded-lg p-1 sm:p-2 xl:px-3 xl:py-1 overflow-y-auto">
             <div class="flex-shrink-0 w-full">
               <%# tweets here %>
-              <%=  %>
-              <%= turbo_frame_tag "tweets_stock", src: stock_tweets_path(@stock, enddate: (Time.now-24*60*60).strftime("%Y-%m-%d")) do %>
+              <%= turbo_frame_tag "tweets_stock", src: stock_tweets_path(@stock, enddate: Time.now.strftime("%Y-%m-%d")) do %>
               <% end %>
             </div>
           </div>
 
           <%# PRICE CHART %>
-          <div id="price-chart" class="xl:row-span-3 bg-white shadow-innerfull">
+          <div id="price-chart" class="xl:row-span-3 bg-white shadow-inner-enhanced rounded-lg p-1 sm:p-2 xl:p-4">
               <div class="flex items-center justify-between mb-4 h-full">
                 <%= render "price_chart", stock:@stock %>
               </div>
           </div>
 
           <%# REDDIT %>
-          <div id="reddit" class="stock-internal-div xl:row-span-3 bg-white shadow-inner rounded-lg p-1 sm:p-2 xl:p-4 overflow-y-auto overflow-y-auto">
+          <div id="reddit" class="stock-internal-div xl:row-span-3 3xl:row-span-4 bg-white shadow-inner-enhanced rounded-lg p-1 sm:p-2 xl:p-4 overflow-y-auto overflow-y-auto">
             <%= render "stocks/reddit-section", reddit_articles: @reddit_articles %>
           </div>
 
           <%# NEWS %>
-          <div id="news" class="xl:row-span-3 bg-white shadow-inner rounded-lg p-1 sm:p-2 xl:p-4 h-full overflow-y-auto overflow-y-auto">
+          <div id="news" class="stock-internal-div xl:row-span-3 bg-white shadow-inner-enhanced rounded-lg p-1 sm:p-2 xl:p-4 h-full overflow-y-auto overflow-y-auto">
             <div class="flex items-center justify-between mb-4">
               <h3 class="text-xl font-bold leading-none text-gray-900">Latest News Here</h3>
             </div>
 
             <div data-timescroll-target="news">
-              <%# <%= render "news", stock: @stock, enddate: @enddate %> %>
+              <%= render "news", stock: @stock, enddate: @enddate %>
             </div>
             <p data-timescroll-target="tickername" class="hidden"><%= @stock.ticker %></p>
 

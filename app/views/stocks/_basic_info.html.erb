@@ -3,29 +3,29 @@
 <table class="table-fixed text-xxs w-full">
   <tbody>
     <tr>
-      <td class="w-1/6"><strong>Open:</strong></td><td class="w-1/6">$<%= hash["1. open"] %></td>
-      <td class="w-1/6"><strong>Change:</strong></td><td class="w-1/6">$<%= hash["change"] %></td>
-      <td class="w-1/6"><strong>Mkt Cap:</strong></td><td class="w-1/6">$<%= number_to_human(hash["MarketCapitalization"], units: {unit: "", million: "M", billion: "B", trillion: "T"}, format: "%n%u") %></td>
+      <td class="w-1/6"><strong>Open:</strong></td><td class="w-1/6">$<%= hash[:regularMarketOpen].to_s %></td>
+      <td class="w-1/6"><strong>Change:</strong></td><td class="w-1/6">$<%= hash[:regularMarketChange].to_s %></td>
+      <td class="w-1/6"><strong>Mkt Cap:</strong></td><td class="w-1/6">$<%= number_to_human(hash[:marketCap].to_s, units: {unit: "", million: "M", billion: "B", trillion: "T"}, format: "%n%u") %></td>
     </tr>
     <tr>
-      <td class="w-1/6"><strong>High:</strong></td><td class="w-1/6">$<%= "#{hash["2. high"].to_f.round(2)}" %></td>
-      <td class="w-1/6"><strong>Change%:</strong></td><td class="w-1/6"><%= hash["change%"] %></td>
-      <td class="w-1/6"><strong>Revenue:</strong></td><td class="w-1/6">$<%= number_to_human(hash["RevenueTTM"], units: {unit: "", million: "M", billion: "B"}, format: "%n%u") %></td>
+      <td class="w-1/6"><strong>High:</strong></td><td class="w-1/6">$<%= hash[:regularMarketDayHigh].to_s %></td>
+      <td class="w-1/6"><strong>Change%:</strong></td><td class="w-1/6"><%= hash[:regularMarketChangePercent].to_s %>%</td>
+      <td class="w-1/6"><strong>Exchange:</strong></td><td class="w-1/6"><%= number_to_human(hash[:fullExchangeName].to_s) %></td>
     </tr>
     <tr>
-      <td class="w-1/6"><strong>Low:</strong></td><td class="w-1/6">$<%= hash["3. low"] %></td>
-      <td class="w-1/6"><strong>52wk H:</strong></td><td class="w-1/6">$<%= hash["52WeekHigh"] %></td>
-      <td class="w-1/6"><strong>EPS:</strong></td><td class="w-1/6"><%= hash["EPS"] %></td>
+      <td class="w-1/6"><strong>Low:</strong></td><td class="w-1/6">$<%= hash[:regularMarketDayLow].to_s %></td>
+      <td class="w-1/6"><strong>52wk H:</strong></td><td class="w-1/6">$<%= hash[:fiftyTwoWeekHigh].to_s %></td>
+      <td class="w-1/6"><strong>EPS:</strong></td><td class="w-1/6"><%= hash[:epsTrailingTwelveMonths].to_s %></td>
     </tr>
     <tr>
-      <td class="w-1/6"><strong>Close:</strong></td><td class="w-1/6">$<%= hash["4. close"] %></td>
-      <td class="w-1/6"><strong>52wk L:</strong></td><td class="w-1/6">$<%= hash["52WeekLow"] %></td>
-      <td class="w-1/6"><strong>PER:</strong></td><td class="w-1/6"><%= hash["PERatio"] %></td>
+      <td class="w-1/6"><strong>Close:</strong></td><td class="w-1/6">$<%= hash[:regularMarketPreviousClose].to_s %></td>
+      <td class="w-1/6"><strong>52wk L:</strong></td><td class="w-1/6">$<%= hash[:fiftyTwoWeekLow].to_s %></td>
+      <td class="w-1/6"><strong>PER:</strong></td><td class="w-1/6"><%= hash[:trailingPE].to_s %></td>
     </tr>
     <tr>
-      <td class="w-1/6"><strong>Volume:</strong></td><td class="w-1/6">$<%= number_to_human(hash["6. volume"], units: {unit: "", million: "M", billion: "B"}, format: "%n%u") %></td>
-      <td class="w-1/6"><strong>Dividend:</strong></td><td class="w-1/6">$<%= hash["DividendPerShare"] %></td>
-      <td class="w-1/6"><strong>Shares/O:</strong></td><td class="w-1/6"><%= number_to_human(hash["SharesOutstanding"], units: {unit: "", million: "M", billion: "B"}, format: "%n%u") %></td>
+      <td class="w-1/6"><strong>Volume:</strong></td><td class="w-1/6">$<%= number_to_human(hash[:regularMarketVolume].to_s, units: {unit: "", million: "M", billion: "B"}, format: "%n%u") %></td>
+      <td class="w-1/6"><strong>Dividend:</strong></td><td class="w-1/6">$<%= hash[:trailingAnnualDividendRate].to_s %></td>
+      <td class="w-1/6"><strong>Shares/O:</strong></td><td class="w-1/6"><%= number_to_human(hash[:sharesOutstanding].to_s, units: {unit: "", million: "M", billion: "B"}, format: "%n%u") %></td>
     </tr>
   </tbody>
 </table>
