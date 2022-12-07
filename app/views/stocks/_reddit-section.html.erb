@@ -1,34 +1,67 @@
 <div class="mb-4">
-<% if false %>
-  <div>
-    <h3 class="text-xl font-bold text-gray-900 mb-2">This is Reddit</h3>
-    <ul>
-      <li><%= article['data']['title'] %></li>
-      <li><%= article['data']['subreddit_name_prefixed'] %></li>
-      <li>Posted by <%= article['data']['author'] %> <%= article['data']['created'] %> </li>
-    </ul>
-  </div>
-<% end %>
-
-<%= reddit_articles %>
-<div class="mb-5">
-  <%= image_tag "Reddit_logo_new.svg", width:"30%" %>
-</div>
-<div class="">
-  <dl>
-  <% reddit_articles.first(5).each do |article|  %>
-    <% time_posted = Time.at(article['data']['created']).to_date %>
-    <div class="mb-2 p-4 border rounded-lg border-gray-200 cursor-pointer hover:bg-gray-100 group" onclick="window.location='<%= article['data']['permalink'] %>'">
-      <dd class="mt-1 text-sm text-gray-500 mb-3"><%= article['data']['subreddit_name_prefixed'] %></dd>
-      <dt class="text-sm font-medium text-gray-900 mb-3"><%= article['data']['title'] %></dt>
-      <dd class="mt-1 text-sm text-gray-500 mb-3">Posted by <%= article['data']['author'] %> at <%= time_posted %></dd>
+  <% if false %>
+    <div>
+      <h3 class="text-xl font-bold text-gray-900 mb-2">This is Reddit</h3>
+      <ul>
+        <li><%= article['data']['title'] %></li>
+        <li><%= article['data']['subreddit_name_prefixed'] %></li>
+        <li>Posted by <%= article['data']['author'] %> <%= article['data']['created'] %> </li>
+      </ul>
     </div>
-    <% end %>
-  </dl>
-</div>
+  <% end %>
+
+  <div class="mb-5">
+    <%= image_tag "Reddit_logo_new.svg", width:"30%" %>
+  </div>
+
+  <div class="">
+    <dl>
+    <% reddit_articles.first(5).each do |article|  %>
+      <% time_posted = Time.at(article['data']['created']).to_date %>
+        <div class="container h-32 w-full py-2 mx-auto">
+          <div class="grid h-full border border-red-300 grid-rows-3">
+            <div class="row-span-1 border border-blue-400">
+              <div class="h-full grid grid-cols-11">
+                <div class="border border-green-300">^</div>
+                <div class="border border-green-300">icon</div>
+                <div class="col-span-9 border border-yellow-800 my-auto">
+                  <p class="text-xxs">posted in <%= article['data']['subreddit_name_prefixed'] %> by u/<%= article['data']['author'] %>                   <div class="inline-flex">
+                    <% article['data']['all_awardings'].each do |award|  %>
+                      <%= image_tag award["icon_url"], width:"3%",class:"self-auto" %>
+                    <% end %>
+                  </div></p>
+
+                </div>
+              </div>
+            </div>
+            <div class="row-span-2 border border-gray-400">
+              title
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </dl>
+  </div>
 </div>
 
+
+
+
+
+
+
+
+
+
+
 <% if false %>
+
+      <div class="mb-2 p-4 border rounded-lg border-gray-200 cursor-pointer hover:bg-gray-100 group" onclick="window.location='<%= article['data']['permalink'] %>'">
+        <dd class="mt-1 text-sm text-gray-500 mb-3"><%= article['data']['subreddit_name_prefixed'] %></dd>
+        <dt class="text-sm font-medium text-gray-900 mb-3"><%= article['data']['title'] %></dt>
+        <dd class="mt-1 text-sm text-gray-500 mb-3">Posted by <%= article['data']['author'] %> at <%= time_posted %></dd>
+      </div>
+
   <div class="pt-2">
     <div class="flex items-start rounded-xl bg-white p-4 shadow-lg">
       <div class="flex items-center space-x-4">
