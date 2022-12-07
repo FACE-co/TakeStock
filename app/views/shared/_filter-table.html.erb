@@ -35,6 +35,7 @@
   </div>
 
   <%# PORTFOLIOS DROPDOWN %>
+      <% if current_user.present? %>
   <div data-controller="dropdown" class="relative">
     <button type="button" data-action="dropdown#toggle click@window->dropdown#hide" class="inline-flex w-25 justify-center items-center rounded-full border border-gray-300 bg-white px-6 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
       My Portfolios
@@ -47,7 +48,6 @@
       data-transition-enter-to="opacity-100 scale-100"
       data-transition-leave-from="opacity-100 scale-100"
       data-transition-leave-to="opacity-0 scale-95">
-      <% if current_user.present? %>
        <%# DISPLAYS PORTFOLIOS IF USER IS PRESENT %>
         <% @portfolios.each do |portfolio| %>
           <li class="flex justify-between text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">
@@ -91,14 +91,13 @@
                     },
                     class: "mr-3" %>
         </li>
-      <% else %>
       <%# PROMPTS USER TO LOG IN OR SIGN UP %>
-        <li class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">
+        <%# <li class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem">
           <%= link_to "Log in or Sign up to manage portfolios",
               new_user_registration_path,
               data_action:"dropdown#toggle" %>
-        </li>
-      <% end %>
+        <%# </li> %>
     </div>
   </div>
+      <% end %>
 </div>
