@@ -17,7 +17,8 @@ module.exports = {
         '128': '32rem',
         '152': '38rem',
         '160': '40rem',
-      }
+      },
+      display: ["group-hover"]
     },
     fontSize: {
       xxs: "0.7rem",

@@ -3,7 +3,7 @@
     <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
       <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
         <table class="min-w-full divide-y divide-gray-300">
-          <thead class="bg-gray-50 border border-gray-300">
+          <thead class="bg-gray-50">
             <tr>
               <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">#</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Name</th>
@@ -18,7 +18,7 @@
           </thead>
           <tbody class="divide-y divide-gray-200 bg-white min-h-max">
             <%# Display all the stock information if Portfolio has stocks, ELSE display string to notify user of empty portfolio L50-52 %>
-            <tr class="group hover:bg-indigo-500 text-white cursor-pointer">
+            <tr class="text-white cursor-pointer">
               <% if stocks.any? %>
               <% stocks.each_with_index do |stock, index| %>
                 <tr class="group hover:bg-indigo-500 text-white cursor-pointer" onclick="window.location='<%= stock_url(stock) %>'">
