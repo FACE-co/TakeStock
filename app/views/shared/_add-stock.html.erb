@@ -23,7 +23,7 @@
           <%= link_to "+ #{portfolio.name}",
             portfolio_portfolio_stocks_path(portfolio, stock_id: stock.id),
             data: { turbo_method: :post, turbo_confirm: "Are you sure to add this new stock?" },
-            data_action:"dropdown#toggle" %>
+            data_action:"dropdown#toggle", remote: true %>
         </li>
         <% end %>
     </div>
