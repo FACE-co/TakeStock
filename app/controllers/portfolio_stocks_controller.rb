@@ -7,11 +7,9 @@ class PortfolioStocksController < ApplicationController
     @portfolio_stock.portfolio = @portfolio
     # save
     if @portfolio_stock.save
-      # redirect if successful
-      flash.now[:notice] = "Stock saved"
+      render json: { status: 'success', notice: "Stock is saved to your portfolio #{@portfolio.name}!" }
     else
-      # render new again if not
-      flash.now[:notice] = "Stock already in that portfolio"
+      render json: { status: 'failure', notice: 'Stock already in that portfolio.' }
     end
   end
 
