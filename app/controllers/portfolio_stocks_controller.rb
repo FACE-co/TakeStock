@@ -8,10 +8,10 @@ class PortfolioStocksController < ApplicationController
     # save
     if @portfolio_stock.save
       # redirect if successful
-      flash.now[:notice] = "Stock saved"
+      flash.now[:notice] = "#{@stock.name} saved to #{@portfolio.name}"
     else
       # render new again if not
-      flash.now[:notice] = "Stock already in that portfolio"
+      flash.now[:notice] = "#{@stock.name} is already in #{@portfolio.name}"
     end
   end
 
@@ -21,7 +21,7 @@ class PortfolioStocksController < ApplicationController
     @portfolio_stock = PortfolioStock.where(["portfolio_id = ? and stock_id = ?", @portfolio.id, @stock.id])
     @portfolio_stock.destroy_all
     # REDIRECT PATH NEEDS CHECKING - CURRENTLY REDIRECTS US TO THE STOCK
-    redirect_to root_path, notice: "Stock was successfully deleted."
+    redirect_to root_path, notice: "#{@stock.name} was successfully deleted from #{@portfolio.name}."
   end
 
   private
