@@ -64,23 +64,43 @@ class Stock < ApplicationRecord
     data = query.quotes(self.ticker)
     data_final = data["#{self.ticker}"]
 
-    hash = {
-      regularMarketOpen: data_final["regularMarketOpen"].present? ? data_final["regularMarketOpen"] : "-",
-      regularMarketChange: data_final["regularMarketChange"].present? ? data_final["regularMarketChange"] : "-",
-      marketCap: data_final["marketCap"].present? ? data_final["marketCap"] : "-",
-      regularMarketDayHigh: data_final["regularMarketDayHigh"].present? ? data_final["regularMarketDayHigh"] : "-",
-      regularMarketChangePercent: data_final["regularMarketChangePercent"].present? ? data_final["regularMarketChangePercent"] : "-",
-      fullExchangeName: data_final["fullExchangeName"].present? ? data_final["fullExchangeName"] : "-",
-      regularMarketDayLow: data_final["regularMarketDayLow"].present? ? data_final["regularMarketDayLow"] : "-",
-      fiftyTwoWeekHigh: data_final["fiftyTwoWeekHigh"].present? ? data_final["fiftyTwoWeekHigh"] : "-",
-      epsTrailingTwelveMonths: data_final["epsTrailingTwelveMonths"].present? ? data_final["epsTrailingTwelveMonths"] : "-",
-      regularMarketPreviousClose: data_final["regularMarketPreviousClose"].present? ? data_final["regularMarketPreviousClose"] : "-",
-      fiftyTwoWeekLow: data_final["fiftyTwoWeekLow"].present? ? data_final["fiftyTwoWeekLow"] : "-",
-      trailingPE: data_final["trailingPE"].present? ? data_final["trailingPE"] : "-",
-      regularMarketVolume: data_final["regularMarketVolume"].present? ? data_final["regularMarketVolume"] : "-",
-      trailingAnnualDividendRate: data_final["trailingAnnualDividendRate"].present? ? data_final["trailingAnnualDividendRate"] : "-",
-      sharesOutstanding: data_final["sharesOutstanding"].present? ? data_final["sharesOutstanding"] : "-"
-    }
+    if data_final.present?
+      hash = {
+        regularMarketOpen: data_final["regularMarketOpen"].present? ? data_final["regularMarketOpen"].round(2) : "-",
+        regularMarketChange: data_final["regularMarketChange"].present? ? data_final["regularMarketChange"].round(2) : "-",
+        marketCap: data_final["marketCap"].present? ? data_final["marketCap"] : "-",
+        regularMarketDayHigh: data_final["regularMarketDayHigh"].present? ? data_final["regularMarketDayHigh"].round(2) : "-",
+        regularMarketChangePercent: data_final["regularMarketChangePercent"].present? ? data_final["regularMarketChangePercent"].round(2) : "-",
+        fullExchangeName: data_final["fullExchangeName"].present? ? data_final["fullExchangeName"] : "-",
+        regularMarketDayLow: data_final["regularMarketDayLow"].present? ? data_final["regularMarketDayLow"].round(2) : "-",
+        fiftyTwoWeekHigh: data_final["fiftyTwoWeekHigh"].present? ? data_final["fiftyTwoWeekHigh"].round(2) : "-",
+        epsTrailingTwelveMonths: data_final["epsTrailingTwelveMonths"].present? ? data_final["epsTrailingTwelveMonths"].round(2) : "-",
+        regularMarketPreviousClose: data_final["regularMarketPreviousClose"].present? ? data_final["regularMarketPreviousClose"].round(2) : "-",
+        fiftyTwoWeekLow: data_final["fiftyTwoWeekLow"].present? ? data_final["fiftyTwoWeekLow"].round(2) : "-",
+        trailingPE: data_final["trailingPE"].present? ? data_final["trailingPE"].round(2) : "-",
+        regularMarketVolume: data_final["regularMarketVolume"].present? ? data_final["regularMarketVolume"] : "-",
+        trailingAnnualDividendRate: data_final["trailingAnnualDividendRate"].present? ? data_final["trailingAnnualDividendRate"].round(2) : "-",
+        sharesOutstanding: data_final["sharesOutstanding"].present? ? data_final["sharesOutstanding"] : "-"
+      }
+    else
+      hash = {
+        regularMarketOpen: "-",
+        regularMarketChange: "-",
+        marketCap: "-",
+        regularMarketDayHigh: "-",
+        regularMarketChangePercent: "-",
+        fullExchangeName: "-",
+        regularMarketDayLow: "-",
+        fiftyTwoWeekHigh: "-",
+        epsTrailingTwelveMonths: "-",
+        regularMarketPreviousClose: "-",
+        fiftyTwoWeekLow: "-",
+        trailingPE: "-",
+        regularMarketVolume: "-",
+        trailingAnnualDividendRate: "-",
+        sharesOutstanding: "-"
+      }
+    end
 
     return hash
   end
