@@ -10,3 +10,7 @@
     <%= render "shared/stocks-container", stocks: @stocks %>
   <% end %>
 </div>
+
+<% if current_user.nil? %>
+  <%= render "dashboard/call_to_action_2" %>
+<% end %>
