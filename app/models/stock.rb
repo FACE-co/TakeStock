@@ -53,6 +53,7 @@ class Stock < ApplicationRecord
     temp_hash["change"] = "#{change.round(2)}"
     temp_hash["change%"] = "#{change_percentage.round(2)}%"
 
+    # concatenating all hashes
     final_hash = stock_fundamental_hash.merge(stock_today).merge(temp_hash)
 
     return final_hash
@@ -61,7 +62,12 @@ class Stock < ApplicationRecord
   def yahooapi
     query = BasicYahooFinance::Query.new
     data = query.quotes(self.ticker)
-    return data["#{self.ticker}"]
+    data_final = data["#{self.ticker}"]
+    if data_final.present?
+      return data_final
+    else
+      return "nothing here"
+    end
   end
 
   def trending_count

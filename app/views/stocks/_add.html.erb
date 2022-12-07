@@ -27,8 +27,8 @@
           <li class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100" role="menuitem" tabindex="-1">
             <%= link_to "Add to #{portfolio.name}",
               portfolio_portfolio_stocks_path(portfolio, stock_id: @stock.id),
-              data: { turbo_method: :post, turbo_confirm: "Add #{@stock.ticker} to #{portfolio.name}?" },
-              data_action:"dropdown#toggle" %>
+              data: { turbo_method: :post, turbo_confirm: "Add #{@stock.ticker} to #{portfolio.name}?", turbolinks: false},
+              data_action:"dropdown#toggle", remote: true  %>
           </li>
         <% end %>
       <% else %>

@@ -8,10 +8,10 @@ class PortfolioStocksController < ApplicationController
     # save
     if @portfolio_stock.save
       # redirect if successful
-      redirect_to stock_path(@stock), notice: "Successfully added this stock", status: :see_other
+      flash.now[:notice] = "Stock saved"
     else
       # render new again if not
-      redirect_to stock_path(@stock), notice: "You've added this stock in your porfolio", status: :see_other
+      flash.now[:notice] = "Stock already in that portfolio"
     end
   end
 
