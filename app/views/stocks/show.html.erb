@@ -51,7 +51,7 @@
             <div class="flex-shrink-0 w-full">
               <%# tweets here %>
               <%=  %>
-              <%= turbo_frame_tag "tweets_stock", src: stock_tweets_path(@stock, enddate: Time.now.strftime("%Y-%m-%d")) do %>
+              <%= turbo_frame_tag "tweets_stock", src: stock_tweets_path(@stock, enddate: (Time.now-24*60*60).strftime("%Y-%m-%d")) do %>
               <% end %>
             </div>
           </div>
