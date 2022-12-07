@@ -11,6 +11,7 @@
   </div>
     <%= render "shared/filter-table" %>
     <%= render "shared/stocks-container", stocks: @stocks %>
+    <%= render "shared/news" %>
     <%= render "dashboard/trading_view_widget" %>
   <% end %>
   <% if current_user.nil? %>

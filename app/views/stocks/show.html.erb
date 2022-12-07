@@ -51,8 +51,8 @@
             <div class="flex-shrink-0 w-full">
               <%# tweets here %>
               <%=  %>
-              <%= turbo_frame_tag "tweets_stock", src: stock_tweets_path(@stock, enddate: Time.now.strftime("%Y-%m-%d")) do %>
-              <% end %>
+              <%# <%= turbo_frame_tag "tweets_stock", src: stock_tweets_path(@stock, enddate: Time.now.strftime("%Y-%m-%d")) do %> %>
+              <%# <% end %> %>
             </div>
           </div>
 
@@ -75,7 +75,7 @@
             </div>
 
             <div data-timescroll-target="news">
-              <%# <%= render "news", stock: @stock, enddate: @enddate %> %>
+              <%= render "news", stock: @stock, enddate: @enddate %>
             </div>
             <p data-timescroll-target="tickername" class="hidden"><%= @stock.ticker %></p>
 
