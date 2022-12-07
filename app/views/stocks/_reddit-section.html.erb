@@ -25,12 +25,14 @@
                 <div class="border border-green-300">^</div>
                 <div class="border border-green-300">icon</div>
                 <div class="col-span-9 border border-yellow-800 my-auto">
-                  <p class="text-xxs">posted in <%= article['data']['subreddit_name_prefixed'] %> by u/<%= article['data']['author'] %>                   <div class="inline-flex">
-                    <% article['data']['all_awardings'].each do |award|  %>
-                      <%= image_tag award["icon_url"], width:"3%",class:"self-auto" %>
-                    <% end %>
-                  </div></p>
-
+                  <div class="grid grid-rows-2">
+                    <div class="inline-flex row-span-1">
+                      <% article['data']['all_awardings'].each do |award|  %>
+                        <%= image_tag award["icon_url"],class:"self-auto float-left max-h-4" %>
+                      <% end %>
+                    </div>
+                    <p class="text-xxs float-left row-span-1">posted in <%= article['data']['subreddit_name_prefixed'] %> by u/<%= article['data']['author'] %></p>
+                  </div>
                 </div>
               </div>
             </div>
