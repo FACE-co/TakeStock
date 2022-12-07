@@ -9,7 +9,7 @@ class Stock < ApplicationRecord
   validates :ticker, uniqueness: true, presence: true
 
   before_validation :upcase_ticker
-  before_save :trending_count
+  # before_save :trending_count
 
   # algoliasearch per_environment: true do # index name will be "Stock_#{Rails.env}"
   #   attribute :name, :ticker, :sector
