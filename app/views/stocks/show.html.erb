@@ -34,41 +34,42 @@
   <%# CONTAINER TO HOUSE ALL STOCK INFO %>
     <div class="h-152 w-full relative overflow-y-auto">
 
-        <div class="w-full h-full grid grid-rows-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-2 p-1">
+        <div class="w-full h-full grid xl:grid-rows-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-2 p-1">
 
           <%# STOCK INFO %>
-          <div id="stock-info" class="row-span-2 bg-white shadow rounded-lg p-1 sm:p-2 xl:p-4">
+          <div id="stock-info" class="xl:row-span-3 bg-white shadow-inner rounded-lg p-1 sm:p-2 xl:p-4">
             <div class="flex items-center justify-between mb-4">
               <%= render "price_widget", stock: @stock %>
             </div>
             <div id="basic-info", class="flex items-center justify-between mb-4">
               <%# <%= render "basic_info", stock: @stock %> %>
+              <%= session[:datetime] %>
             </div>
           </div>
 
           <%# TWITTER %>
-          <div id="twitter" class="stock-internal-div row-span-6 h-full bg-white shadow rounded-lg p-1 sm:p-2 xl:p-4 overflow-y-auto">
+          <div id="twitter" class="stock-internal-div xl:row-span-6 h-full bg-white shadow-inner rounded-lg p-1 sm:p-2 xl:p-4 overflow-y-auto">
             <div class="flex-shrink-0 w-full">
               <%# tweets here %>
-              <%= turbo_frame_tag dom_id(@stock, :tweets), src: stock_tweets_path(@stock) do %>
+              <%= turbo_frame_tag dom_id(@stock, :tweets), src: stock_tweets_path(@stock, enddate: "2022-12-07") do %>
               <% end %>
             </div>
           </div>
 
           <%# PRICE CHART %>
-          <div id="price-chart" class="row-span-3 bg-white shadow h-full">
+          <div id="price-chart" class="xl:row-span-3 bg-white shadow-innerfull">
               <div class="flex items-center justify-between mb-4 h-full">
                 <%= render "price_chart", stock:@stock %>
               </div>
           </div>
 
           <%# REDDIT %>
-          <div id="reddit" class="stock-internal-div row-span-4 bg-white shadow rounded-lg p-1 sm:p-2 xl:p-4 overflow-y-auto overflow-y-auto">
+          <div id="reddit" class="stock-internal-div xl:row-span-3 bg-white shadow-inner rounded-lg p-1 sm:p-2 xl:p-4 overflow-y-auto overflow-y-auto">
             <%= render "stocks/reddit-section", reddit_articles: @reddit_articles %>
           </div>
 
           <%# NEWS %>
-          <div id="news" class="row-span-3 bg-white shadow rounded-lg p-1 sm:p-2 xl:p-4 h-full overflow-y-auto overflow-y-auto">
+          <div id="news" class="xl:row-span-3 bg-white shadow-inner rounded-lg p-1 sm:p-2 xl:p-4 h-full overflow-y-auto overflow-y-auto">
             <div class="flex items-center justify-between mb-4">
               <h3 class="text-xl font-bold leading-none text-gray-900">Latest News Here</h3>
             </div>

@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus";
 // Connects to data-controller="timescroll"
 const NEWS_API_KEY = "e261e54b338c4a6a95e2b57a942b9445"
 export default class extends Controller {
-  static targets = ["time", "value", "news", "tickername"]
+  static targets = ["time", "value", "news", "tickername", "twitterpage"]
 
   connect() {
     // console.log("timescroll connected");
@@ -40,14 +40,31 @@ export default class extends Controller {
     // console.log(ticker, "this is the ticker")
 
     let current_url = new URL(document.URL);
-    console.log("old url", current_url);
+    // console.log("old url", current_url);
     let search_params = current_url.searchParams;
     console.log(search_params);
-    search_params.set("enddate", enddate);
+    // search_params.set("enddate", enddate);
     current_url.search = search_params.toString();
-    console.log("new url", current_url);
+    // console.log("new url", current_url);
 
     window.history.pushState({}, '', current_url.search);
+
+    const twitter_origin_url = 'http://localhost:3000/stocks/tsla/tweets'
+    let twitter_url = `${twitter_origin_url}?enddate=${enddate}`;
+    console.log("TESTTEST", twitter_url);
+
+    document.querySelector("#tweets_stock_2").src = twitter_url
+    console.log(document.querySelector("#tweets_stock_2").src)
+    let turboFrame = document.querySelector('#tweets_stock_2')
+    turboFrame.reload()
+    if(turboFrame.reload()){
+      console.log("done")
+    }
+
+    // this.twitterpageTarget.innerHTML = `${window.location.href} ${twitter_url}`
+    // console.log(window.location.href)
+
+
 
     const replace = (data) => {
       let array = data["articles"]

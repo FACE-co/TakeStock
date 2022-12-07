@@ -9,7 +9,8 @@ class StocksController < ApplicationController
     # @news_hash = news(@stock, @enddate)
     # @basic_info = @stock.basic_info
     @reddit_articles = RedditSearch.call(@stock.ticker)
-    # @date_param = param[:enddate]
+    @date_param = params[:enddate]
+    session[:datetime] = params[:enddate]
   end
 
   # /stocks(.:format)
@@ -20,7 +21,7 @@ class StocksController < ApplicationController
     ## TODO COMMENT BELOW OUT DURING PRODUCTION - USE API CALL METHOD ABOVE
     stock_params[:ticker].upcase!
     @new_stock = Stock.new(stock_params)
-    @new_stock['trending'] = trending_count(stock_params["ticker"])
+    # @new_stock['trending'] = trending_count(stock_params["ticker"])
     if @new_stock.save
       redirect_to stock_path(@new_stock), status: :see_other
     else
@@ -50,10 +51,6 @@ class StocksController < ApplicationController
   def destroy
     @stock = Stock.friendly.find(params[:id])
     @stock.destroy
-  end
-
-  # /stocks/trending(.:format)
-  def trending
   end
 
   private

@@ -1,6 +1,8 @@
-<%# TWITTER %>
-<div data-timescroll-target="twitterpage">
-</div>
+timescroll:
+  - @date_param not being passed into tweet controller
+  - How to refresh turbo div via stimulus action?
+
+
 
 <%= turbo_frame_tag dom_id(@stock, :tweets) do %>
   <script>
