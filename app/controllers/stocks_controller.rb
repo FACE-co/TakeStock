@@ -1,5 +1,5 @@
 class StocksController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :show, :create ]
+  skip_before_action :authenticate_user!, only: [ :create ]
 
   def show
     @portfolios = Portfolio.where(user_id: current_user.id) if current_user.present?

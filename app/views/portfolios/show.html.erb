@@ -1,8 +1,10 @@
 <%= turbo_frame_tag "portfolio_turbo_frame" do %>
   <%# <h3 class="text-4xl font-bold">Markets</h3>
   <p class="text-lg">View by: <%= @portfolio.name %></p>
-  <h3 class="text-4xl font-bold">Markets <span class="ml-5 text-lg text-indigo-700" > View by: <%= @portfolio.name %></span> </h3>
+  <div class="flex items-baseline justify-between items-start">
+    <h3 class="text-4xl font-bold">Markets</h3>
+    <p class="ml-8 text-xl font-semibold">View by: <span class="ml-2 underline decoration-amber-500 decoration-4 underline-offset-8"><%= @portfolio.name %><span></p>
+  </div>
   <%= render "shared/filter-table"%>
-  <span class="ml-5 text-lg text-indigo-700" > View by: <%= @portfolio.name %></span>
   <%= render "shared/stocks-container", stocks: @portfolio.stocks, portfolio: @portfolio %>
 <% end %>

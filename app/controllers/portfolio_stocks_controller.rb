@@ -7,11 +7,18 @@ class PortfolioStocksController < ApplicationController
     @portfolio_stock.portfolio = @portfolio
     # save
     if @portfolio_stock.save
-      # redirect if successful
-      flash.now[:notice] = "Stock saved"
+      flash.now[:notice] = "Stock is saved to your portfolio #{@portfolio.name}!"
+      # respond_to do |format|
+      #   format.html { redirect_to request.referer, notice: "Stock is saved to your portfolio #{@portfolio.name}!" }
+      # end
     else
-      # render new again if not
-      flash.now[:notice] = "Stock already in that portfolio"
+      flash.now[:notice] = 'Stock already in that portfolio.'
+      # respond_to do |format|
+      #   format.html { redirect_to request.referer, notice: 'Stock already in that portfolio.' }
+      # end
+    end
+    respond_to do |format|
+      format.html { render "stocks/add"}
     end
   end
 

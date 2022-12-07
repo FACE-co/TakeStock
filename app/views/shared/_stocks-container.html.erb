@@ -3,7 +3,7 @@
     <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
       <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
         <table class="min-w-full divide-y divide-gray-300">
-          <thead class="bg-gray-50 border border-gray-300">
+          <thead class="">
             <tr>
               <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">#</th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Name</th>
@@ -18,7 +18,7 @@
           </thead>
           <tbody class="divide-y divide-gray-200 bg-white min-h-max">
             <%# Display all the stock information if Portfolio has stocks, ELSE display string to notify user of empty portfolio L50-52 %>
-            <tr class="group hover:bg-indigo-500 text-white cursor-pointer">
+            <tr class="text-white cursor-pointer">
               <% if stocks.any? %>
               <% stocks.each_with_index do |stock, index| %>
                 <tr class="group hover:bg-indigo-500 text-white cursor-pointer" onclick="window.location='<%= stock_url(stock) %>'">
@@ -82,6 +82,14 @@
     </div>
   </div>
 
+  <%# DISPLAY CALL TO ACTION TO GET USER TO SIGN UP %>
+  <% if current_user.nil? %>
+    <div>
+      <p class="text-lg text-gray-900">Sign up now to build your own portfolio for free!</p>
+      <%= link_to "Get Started", new_user_registration_path, class: "text-white mt-6 ml-6 inline-flex items-center justify-center w-40 h-10 whitespace-nowrap rounded-full border border-transparent bg-indigo-700 px-4 py-1 text-base font-medium text-indigo-600 hover:bg-gray-200" %>
+    </div>
+  <% end %>
+  <%# DISPLAY CALL TO ACTION TO GET USER TO SIGN UP END %>
 
   <% if false %>
 
