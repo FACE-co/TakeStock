@@ -42,6 +42,7 @@ module.exports = {
         'elliott': '60rem'
       },
       fontSize: {
+        xxxxs: "0.4rem",
         xxxs: "0.5rem",
         xxs: "0.7rem",
         xs: "0.75rem",

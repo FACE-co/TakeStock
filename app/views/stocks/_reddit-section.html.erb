@@ -22,7 +22,14 @@
           <div class="grid h-full border border-red-300 grid-rows-3">
             <div class="row-span-1 border border-blue-400">
               <div class="h-full grid grid-cols-11">
-                <div class="border border-green-300">^</div>
+                <div class="border border-green-300">
+                  <div class="grid grid-rows-3">
+                    <span class="row-span-1 material-symbols-rounded text-xxxs hover:text-orange-400 text-center">arrow_upward</span>
+                    <p class="text-center row-span-1 row-start-2 text-xxxs float-left row-span-1"><%= article['data']['ups'] %></p>
+                    <span class="row-span-1 material-symbols-rounded text-xxxs hover:text-blue-400 text-center">arrow_downward</span>
+
+                  </div>
+                </div>
                 <div class="border border-green-300">icon</div>
                 <div class="col-span-9 border border-yellow-800 my-auto">
                   <div class="grid grid-rows-2">
