@@ -49,17 +49,12 @@ export default class extends Controller {
 
     window.history.pushState({}, '', current_url.search);
 
-    const twitter_origin_url = 'http://localhost:3000/stocks/tsla/tweets'
-    let twitter_url = `${twitter_origin_url}?enddate=${enddate}`;
-    console.log("TESTTEST", twitter_url);
+    const base_url = window.location.href + `/tweets`
+    let stock_tweets_url = `${base_url}?enddate=${enddate}`;
+    console.log('setting src to: ', stock_tweets_url)
 
-    document.querySelector("#tweets_stock_2").src = twitter_url
-    console.log(document.querySelector("#tweets_stock_2").src)
-    let turboFrame = document.querySelector('#tweets_stock_2')
-    turboFrame.reload()
-    if(turboFrame.reload()){
-      console.log("done")
-    }
+    let turboFrame = document.querySelector('#tweets_stock')
+    turboFrame.src = stock_tweets_url
 
     // this.twitterpageTarget.innerHTML = `${window.location.href} ${twitter_url}`
     // console.log(window.location.href)

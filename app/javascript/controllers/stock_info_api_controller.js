@@ -9,7 +9,6 @@ export default class extends Controller {
 
   search(event) {
     event.preventDefault()
-    // debugger
     console.log(this.formTarget.value)
     // this.formTarget.textContent =
     // `Hello, ${this.nameTarget.value}!`

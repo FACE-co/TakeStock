@@ -43,15 +43,14 @@
             </div>
             <div id="basic-info", class="flex items-center justify-between mb-4">
               <%# <%= render "basic_info", stock: @stock %> %>
-              <%= session[:datetime] %>
             </div>
           </div>
 
           <%# TWITTER %>
-          <div id="twitter" class="stock-internal-div xl:row-span-6 h-full bg-white shadow-inner rounded-lg p-1 sm:p-2 xl:p-4 overflow-y-auto">
+          <div class="stock-internal-div xl:row-span-6 h-full bg-white shadow-inner rounded-lg p-1 sm:p-2 xl:p-4 overflow-y-auto">
             <div class="flex-shrink-0 w-full">
               <%# tweets here %>
-              <%= turbo_frame_tag dom_id(@stock, :tweets), src: stock_tweets_path(@stock, enddate: "2022-12-07") do %>
+              <%= turbo_frame_tag "tweets_stock", src: stock_tweets_path(@stock, enddate: "2022-12-07") do %>
               <% end %>
             </div>
           </div>
