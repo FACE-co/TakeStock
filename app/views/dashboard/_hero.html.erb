@@ -3,10 +3,11 @@
     <img class="hero-image" src="https://images.unsplash.com/photo-1439434768192-c60615c1b3c8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80" alt="">
   </div>
   <div class="hero-text-container">
-    <h1 class="hero-text">Everything you need <br> in one place.</h1>
-    <h2 class="secondary-text">Keeping up with the market has never been easier.</h2>
-
-    <%= render "stocks/form", stock: Stock.new %>
+    <div class="one-third">
+      <h1 class="hero-text">Everything you need in one place.</h1>
+      <h2 class="secondary-text">Keeping up with the market has never been easier.</h2>
+      <%= render "stocks/form", stock: Stock.new %>
+    </div>
 
     <div class="scroll-container">
       <p>See More</p>
