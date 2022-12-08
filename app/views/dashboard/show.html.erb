@@ -8,6 +8,7 @@
     <%= render "shared/filter-table" %>
     <%= render "shared/stocks-container", stocks: @stocks %>
   <% end %>
+    <%= render "dashboard/news" %>
     <%= render "dashboard/trading_view_widget" %>
   <% if current_user.nil? %>
     <%= render "dashboard/call_to_action_2" %>
