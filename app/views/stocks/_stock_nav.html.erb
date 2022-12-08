@@ -2,21 +2,24 @@
 <header class="">
     <div class="w-full font-serif pt-2">
       <div class="mx-auto px-4">
-        <div class="grid grid-cols-3 py-8">
-          <div class="flex justify-start content-center">
+        <div class="h-32 grid grid-rows-2 grid-cols-3 pt-4">
+          <div class="pl-1 flex justify-start content-center row-span-1">
             <%= render "stocks/form", stock: Stock.new %>
           </div>
-          <div class="flex justify-center content-center">
+          <div class="flex justify-center content-center row-span-1 -m-3">
             <a href=<%= root_path %>>
               <div class="flex items-center">
-                <svg class="fill-current h-16 w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm64 192c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32s-32-14.3-32-32V256c0-17.7 14.3-32 32-32zm64-64c0-17.7 14.3-32 32-32s32 14.3 32 32V352c0 17.7-14.3 32-32 32s-32-14.3-32-32V160zM320 288c17.7 0 32 14.3 32 32v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V320c0-17.7 14.3-32 32-32z"/></svg>
+                <svg class="fill-current w-16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm64 192c17.7 0 32 14.3 32 32v96c0 17.7-14.3 32-32 32s-32-14.3-32-32V256c0-17.7 14.3-32 32-32zm64-64c0-17.7 14.3-32 32-32s32 14.3 32 32V352c0 17.7-14.3 32-32 32s-32-14.3-32-32V160zM320 288c17.7 0 32 14.3 32 32v32c0 17.7-14.3 32-32 32s-32-14.3-32-32V320c0-17.7 14.3-32 32-32z"/></svg>
                 <span class="ml-2 text-2xl font-bold">TakeStock</span>
                 <%# <img class="h-8 w-auto sm:h-10" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt=""> %>
               </div>
             </a>
           </div>
-          <div class="flex justify-end content-center">
+          <div class="flex justify-end pr-1 content-center row-span-1">
             <a class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900" href= "<%= destroy_user_session_path %>" data-turbo-method="delete">Log Out</a>
+          </div>
+          <div class="w-5/6 px-4 py-2 mx-auto row-start-2 col-span-3" data-action="change->timescroll#select" >
+            <%= render "timescroll", stock: @stock %>
           </div>
       </div>
     </div>

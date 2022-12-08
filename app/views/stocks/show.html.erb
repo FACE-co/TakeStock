@@ -1,11 +1,8 @@
-<%# Renders NavBar %>
-<header class=""><%= render "stock_nav" %></header>
 
 <%# TIMELINE SCROLLER %>
 <div data-controller="timescroll">
-  <div class="w-5/6 px-4 py-2 mx-auto" data-action="change->timescroll#select" >
-    <%= render "timescroll", stock: @stock %>
-  </div>
+  <%# Renders NavBar %>
+  <header class=""><%= render "stock_nav" %></header>
 
   <%# ADD STOCK TO PORTFOLIO BUTTON %>
   <div class="fixed top-33 -ml-7 hover:-ml-2 ease-in-out duration-100 z-50 left-0 px-3 py-3 lg:px-5 lg:pl-3">
