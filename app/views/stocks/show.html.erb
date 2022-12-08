@@ -1,6 +1,6 @@
 <%# TIMELINE SCROLLER %>
 <div data-controller="timescroll">
-  <div class="w-100 px-4" data-action="change->timescroll#select" >
+  <div class="w-100 px-6" data-action="change->timescroll#select" >
     <%= render "timescroll", stock: @stock %>
   </div>
 
@@ -10,7 +10,7 @@
   </div>
 
   <%# CONTAINER TO HOUSE ALL STOCK INFO %>
-    <div class="md:h-136 3xl:h-elliott w-full relative overflow-y-auto px-4">
+    <div class="md:h-136 3xl:h-elliott w-full relative overflow-y-auto p-4">
 
         <div class="w-full h-full grid xl:grid-rows-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-2 p-1">
 
@@ -52,7 +52,7 @@
             </div>
 
             <div data-timescroll-target="news">
-              <%= render "news", stock: @stock, enddate: @enddate %>
+              <%# <%= render "news", stock: @stock, enddate: @enddate %> %>
             </div>
             <p data-timescroll-target="tickername" class="hidden"><%= @stock.ticker %></p>
 

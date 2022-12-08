@@ -1,8 +1,9 @@
 // Base Colors
 $shade-10: #2c3e50 !default;
 $shade-1: #d7dcdf !default;
+$shade-3: #f59e0b !default;
 $shade-0: #fff !default;
-$teal: #7c3aed !default;
+$teal: #4f46e5 !default;
 
 
 // Reset
@@ -22,14 +23,14 @@ $teal: #7c3aed !default;
 // Range Slider
 $range-width: 100% !default;
 
-$range-handle-color: $shade-10 !default;
+$range-handle-color: $teal !default;
 $range-handle-color-hover: $teal !default;
 $range-handle-size: 20px !default;
 
 $range-track-color: $shade-1 !default;
 $range-track-height: 10px !default;
 
-$range-label-color: $shade-10 !default;
+$range-label-color: $shade-3 !default;
 $range-label-width: 120px !default;
 
 .range-slider {

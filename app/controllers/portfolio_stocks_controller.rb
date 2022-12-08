@@ -17,7 +17,6 @@ class PortfolioStocksController < ApplicationController
       #   format.html { redirect_to request.referer, notice: 'Stock already in that portfolio.' }
       # end
     end
-
   end
 
   def destroy
