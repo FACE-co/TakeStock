@@ -32,6 +32,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        serif: ['Space Grotesk', ...defaultTheme.fontFamily.sans],
       },
       spacing: {
         '128': '32rem',
@@ -68,5 +69,6 @@ module.exports = {
     require('@tailwindcss/forms'),
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography'),
+    require('@tailwindcss/line-clamp'),
   ]
 }
