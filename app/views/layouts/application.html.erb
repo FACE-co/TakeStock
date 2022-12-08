@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <script src="https://use.fontawesome.com/6ee6762a16.js"></script>
+    <%# <script src="https://use.fontawesome.com/your-embed-code.js"></script> %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <script>
       window.twttr = (function(d, s, id) {
@@ -32,21 +34,20 @@
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
     </script>
   </head>
-
+  <body>
+    <%= render "shared/flashes" %>
   <%# <body data-algolia-public-key="<%= ENV["ALGOLIA_FRONT_END_ID"] %>
     <%# Overall Container Styling for all content %>
     <div class="flex flex-col h-screen justify-between">
       <%# Renders NavBar %>
       <header class=""><%= render "shared/navbar" %></header>
       <%# Renders Body %>
-      <div>
-        <%= render "shared/flashes" %>
-      </div>
       <main class="mb-auto"><%= yield %></main>
       <%# Render Footer %>
-      <footer class="mt-20"><%= render "shared/footer" %></footer>
+      <footer class="mt-12"><%= render "shared/footer" %></footer>
     </div>
-
+    <div class="cursor"></div>
+    <div class="cursor2"></div>
     <%# Custom Confirm - Generates Modal %>
     <%= render "shared/confirm_modals" %>
   </body>

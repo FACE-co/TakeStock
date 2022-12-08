@@ -6,7 +6,7 @@ class StocksController < ApplicationController
     @stock = Stock.friendly.find(params[:id])
     @new_stock = Stock.new
 
-    @news_hash = news(@stock, @enddate)
+    @news_hash = news(@stock)
     @basic_info = @stock.basic_info_no_alphavantage
 
     @reddit_articles = RedditSearch.call(@stock.ticker)
@@ -73,8 +73,8 @@ class StocksController < ApplicationController
   end
 
   # /stock_news
-  def news(stock, enddate)
-    query = "https://newsapi.org/v2/everything?q=#{stock.ticker}&from=#{enddate}&sortBy=publishedAt&apiKey=#{ENV['NEWS_API_KEY']}"
+  def news(stock)
+    query = "https://newsapi.org/v2/everything?q=#{stock.ticker}&from=#{Time.now.strftime('%Y-%m-%d')}&sortBy=publishedAt&apiKey=#{ENV['NEWS_API_KEY']}"
     # query = "https://newsapi.org/v2/everything?q=#{stock.ticker}&from=#{enddate}&to=#{enddate}&sortBy=popularity&apiKey=#{ENV['NEWS_API_KEY']}"
     stock_news = URI.open(query).read
     news_hash = JSON.parse(stock_news)

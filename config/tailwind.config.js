@@ -32,6 +32,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        serif: ['Space Grotesk', ...defaultTheme.fontFamily.sans],
       },
       spacing: {
         '128': '32rem',
