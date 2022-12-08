@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   get 'errors/not_found'
   get 'errors/internal_server_error'
   get 'errors/bad_request'
+  get "/about", to: "dashboard#about"
+
   devise_for :users
 
   root to: "dashboard#show"

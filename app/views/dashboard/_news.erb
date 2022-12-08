@@ -1,35 +1,18 @@
-<div class="mt-16 mb-6">
-<h3 class="text-4xl font-bold mb-6">Trending News</h3>
-<% providers = [] %>
-<%# GRID STARTS HERE %>
-<div class="grid grid-cols-3 gap-4">
-  <% @news.each_with_index do |article, index| %>
-    <% if index == 0 %>
-      <%# put the provider in the array %>
-      <% providers.push((article['source']['name'])) %>
-        <%# <p class="bg-indigo-600/50 h-10 w-20 buttonx-2 py-2.5 text-center rounded-full"><%= article['source']['name'] %>
-    <div class="bg-gray-50 h-45 border-2 p-6 rounded-lg hover:border-2 hover:border-solid hover:border-indigo-500 hover:drop-shadow-xl box-border group">
-      <a href=" <%= article['url'] %> " class="inline-block">
-    <div>
-      <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800"> <%= article['source']['name'] %> </span>
-    </div>
-      <p class="mt-6 text-xl font-semibold text-gray-900 line-clamp-2"> <%= article['title'] %> </p>
-      <p class="mt-6 text-base text-gray-500 line-clamp-5"> <%= article['description'] %></p>
-      <%# author name, avatar, and published date %>
-      <div class="mt-6 flex items-center">
-        <div class="flex-shrink-0">
-          <span class="sr-only"><%= article['author'] %></span>
-          <img class="h-10 w-10 rounded-full" src= <%="https://i.pravatar.cc/#{rand(1...100)}"%> alt="">
-        </div>
-       <div class="ml-3">
-        <p class="text-sm font-medium text-gray-900">
-          <%= article['author'] %>
-        </p>
-        <div class="flex space-x-1 text-sm text-gray-500">
-          <time datetime="2020-03-16"> <%= Date.parse(article['publishedAt']).strftime("%a, %d %b %Y") %> </time>
-          <%# <span aria-hidden="true">&middot;</span> %>
-          <%# <span>6 min read</span> %>
-        </div>
+<div class="my-16">
+  <h3 class="text-4xl font-bold mb-6">Trending News</h3>
+  <% providers = [] %>
+  <%# GRID STARTS HERE %>
+  <div class="grid grid-cols-3 gap-4 font-serif">
+    <% @news.each_with_index do |article, index| %>
+      <% if index == 0 %>
+        <%# put the provider in the array %>
+        <% providers.push((article['source']['name'])) %>
+          <%# <p class="bg-indigo-600/50 h-10 w-20 buttonx-2 py-2.5 text-center rounded-full"><%= article['source']['name'] %>
+      <div class="bg-gray-50 h-45 border-2 p-6 rounded-lg hover:border-2 hover:border-solid hover:border-indigo-500 hover:drop-shadow-xl box-border group">
+        <a href=" <%= article['url'] %> " class="inline-block">
+      <div class="flex justify-between ">
+        <p class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800"> <%= article['source']['name'] %> </p>
+        <p class="inline-flex items-center mt-4 font-normal text-sm text-amber-500 hidden group-hover:contents font-serif">See More</p>
       </div>
     </div>
     </a>
@@ -44,27 +27,59 @@
           <span class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800"> <%= article['source']['name'] %> </span>
         </div>
         <p class="mt-6 text-xl font-semibold text-gray-900 line-clamp-2"> <%= article['title'] %> </p>
-        <p class="grow mt-6 text-base text-gray-500 line-clamp-5"><%= article['description'] %></p>
-        <%# AUTHOR INFO %>
+        <p class="mt-6 text-base text-gray-500 line-clamp-5"> <%= article['description'] %></p>
+        <%# author name, avatar, and published date %>
         <div class="mt-6 flex items-center">
           <div class="flex-shrink-0">
             <span class="sr-only"><%= article['author'] %></span>
             <img class="h-10 w-10 rounded-full" src= <%="https://i.pravatar.cc/#{rand(1...100)}"%> alt="">
           </div>
-          <div class="ml-3">
-            <p class="text-sm font-medium text-gray-900">
-              <%= article['author'] %>
-            </p>
-            <div class="flex space-x-1 text-sm text-gray-500">
-              <p> <%= Date.parse(article['publishedAt']).strftime("%a, %d %b %Y") %> </p>
-              <%# <span aria-hidden="true">&middot;</span> %>
-              <%# <span>6 min read</span> %>
-            </div>
+        <div class="ml-3">
+          <p class="text-sm font-medium text-gray-900">
+            <%= article['author'] %>
+          </p>
+          <div class="flex space-x-1 text-sm text-gray-500">
+            <time datetime="2020-03-16"> <%= Date.parse(article['publishedAt']).strftime("%a, %d %b %Y") %> </time>
+            <%# <span aria-hidden="true">&middot;</span> %>
+            <%# <span>6 min read</span> %>
           </div>
+        </div>
       </div>
+      </a>
     </div>
-    </a>
-  </div>
-   <% end %>
+    <% elsif providers.include?(article['source']['name']) == false && providers.length < 6 %>
+      <%# <% providers.include?(article['source']['name']) ? return : providers << article['source']['name'] %>
+      <% providers << article['source']['name'] %>
+      <div class="bg-gray-50 h-45 border-2 p-6 rounded-lg hover:border-2 hover:border-solid hover:border-indigo-500 hover:drop-shadow-xl box-border group">
+        <a href=" <%= article['url'] %> " class="inline-block h-full">
+        <div class="flex flex-col justify-between h-full">
+          <div class="flex justify-between ">
+            <p class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800"> <%= article['source']['name'] %> </p>
+            <p class="inline-flex items-center mt-4 font-normal text-sm text-amber-500 hidden group-hover:contents font-serif">See More</p>
+          </div>
+          <p class="mt-6 text-xl font-semibold text-gray-900 line-clamp-2"> <%= article['title'] %> </p>
+          <p class="grow mt-6 text-base text-gray-500 line-clamp-5"><%= article['description'] %></p>
+          <%# AUTHOR INFO %>
+          <div class="mt-6 flex items-center">
+            <div class="flex-shrink-0">
+              <span class="sr-only"><%= article['author'] %></span>
+              <img class="h-10 w-10 rounded-full" src= <%="https://i.pravatar.cc/#{rand(1...100)}"%> alt="">
+            </div>
+            <div class="ml-3">
+              <p class="text-sm font-medium text-gray-900">
+                <%= article['author'] %>
+              </p>
+              <div class="flex space-x-1 text-sm text-gray-500">
+                <p> <%= Date.parse(article['publishedAt']).strftime("%a, %d %b %Y") %> </p>
+                <%# <span aria-hidden="true">&middot;</span> %>
+                <%# <span>6 min read</span> %>
+              </div>
+            </div>
+        </div>
+      </div>
+      </a>
+    </div>
+    <% end %>
   <% end %>
+  </div>
 </div>
