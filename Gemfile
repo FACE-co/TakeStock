@@ -66,7 +66,7 @@ gem "sassc-rails"
 
 gem "devise"
 gem "autoprefixer-rails"
-gem "font-awesome-sass", "~> 6.1"
+# gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
 gem "simple_form_tailwind_css"
 
@@ -105,3 +105,7 @@ group :test do
 end
 
 gem "tailwindcss-rails", "~> 2.0"
+
+gem "dartsass-rails", "~> 0.4.0"
+
+gem "cssbundling-rails", "~> 1.1"
