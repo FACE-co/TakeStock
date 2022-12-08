@@ -47,12 +47,13 @@
 
           <%# NEWS %>
           <div id="news" class="stock-internal-div xl:row-span-3 bg-white shadow-inner-enhanced rounded-lg p-1 sm:p-2 xl:p-4 h-full overflow-y-auto overflow-y-auto">
-            <div class="flex items-center justify-between mb-4">
-              <h3 class="text-xl font-bold leading-none text-gray-900">Latest News Here</h3>
+            <div class="flex items-center justify-left mb-4 ml-1">
+                <%= image_tag "news-svgrepo-com.svg", width:"10%", class:"filter-purple"%>
+                <h3 class="px-3 text-xl font-bold leading-none text-indigo-700">Latest News</h3>
             </div>
 
             <div data-timescroll-target="news">
-              <%# <%= render "news", stock: @stock, enddate: @enddate %> %>
+              <%= render "news", stock: @stock, enddate: @enddate %>
             </div>
             <p data-timescroll-target="tickername" class="hidden"><%= @stock.ticker %></p>
 

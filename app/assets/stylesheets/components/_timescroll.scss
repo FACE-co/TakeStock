@@ -120,3 +120,7 @@ $range-label-width: 120px !default;
     content: '';
   }
 }
+
+.filter-purple{
+  filter: invert(19%) sepia(81%) saturate(1405%) hue-rotate(224deg) brightness(127%) contrast(114%);
+}

@@ -1,20 +1,11 @@
 import { Controller } from "@hotwired/stimulus";
-// import flatpickr from "flatpickr";
 // Connects to data-controller="timescroll"
 const NEWS_API_KEY = "e261e54b338c4a6a95e2b57a942b9445"
 export default class extends Controller {
   static targets = ["time", "value", "valueshow", "news", "tickername", "twitterpage"]
 
   connect() {
-    // console.log("timescroll connected");
-    // flatpickr(this.timeTarget, {
-    //   altInput: true
-    // })
   };
-
-
-
-
 
   select(e) {
     function getaDate(i) {
@@ -39,9 +30,9 @@ export default class extends Controller {
 
     function replace(data){
       let array = data["articles"]
-      let top5 = array.slice(0, 5)
+      let top7 = array.slice(0, 7)
       let replacecontent = ''
-      top5.forEach(a => {
+      top7.forEach(a => {
         replacecontent = replacecontent +
         `<div class="pt-2">
           <div class="flex items-start rounded-xl bg-white p-4 shadow-lg">
@@ -69,7 +60,7 @@ export default class extends Controller {
           </div>
         </div>`
       });
-    this.newsTarget.innerHTML = replacecontent
+     return replacecontent
     }
 
     let datevalue = this.timeTarget.value
@@ -82,10 +73,7 @@ export default class extends Controller {
     }
 
     let enddate = this.valueTarget.innerHTML
-    let showdate = this.valueTarget.innerText
     let ticker = this.tickernameTarget.innerHTML
-    console.log(enddate, "this is the enddate")
-    console.log(showdate, "this is the showdate")
 
     //GET tweeter refresh due to timescroll change
     let current_url = new URL(document.URL);
@@ -102,7 +90,7 @@ export default class extends Controller {
     fetch(url)
       .then(response => response.json())
       .then((data) => {
-        replace(data)
+        this.newsTarget.innerHTML = replace(data);
       })
   }
 
