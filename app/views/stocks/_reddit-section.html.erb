@@ -10,46 +10,41 @@
     </div>
   <% end %>
 
-  <div class="mb-5">
+  <div class="mb-2">
     <%= image_tag "Reddit_logo_new.svg", width:"30%" %>
   </div>
 
   <div class="">
-    <dl>
     <% reddit_articles.first(5).each do |article|  %>
-      <% time_posted = Time.at(article['data']['created']).to_date %>
-        <div class="container h-32 w-full py-2 mx-auto">
-          <div class="grid h-full border border-red-300 grid-rows-3">
-            <div class="row-span-1 border border-blue-400">
+      <div class="container h-32 w-full py-2 mx-auto">
+        <%= link_to "https://www.reddit.com/#{article['data']['permalink']}", target:"_blank" do %>
+          <div class="grid h-full border border-slate-300 grid-rows-3 rounded-lg p-2 bg-slate-100">
+            <div class="row-span-1">
               <div class="h-full grid grid-cols-11">
-                <div class="border border-green-300">
-                  <div class="grid grid-rows-3">
-                    <span class="row-span-1 material-symbols-rounded text-xxxs hover:text-orange-400 text-center">arrow_upward</span>
-                    <p class="text-center row-span-1 row-start-2 text-xxxs float-left row-span-1"><%= article['data']['ups'] %></p>
-                    <span class="row-span-1 material-symbols-rounded text-xxxs hover:text-blue-400 text-center">arrow_downward</span>
-
-                  </div>
+                <div class="grid grid-rows-3">
+                  <span class="row-span-1 material-symbols-rounded text-xxxs hover:text-orange-400 text-center">arrow_upward</span>
+                  <p class="text-center row-span-1 row-start-2 text-xxxs float-left row-span-1 text-slate-800"><strong><%= article['data']['ups'] %></strong></p>
+                  <span class="row-span-1 material-symbols-rounded text-xxxs hover:text-blue-400 text-center">arrow_downward</span>
                 </div>
-                <div class="border border-green-300">icon</div>
-                <div class="col-span-9 border border-yellow-800 my-auto">
+                <div class="col-span-10 my-auto px-1">
                   <div class="grid grid-rows-2">
                     <div class="inline-flex row-span-1">
                       <% article['data']['all_awardings'].each do |award|  %>
                         <%= image_tag award["icon_url"],class:"self-auto float-left max-h-4" %>
                       <% end %>
                     </div>
-                    <p class="text-xxs float-left row-span-1">posted in <%= article['data']['subreddit_name_prefixed'] %> by u/<%= article['data']['author'] %></p>
+                    <p class="text-xxs float-left row-span-1">posted in <span class="underline decoration-solid"><%= article['data']['subreddit_name_prefixed'] %></span> by <span class="underline decoration-solid">u/<%= article['data']['author'] %></span> at <i><%= Time.at(article['data']['created']).to_datetime.strftime("%m-%d-%Y") %></i></p>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="row-span-2 border border-gray-400 p-1 overflow-hidden">
-              <p class="text-xs"><%= article['data']['title'] %></p>
+            <div class="row-span-2 px-2 overflow-hidden py-2 my-2 border-t-2 border-slate-300">
+              <p class="text-sm"><%= article['data']['title'] %></p>
             </div>
           </div>
-        </div>
-      <% end %>
-    </dl>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 </div>
 
@@ -65,7 +60,7 @@
 
 <% if false %>
 
-      <div class="mb-2 p-4 border rounded-lg border-gray-200 cursor-pointer hover:bg-gray-100 group" onclick="window.location='<%= article['data']['permalink'] %>'">
+      <%# <div class="mb-2 p-4 border rounded-lg border-gray-200 cursor-pointer hover:bg-gray-100 group" onclick="window.location='<%= article['data']['permalink']'"> %>
         <dd class="mt-1 text-sm text-gray-500 mb-3"><%= article['data']['subreddit_name_prefixed'] %></dd>
         <dt class="text-sm font-medium text-gray-900 mb-3"><%= article['data']['title'] %></dt>
         <dd class="mt-1 text-sm text-gray-500 mb-3">Posted by <%= article['data']['author'] %> at <%= time_posted %></dd>
