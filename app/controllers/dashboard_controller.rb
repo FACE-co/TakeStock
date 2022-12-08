@@ -9,7 +9,7 @@ class DashboardController < ApplicationController
       @stocks = Stock.all
     end
 
-    @news = news
+    # @news = news
   end
 
   def about
