@@ -12,6 +12,7 @@
     <%= render "dashboard/filter-table" %>
     <%= render "dashboard/stocks-container", stocks: @stocks %>
   <% end %>
+    <%= render "dashboard/news" %>
 </div>
   <% if current_user.nil? %>
   <%= render "dashboard/portfolio_signup" %>
