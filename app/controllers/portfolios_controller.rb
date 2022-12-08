@@ -18,7 +18,7 @@ class PortfoliosController < ApplicationController
     @portfolio.user = current_user
 
     if @portfolio.save
-      redirect_to "/portfolios/#{@portfolio.id}", status: :see_other
+      redirect_to root_path, status: :see_other
     else
       render root_path, status: :unprocessable_entity
     end
