@@ -16,7 +16,7 @@
             </div>
             <div>
               <p class="text-sm text-gray-400 truncate">
-                <%= a["publishedAt"].to_date %>
+                <%= Date.parse(a['publishedAt']).strftime("%a, %d %b %Y") %>
               </p>
             </div>
           </div>
