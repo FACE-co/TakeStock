@@ -1,6 +1,6 @@
 <%# TIMELINE SCROLLER %>
 <div data-controller="timescroll">
-  <div class="w-5/6 px-4 py-2 justify-center" data-action="change->timescroll#select" >
+  <div class="w-5/6 px-4 py-2 mx-auto" data-action="change->timescroll#select" >
     <%= render "timescroll", stock: @stock %>
   </div>
 
@@ -10,42 +10,51 @@
   </div>
 
   <%# CONTAINER TO HOUSE ALL STOCK INFO %>
-    <div class="md:h-[calc(100vh-68px)] w-full relative overflow-y-auto px-4">
+    <div class="md:h-[calc(100vh-144px)] w-full relative overflow-y-auto px-4">
         <div class="w-full h-full grid xl:grid-rows-6 grid-cols-1 md:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-3 p-1">
 
           <%# STOCK INFO %>
-          <div id="stock-info" class="xl:row-span-2 3xl:row-span-2 bg-white shadow-inner-enhanced rounded-lg p-1 sm:p-2 xl:p-4">
-            <div class="flex items-center justify-between mb-4">
-              <%= render "price_widget", stock: @stock %>
-            </div>
-            <div id="basic-info", class="flex items-center justify-between mb-4">
-              <%= render "basic_info", stock: @stock %>
+          <div class="xl:row-span-2 3xl:row-span-2 bg-black border border-black rounded-2xl rounded-tl-lg pr-2 pb-2">
+            <div class="h-full w-full bg-white border border-black rounded-lg p-1 sm:p-2 xl:p-4">
+              <div class="flex items-center justify-between mb-4">
+                <%= render "price_widget", stock: @stock %>
+              </div>
+              <div id="basic-info", class="flex items-center justify-between mb-4 -mt-10">
+                <%= render "basic_info", stock: @stock %>
+              </div>
             </div>
           </div>
 
           <%# TWITTER %>
-          <div class="stock-internal-div xl:row-span-6 h-full bg-white shadow-inner-enhanced rounded-lg p-1 sm:p-2 xl:px-3 xl:py-1 overflow-y-auto">
-            <div class="flex-shrink-0 w-full">
-              <%# tweets here %>
-              <%= turbo_frame_tag "tweets_stock", src: stock_tweets_path(@stock, enddate: Time.now.strftime("%Y-%m-%d")) do %>
-              <% end %>
+          <div class="xl:row-span-6 bg-black border border-black rounded-2xl rounded-tl-lg pr-2 pb-2">
+            <div class="stock-internal-div w-full h-full bg-white border border-black rounded-lg py-1 pl-4 pr-2 overflow-y-auto">
+              <div class="flex-shrink-0 w-full">
+                <%# tweets here %>
+                <%= turbo_frame_tag "tweets_stock", src: stock_tweets_path(@stock, enddate: Time.now.strftime("%Y-%m-%d")) do %>
+                <% end %>
+              </div>
             </div>
           </div>
 
           <%# PRICE CHART %>
-          <div id="price-chart" class="xl:row-span-3 bg-white shadow-inner-enhanced rounded-lg p-1 sm:p-2 xl:p-4">
+          <div class="xl:row-span-3 bg-black border border-black rounded-2xl rounded-tl-lg pr-2 pb-2">
+          <div class="w-full h-full bg-white border border-black rounded-lg p-1 sm:p-2 xl:p-4">
               <div class="flex items-center justify-between mb-4 h-full">
                 <%= render "price_chart", stock:@stock %>
               </div>
           </div>
+          </div>
 
           <%# REDDIT %>
-          <div id="reddit" class="stock-internal-div xl:row-span-4 3xl:row-span-4 bg-white shadow-inner-enhanced rounded-lg p-1 sm:p-2 xl:p-4 overflow-y-auto overflow-y-auto">
+          <div class="row-span-4 bg-black border border-black rounded-2xl rounded-tl-lg pr-2 pb-2">
+          <div class="stock-internal-div w-full h-full bg-white border border-black rounded-lg py-4 pl-4 pr-2 overflow-y-auto overflow-y-auto">
             <%= render "stocks/reddit-section", reddit_articles: @reddit_articles %>
+          </div>
           </div>
 
           <%# NEWS %>
-          <div id="news" class="stock-internal-div xl:row-span-3 bg-white shadow-inner-enhanced rounded-lg p-1 sm:p-2 xl:p-4 h-full overflow-y-auto overflow-y-auto">
+          <div class="row-span-3 bg-black border border-black rounded-2xl rounded-tl-lg pr-2 pb-2">
+          <div class="stock-internal-div w-full h-full bg-white border border-black rounded-lg pt-4 pl-4 pr-2 overflow-y-auto overflow-y-auto">
             <div class="flex items-center justify-between mb-4">
               <h3 class="text-xl font-bold leading-none text-gray-900">Latest News Here</h3>
             </div>
