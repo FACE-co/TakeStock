@@ -15,15 +15,15 @@
   </div>
 
   <div class="font-serif">
-    <% reddit_articles.first(5).each do |article|  %>
+    <% reddit_articles.first(10).each do |article|  %>
       <div class="container h-32 w-full py-2 mx-auto">
         <%= link_to "https://www.reddit.com/#{article['data']['permalink']}", target:"_blank" do %>
-          <div class="grid h-full border border-slate-300 grid-rows-3 rounded-lg p-2 bg-slate-100 hover:bg-slate-200">
+          <div class="grid h-full border border-slate-300 grid-rows-3 rounded-lg p-2 bg-slate-100 hover:bg-slate-200 hover:cursor-pointer">
             <div class="row-span-1">
               <div class="h-full grid grid-cols-11">
-                <div class="grid grid-rows-3">
+                <div class="grid grid-rows-3 h-10">
                   <span class="row-span-1 material-symbols-rounded text-xxxs hover:text-orange-400 text-center">arrow_upward</span>
-                  <p class="text-center row-span-1 row-start-2 text-xxxs float-left row-span-1 text-slate-800"><strong><%= article['data']['ups'] %></strong></p>
+                  <p class="text-center align-middle row-span-1 row-start-2 text-xxs float-left row-span-1 text-slate-800"><strong><%= article['data']['ups'] %></strong></p>
                   <span class="row-span-1 material-symbols-rounded text-xxxs hover:text-blue-400 text-center">arrow_downward</span>
                 </div>
                 <div class="col-span-10 my-auto px-1">

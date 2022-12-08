@@ -1,10 +1,11 @@
 <% array = @news_hash["articles"].first(7) %>
 <% array.each do |a| %>
   <div class="font-serif">
-    <div class="mb-2 p-4 border rounded-lg border-gray-200 cursor-pointer hover:bg-gray-100 group" onclick="window.location='<%= a['url'] %>'">
+    <div class="my-4 p-4 border rounded-lg border-slate-300 hover:bg-gray-100 hover:cursor-pointer group" onclick="window.location='<%= a['url'] %>'">
       <div class="flex items-center space-x-4">
           <div class="flex-shrink-0">
-              <img class="w-20 h-20 rounded-xl" src="<%= a["urlToImage"] %>" alt="news">
+            <img class="object-cover h-20 w-20 rounded-xl" src="<%= a["urlToImage"]%>" alt="news" >
+
           </div>
           <div class="flex flex-col h-20 justify-between">
             <div>
@@ -16,7 +17,7 @@
             </div>
             <div>
               <p class="text-sm text-gray-400 truncate">
-                <%= a["publishedAt"].to_date %>
+                <%= Date.parse(a['publishedAt']).strftime("%a, %d %b %Y") %>
               </p>
             </div>
           </div>
