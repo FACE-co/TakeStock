@@ -21,7 +21,7 @@
             <tr class="text-white cursor-pointer">
               <% if stocks.any? %>
               <% stocks.each_with_index do |stock, index| %>
-                <tr class="group hover:bg-indigo-500 text-white cursor-pointer" onclick="window.location='<%= stock_url(stock) %>'">
+                <tr class="group hover:bg-indigo-500 text-white cursor-pointer">
                   <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 group-hover:text-white"> <%= index + 1 %></td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white"><%= stock.yahooapi["shortName"].present? ? stock.yahooapi["shortName"] : stock.ticker  %></td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white"><%= stock.ticker %></td>
