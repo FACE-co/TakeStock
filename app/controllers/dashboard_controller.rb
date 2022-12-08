@@ -12,6 +12,9 @@ class DashboardController < ApplicationController
     @news = news
   end
 
+  def about
+  end
+
   private
 
   def news
