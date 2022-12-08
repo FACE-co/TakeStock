@@ -22,13 +22,13 @@
               <% if stocks.any? %>
               <% stocks.each_with_index do |stock, index| %>
                 <tr class="group hover:bg-indigo-500 text-white cursor-pointer">
-                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 group-hover:text-white"> <%= index + 1 %></td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white"><%= stock.yahooapi["shortName"].present? ? stock.yahooapi["shortName"] : stock.ticker  %></td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white"><%= stock.ticker %></td>
+                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 group-hover:text-white">  <%= link_to "#{index + 1}", stock_path(stock) %></td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white"><%= link_to "#{stock.yahooapi["shortName"].present? ? stock.yahooapi["shortName"] : stock.ticker}", stock_path(stock)  %></td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white"><%= link_to "#{stock.ticker}" %></td>
                   <%# Interpolate data from API to Last, High & Low Below %>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white/50"><%= stock.yahooapi["regularMarketPrice"].present? ? "$#{stock.yahooapi["regularMarketPrice"].round(2).abs}" : "-" %></td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white/50"><%= stock.yahooapi["regularMarketDayHigh"].present? ? "$#{stock.yahooapi["regularMarketDayHigh"].round(2).abs}" : "-" %></td>
-                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white/50"><%= stock.yahooapi["regularMarketDayLow"].present? ? "$#{stock.yahooapi["regularMarketDayLow"].round(2).abs}" : "-" %></td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white/50"><%= link_to "#{stock.yahooapi["regularMarketPrice"].present? ? "$#{stock.yahooapi["regularMarketPrice"].round(2).abs}" : "-"}", stock_path(stock) %></td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white/50"><%= link_to "#{stock.yahooapi["regularMarketDayHigh"].present? ? "$#{stock.yahooapi["regularMarketDayHigh"].round(2).abs}" : "-"}", stock_path(stock) %></td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white/50"><%= link_to "#{stock.yahooapi["regularMarketDayLow"].present? ? "$#{stock.yahooapi["regularMarketDayLow"].round(2).abs}" : "-"}", stock_path(stock) %></td>
                   <%# Display Green or Red depending on whether Up or Down %>
                   <% if stock.yahooapi["regularMarketChange"].present? %>
                     <% if stock.yahooapi["regularMarketChange"].negative? %>
