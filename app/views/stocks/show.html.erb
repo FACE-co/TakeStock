@@ -1,6 +1,6 @@
 <%# TIMELINE SCROLLER %>
 <div data-controller="timescroll">
-  <div class="w-100 px-4" data-action="change->timescroll#select" >
+  <div class="w-5/6 px-4 py-2 mx-auto" data-action="change->timescroll#select" >
     <%= render "timescroll", stock: @stock %>
   </div>
 
@@ -10,44 +10,46 @@
   </div>
 
   <%# CONTAINER TO HOUSE ALL STOCK INFO %>
-    <div class="md:h-136 3xl:h-elliott w-full relative overflow-y-auto px-4">
-
-        <div class="w-full h-full grid xl:grid-rows-6 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-2 p-1">
-
+    <div class="md:h-[calc(100vh-144px)] w-full relative overflow-y-auto px-4">
+        <div class="w-full h-full grid xl:grid-rows-6 grid-cols-1 md:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 gap-3 p-1">
           <%# STOCK INFO %>
-          <div id="stock-info" class="xl:row-span-3 3xl:row-span-2 bg-white shadow-inner-enhanced rounded-lg p-1 sm:p-2 xl:p-4">
-            <div class="flex items-center justify-between mb-4">
-              <%= render "price_widget", stock: @stock %>
+            <div class="xl:row-span-2 3xl:row-span-2 bg-white border-2 border-black rounded-lg hover:border-solid hover:border-indigo-500 hover:drop-shadow-xl p-1 sm:p-2 xl:p-4">
+              <div class="flex items-center justify-between mb-4">
+                <%= render "price_widget", stock: @stock %>
+              </div>
+              <div id="basic-info", class="flex items-center justify-between mb-4 -mt-10">
+                <%= render "basic_info", stock: @stock %>
+              </div>
             </div>
-            <div id="basic-info", class="flex items-center justify-between mb-4">
-              <%= render "basic_info", stock: @stock %>
-            </div>
-          </div>
+
 
           <%# TWITTER %>
-          <div class="stock-internal-div xl:row-span-6 h-full bg-white shadow-inner-enhanced rounded-lg p-1 sm:p-2 xl:px-3 xl:py-1 overflow-y-auto">
-            <div class="flex-shrink-0 w-full">
-              <%# tweets here %>
-              <%= turbo_frame_tag "tweets_stock", src: stock_tweets_path(@stock, enddate: Time.now.strftime("%Y-%m-%d")) do %>
-              <% end %>
+
+            <div class="stock-internal-div row-span-6 bg-white border-2 border-black rounded-lg py-1 pl-4 pr-2 overflow-y-auto hover:border-solid hover:border-indigo-500 hover:drop-shadow-xl box-border group">
+              <div class="flex-shrink-0 w-full">
+                <%# tweets here %>
+                <%= turbo_frame_tag "tweets_stock", src: stock_tweets_path(@stock, enddate: Time.now.strftime("%Y-%m-%d")) do %>
+                <% end %>
+              </div>
             </div>
-          </div>
+
 
           <%# PRICE CHART %>
-          <div id="price-chart" class="xl:row-span-3 bg-white shadow-inner-enhanced rounded-lg p-1 sm:p-2 xl:p-4">
+          <div class="row-span-3 bg-white border-2 border-black rounded-lg p-1 sm:p-2 xl:p-4  hover:border-solid hover:border-indigo-500 hover:drop-shadow-xl box-border group">
               <div class="flex items-center justify-between mb-4 h-full">
                 <%= render "price_chart", stock:@stock %>
               </div>
           </div>
 
           <%# REDDIT %>
-          <div id="reddit" class="stock-internal-div xl:row-span-3 3xl:row-span-4 bg-white shadow-inner-enhanced rounded-lg p-1 sm:p-2 xl:p-4 overflow-y-auto overflow-y-auto">
+          <div class="stock-internal-div row-span-4 bg-white border-2 border-black rounded-lg py-4 pl-4 pr-2 overflow-y-auto overflow-y-auto hover:border-solid hover:border-indigo-500 hover:drop-shadow-xl box-border group">
             <%= render "stocks/reddit-section", reddit_articles: @reddit_articles %>
           </div>
 
           <%# NEWS %>
-          <div id="news" class="stock-internal-div xl:row-span-3 bg-white shadow-inner-enhanced rounded-lg p-1 sm:p-2 xl:p-4 h-full overflow-y-auto overflow-y-auto">
-            <div class="flex items-center justify-between mb-4">
+          <div class="stock-internal-div row-span-3 bg-white border-2 border-black rounded-lg pt-4 pl-4 pr-2 overflow-y-auto overflow-y-auto hover:border-solid hover:border-indigo-500 hover:drop-shadow-xl box-border group">
+            <div class="flex items-center justify-between mb-4 ml-1">
+              <%= image_tag "news-svgrepo-com.svg", width:"10%", class:"filter-purple"%>
               <h3 class="text-xl font-bold leading-none text-gray-900">Latest News Here</h3>
             </div>
 
@@ -55,11 +57,7 @@
               <%= render "news", stock: @stock, enddate: @enddate %>
             </div>
             <p data-timescroll-target="tickername" class="hidden"><%= @stock.ticker %></p>
-
           </div>
         </div>
-
     </div>
-
-  </div>
 </div>
