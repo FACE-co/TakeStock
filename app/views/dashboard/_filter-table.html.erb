@@ -1,7 +1,4 @@
-<div class="flex items-baseline justify-between">
-  <h3 class="text-4xl font-bold">Markets</h3>
-  <p class="ml-8 text-xl font-semibold">View by: <span class="ml-2 underline decoration-amber-500 decoration-4 underline-offset-8">Trending<span></p>
-</div>
+
 <div class="flex mb-5 mt-10">
   <%# SEARCH BAR %>
   <div class="flex flex-row">
@@ -43,7 +40,7 @@
   <div data-controller="dropdown" class="relative">
     <button type="button" data-action="dropdown#toggle click@window->dropdown#hide" class="inline-flex w-25 justify-center items-center rounded-full border border-gray-300 bg-white px-6 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
       My Portfolios
-      <i class="fa-solid fa-chevron-down ml-2"></i>
+      <%= image_tag "chevron-down-solid.svg", style: 'height:15px;width:15px;', class:"ml-2" %>
     </button>
     <div
       data-dropdown-target="menu"
