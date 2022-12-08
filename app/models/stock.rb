@@ -22,7 +22,6 @@ class Stock < ApplicationRecord
       tsearch: { prefix: true } # <-- now `superman batm` will return something!
     }
 
-
   def upcase_ticker
     self.ticker = self.ticker.upcase
   end
