@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 // Connects to data-controller="timescroll"
-const NEWS_API_KEY = "e261e54b338c4a6a95e2b57a942b9445"
+const NEWS_API_KEY = "fb75ef613f12441dae19903662d6de18"
 export default class extends Controller {
   static targets = ["time", "value", "valueshow", "news", "tickername", "twitterpage"]
 
@@ -32,7 +32,9 @@ export default class extends Controller {
       let array = data["articles"]
       let top7 = array.slice(0, 7)
       let replacecontent = ''
+
       top7.forEach(a => {
+        let newsdate = new Date(Date.parse(a["publishedAt"]))
         replacecontent = replacecontent +
         `<div class="pt-2">
           <div class="flex items-start rounded-xl bg-white p-4 shadow-lg">
@@ -52,7 +54,15 @@ export default class extends Controller {
                 </div>
                 <div>
                   <p class="text-sm text-gray-500 truncate">
-                    ${a["publishedAt"]}
+                    ${newsdate.toLocaleDateString("en-us" , {
+                      month: "short",
+                      day: "numeric",
+                      year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      second: "2-digit",
+                      hour12: false
+                    })}
                   </p>
                 </div>
               </div>
