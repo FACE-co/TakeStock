@@ -1,12 +1,13 @@
-<% if current_user.nil? %>
-  <%# Renders NavBar %>
-  <header class=""><%= render "shared/navbar" %></header>
-  <%= render "dashboard/hero" %>
-  <%= render "dashboard/call-to-action-banner" %>
+<% if current_user.present? %>
+    <%# Renders NavBar %>
+    <header class=""><%= render "shared/navbar" %></header>
+  <% else %>
+    <%# Renders NavBar %>
+    <header class=""><%= render "shared/navbar" %></header>
+    <%= render "dashboard/hero" %>
+    <%= render "dashboard/call-to-action-banner" %>
 <% end %>
 
-<%# Renders NavBar %>
-<header class=""><%= render "shared/navbar" %></header>
 
 <div class="py-24 flex flex-col max-w-5xl mx-auto">
   <%= turbo_frame_tag "portfolio_turbo_frame" do %>

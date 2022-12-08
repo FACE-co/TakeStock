@@ -37,7 +37,7 @@
   <% elsif providers.include?(article['source']['name']) == false && providers.length < 6 %>
     <%# <% providers.include?(article['source']['name']) ? return : providers << article['source']['name'] %>
     <% providers << article['source']['name'] %>
-    <div class="bg-gray-50 h-45 border-2 p-6 rounded-lg hover:border-2 hover:border-solid hover:border-indigo-500 hover:drop-shadow-xl box-border group">
+    <div class="bg-gray-50 h-45 border-2 p-6 rounded-lg hover:border-2 hover:border-solid hover:border-indigo-500 hover:drop-shadow-xl hover:cursor-pointer box-border group">
       <a href=" <%= article['url'] %> " class="inline-block h-full">
       <div class="flex flex-col justify-between h-full">
         <div>
