@@ -3,6 +3,7 @@
 }
 
 .cursor {
+  z-index: 100;
   width: 10px;
   height: 10px;
   border-radius: 100%;
@@ -16,6 +17,7 @@
 }
 
 .cursor2 {
+  z-index: 100;
   width: 10px;
   height: 10px;
   border-radius: 100%;

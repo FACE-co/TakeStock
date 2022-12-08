@@ -21,7 +21,7 @@
                                   placeholder: "Password",
                                   class: "relative block w-full appearance-none border-t-0 border-l-0 border-r-0 border-b-1 border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none sm:text-sm mb-8" }
                                   %>
-        <%= f.input :remember_me, input_html: { class: "ml-2 text-sm text-gray-900"} , as: :boolean if devise_mapping.rememberable?%>
+        <%= f.input :remember_me, input_html: { class: "text-sm text-gray-900"} , as: :boolean if devise_mapping.rememberable?%>
       </div>
 
       <div class="form-actions">
