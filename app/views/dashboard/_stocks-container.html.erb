@@ -1,0 +1,73 @@
+<% portfolio ||= nil %>
+  <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8 font-serif">
+    <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+      <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+        <table class="min-w-full divide-y divide-gray-300">
+          <thead class="">
+            <tr>
+              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">#</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Name</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Ticker</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Last</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Daily High</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Daily Low</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Change $</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Change %</th>
+              <th class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"></th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200 bg-white min-h-max">
+            <%# Display all the stock information if Portfolio has stocks, ELSE display string to notify user of empty portfolio L64-65 %>
+            <tr class="text-white cursor-pointer">
+              <% if stocks.any? %>
+              <% stocks.each_with_index do |stock, index| %>
+                <tr class="group hover:bg-indigo-500 text-white cursor-pointer">
+                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 group-hover:text-white">  <%= link_to "#{index + 1}", stock_path(stock) %></td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white"><%= link_to "#{stock.yahooapi["shortName"].present? ? stock.yahooapi["shortName"] : stock.ticker}", stock_path(stock)  %></td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white"><%= link_to "#{stock.ticker}" %></td>
+                  <%# Interpolate data from API to Last, High & Low Below %>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white/50"><%= link_to "#{stock.yahooapi["regularMarketPrice"].present? ? "$#{stock.yahooapi["regularMarketPrice"].round(2).abs}" : "-"}", stock_path(stock) %></td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white/50"><%= link_to "#{stock.yahooapi["regularMarketDayHigh"].present? ? "$#{stock.yahooapi["regularMarketDayHigh"].round(2).abs}" : "-"}", stock_path(stock) %></td>
+                  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white/50"><%= link_to "#{stock.yahooapi["regularMarketDayLow"].present? ? "$#{stock.yahooapi["regularMarketDayLow"].round(2).abs}" : "-"}", stock_path(stock) %></td>
+                  <%# Display Green or Red depending on whether Up or Down %>
+                  <% green_or_red = stock.yahooapi["regularMarketChange"].positive? ?  "text-emerald-500" : "text-rose-500"  %>
+                  <% plus_or_minus = stock.yahooapi["regularMarketChange"].positive? ? "+" : "-"  %>
+                  <%# Prints either data or "-" if data-points are missing %>
+                  <% if stock.yahooapi["regularMarketChange"].present? %>
+                      <td class="whitespace-nowrap px-3 py-4 text-sm <%= green_or_red %> group-hover:text-white/50"> <%= "#{plus_or_minus} $#{stock.yahooapi["regularMarketChange"].round(2).abs}" %></td>
+                      <td class="whitespace-nowrap px-3 py-4 text-sm <%= green_or_red %> group-hover:text-white/50"> <%= stock.yahooapi["regularMarketChangePercent"].present? ? "#{plus_or_minus} #{stock.yahooapi["regularMarketChangePercent"].round(2).abs}%" : "-" %></td>
+                  <% else %>
+                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white/50"> - </td>
+                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white/50"> - </td>
+                  <% end %>
+
+                  <%# Only Display Delete Option if Portfolio is present %>
+                  <% if portfolio %>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 table-cell">
+                    <%= link_to portfolio_stock_path(
+                      portfolio_id: portfolio.id,
+                                stock_id: stock.id),
+                                data: {turbo_method: :delete, turbo_confirm: "Are you sure to delete this stock?"},
+                                class: 'btn btn-light btn-sm text-right' do %>
+                                <svg class="text-gray-300 fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z"/></svg>
+                                <% end %>
+                    </td>
+                  <% else %>
+                  <%# Display Add To Portfolio Option if not Portfolio Section %>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 table-cell group-hover:text-white/50">
+                      <%= render "shared/add-stock", stock: stock %>
+                    </td>
+                  <% end %>
+                </tr>
+              <% end %>
+            <% else %>
+              <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 table-cell font-serif">
+              Portfolio is currently empty
+              </td>
+            <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

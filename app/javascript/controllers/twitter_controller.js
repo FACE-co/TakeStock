@@ -19,6 +19,7 @@ export default class extends Controller {
         {
           theme: "light",
           cards: "hidden",
+          width: "100%",
           conversastion: "none"
         }
       );

@@ -12,13 +12,16 @@ class DashboardController < ApplicationController
     @news = news
   end
 
+  def about
+  end
+
   private
 
   def news
     query = "https://newsapi.org/v2/everything?q=investment&lang=en&sortBy=popularity&apiKey=#{ENV['NEWS_API_KEY']}"
     # query = "https://newsapi.org/v2/everything?q=#{stock.ticker}&from=#{enddate}&to=#{enddate}&sortBy=popularity&apiKey=#{ENV['NEWS_API_KEY']}"
     stock_news = URI.open(query).read
-    news_hash = JSON.parse(stock_news)
-    return news_hash
+    news = JSON.parse(stock_news)
+    news['articles']
   end
 end

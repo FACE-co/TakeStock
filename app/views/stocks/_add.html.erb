@@ -3,7 +3,7 @@
 <div data-controller="dropdown" class="relative inline-block text-left">
   <div>
     <button type="button" data-action="dropdown#toggle click@window->dropdown#hide" class="inline-flex w-full justify-center rounded-full border border-gray-400 bg-white px-4 py-2 text-sm font-medium text-gray-900 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100" id="menu-button" aria-expanded="true" aria-haspopup="true">
-      <i class="fa-regular fa-plus inset-0"></i>
+      <svg class="text-whitefill-current h-8 w-8"xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
     </button>
   </div>
 
@@ -19,7 +19,7 @@
   -->
 
   <div data-dropdown-target="menu"
-  class="hidden transition transform absolute right-4 z-10 mt-2 w-72 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hover:bg-gray-100" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+  class="hidden transition transform absolute left-4 z-10 mt-2 w-72 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hover:bg-gray-100" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
     <div class="py-1" role="none">
       <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
       <% if current_user.present? %>

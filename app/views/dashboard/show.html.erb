@@ -1,19 +1,29 @@
-<% if current_user.nil? %>
-  <%= render "dashboard/hero" %>
-  <%= render "dashboard/call-to-action-banner" %>
+<% if current_user.present? %>
+    <%# Renders NavBar %>
+    <header class=""><%= render "shared/navbar" %></header>
+  <% else %>
+    <%# Renders NavBar %>
+    <header class=""><%= render "shared/navbar" %></header>
+    <%= render "dashboard/hero" %>
+    <%= render "dashboard/call-to-action-banner" %>
 <% end %>
 
-<div class="mt-16 flex flex-col px-16 sm:px-20">
+<div class="py-24 flex flex-col max-w-5xl mx-auto">
   <%= turbo_frame_tag "portfolio_turbo_frame" do %>
-  <div class="flex items-baseline justify-between">
-    <h3 class="text-4xl font-bold">Markets</h3>
-    <p class="ml-8 text-xl font-semibold">View by: <span class="ml-2 underline decoration-amber-500 decoration-4 underline-offset-8">Trending<span></p>
-  </div>
-    <%= render "shared/filter-table" %>
-    <%= render "shared/stocks-container", stocks: @stocks %>
-    <%= render "shared/news" %>
-    <%= render "dashboard/trading_view_widget" %>
+    <div class="flex items-baseline justify-between mb-2">
+      <h3 class="text-4xl font-bold">Markets</h3>
+      <p class="ml-8 text-xl font-semibold font-serif">View by: <span class="ml-2 underline decoration-amber-500 decoration-4 underline-offset-8">Trending<span></p>
+    </div>
+    <%= render "dashboard/filter-table" %>
+    <%= render "dashboard/stocks-container", stocks: @stocks %>
   <% end %>
+</div>
+  <% if current_user.nil? %>
+  <%= render "dashboard/portfolio_signup" %>
+  <% end %>
+<div class="py-24 flex flex-col max-w-5xl mx-auto">
+    <%= render "dashboard/news" %>
+    <%= render "dashboard/trading_view_widget" %>
   <% if current_user.nil? %>
     <%= render "dashboard/call_to_action_2" %>
   <% end %>

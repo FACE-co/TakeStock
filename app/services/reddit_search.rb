@@ -28,15 +28,19 @@ class RedditSearch < ApplicationService
         :method => :get,
         :url => "https://www.reddit.com/search.json?q=#{@query}&t=week&sort=top",
         :headers => { Authorization: token }
-     )
+      )
+      # json file of reddit articles
+      reddit_hash = JSON.parse(raw)
+      posts = reddit_hash['data']['children']
+      # parsed json into ruby hash
+      # returns hash of hashes post via ['data']['children']
 
-     # json file of reddit articles
-     reddit_hash = JSON.parse(raw)
 
-     # parsed json into ruby hash
-     # returns hash of hashes post via ['data']['children']
-     articles = reddit_hash['data']['children']
-     return articles
+
+       articles = posts
+      #  articles = [posts, icons_urls]
+       return articles
+
 
     rescue StandardError => e
       raise StandardError.new 'Error getting Reddit articles.'

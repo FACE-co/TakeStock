@@ -1,8 +1,9 @@
 // Base Colors
 $shade-10: #2c3e50 !default;
 $shade-1: #d7dcdf !default;
+$shade-3: #f59e0b !default;
 $shade-0: #fff !default;
-$teal: #7c3aed !default;
+$teal: #4f46e5 !default;
 
 
 // Reset
@@ -22,14 +23,14 @@ $teal: #7c3aed !default;
 // Range Slider
 $range-width: 100% !default;
 
-$range-handle-color: $shade-10 !default;
+$range-handle-color: $teal !default;
 $range-handle-color-hover: $teal !default;
 $range-handle-size: 20px !default;
 
 $range-track-color: $shade-1 !default;
 $range-track-height: 10px !default;
 
-$range-label-color: $shade-10 !default;
+$range-label-color: $shade-3 !default;
 $range-label-width: 120px !default;
 
 .range-slider {
@@ -42,7 +43,6 @@ $range-label-width: 120px !default;
   height: $range-track-height;
   border-radius: 5px;
   background: $range-track-color;
-  outline: none;
   padding: 0;
   margin: 0;
 
@@ -83,6 +83,13 @@ $range-label-width: 120px !default;
     background: $range-handle-color-hover;
   }
 
+  // Hover state
+  &:hover {
+    outline-width: 2px 0px 2px 2px;
+    outline-style: solid;
+    outline-color: #4f46e5;
+  }
+
   // Focus state
   &:focus {
 
@@ -118,4 +125,8 @@ $range-label-width: 120px !default;
     border-bottom: 7px solid transparent;
     content: '';
   }
+}
+
+.filter-purple{
+  filter: invert(19%) sepia(81%) saturate(1405%) hue-rotate(224deg) brightness(127%) contrast(114%);
 }
