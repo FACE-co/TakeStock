@@ -3,4 +3,24 @@
   bottom: 16px;
   right: 16px;
   z-index: 1000;
+  animation: fadeInOut 6s linear 1 forwards;
+}
+
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0;
+  }
 }
