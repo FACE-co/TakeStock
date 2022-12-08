@@ -21,5 +21,6 @@
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "build:css": "sass ./app/assets/stylesheets/application.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
-  }
+  },
+  "devDependencies": {}
 }
