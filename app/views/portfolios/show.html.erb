@@ -5,6 +5,6 @@
     <h3 class="text-4xl font-bold">Markets</h3>
     <p class="ml-8 text-xl font-semibold font-serif">View by: <span class="ml-2 underline decoration-amber-500 decoration-4 underline-offset-8"><%= @portfolio.name %><span></p>
   </div>
-  <%= render "shared/filter-table"%>
-  <%= render "shared/stocks-container", stocks: @portfolio.stocks, portfolio: @portfolio %>
+  <%= render "dashboard/filter-table"%>
+  <%= render "dashboard/stocks-container", stocks: @portfolio.stocks, portfolio: @portfolio %>
 <% end %>
