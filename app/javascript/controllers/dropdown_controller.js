@@ -8,9 +8,11 @@ export default class extends Dropdown {
 
   toggle(event) {
     super.toggle()
+    console.log('Toggle Show.')
   }
 
   hide(event) {
     super.hide(event)
+    console.log('Toggle Hide.')
   }
 }
