@@ -21,7 +21,7 @@
   <% if current_user.nil? %>
   <%= render "dashboard/portfolio_signup" %>
   <% end %>
-<div class="py-24 flex flex-col max-w-5xl mx-auto">
+  <div class="py-24 flex flex-col max-w-5xl mx-auto">
     <%= render "dashboard/news" %>
     <%= render "dashboard/trading_view_widget" %>
   <% if current_user.nil? %>
