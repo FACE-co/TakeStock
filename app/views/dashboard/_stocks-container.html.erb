@@ -29,16 +29,16 @@
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white/50"><%= link_to "#{stock.yahooapi["regularMarketPrice"].present? ? "$#{stock.yahooapi["regularMarketPrice"].round(2).abs}" : "-"}", stock_path(stock) %></td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white/50"><%= link_to "#{stock.yahooapi["regularMarketDayHigh"].present? ? "$#{stock.yahooapi["regularMarketDayHigh"].round(2).abs}" : "-"}", stock_path(stock) %></td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white/50"><%= link_to "#{stock.yahooapi["regularMarketDayLow"].present? ? "$#{stock.yahooapi["regularMarketDayLow"].round(2).abs}" : "-"}", stock_path(stock) %></td>
-                  <%# Display Green or Red depending on whether Up or Down %>
-                  <% green_or_red = stock.yahooapi["regularMarketChange"].positive? ?  "text-emerald-500" : "text-rose-500"  %>
-                  <% plus_or_minus = stock.yahooapi["regularMarketChange"].positive? ? "+" : "-"  %>
                   <%# Prints either data or "-" if data-points are missing %>
                   <% if stock.yahooapi["regularMarketChange"].present? %>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm <%= green_or_red %> group-hover:text-white/50"> <%= "#{plus_or_minus} $#{stock.yahooapi["regularMarketChange"].round(2).abs}" %></td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm <%= green_or_red %> group-hover:text-white/50"> <%= stock.yahooapi["regularMarketChangePercent"].present? ? "#{plus_or_minus} #{stock.yahooapi["regularMarketChangePercent"].round(2).abs}%" : "-" %></td>
+                  <%# Display Green or Red depending on whether Up or Down %>
+                    <% green_or_red = stock.yahooapi["regularMarketChange"].positive? ?  "text-emerald-500" : "text-rose-500"  %>
+                    <% plus_or_minus = stock.yahooapi["regularMarketChange"].positive? ? "+" : "-"  %>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm <%= green_or_red %> group-hover:text-white/50"> <%= "#{plus_or_minus} $#{stock.yahooapi["regularMarketChange"].round(2).abs}" %></td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm <%= green_or_red %> group-hover:text-white/50"> <%= stock.yahooapi["regularMarketChangePercent"].present? ? "#{plus_or_minus} #{stock.yahooapi["regularMarketChangePercent"].round(2).abs}%" : "-" %></td>
                   <% else %>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white/50"> - </td>
-                      <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white/50"> - </td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white/50"> - </td>
+                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white/50"> - </td>
                   <% end %>
 
                   <%# Only Display Delete Option if Portfolio is present %>
