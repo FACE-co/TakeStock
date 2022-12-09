@@ -29,7 +29,7 @@ class StocksController < ApplicationController
       @portfolios = []
       @stock = Stock.find_by(ticker: params[:stock][:ticker]) || Stock.find_by(ticker: request.referrer.split('/').last)
       # social = trending_count(stock_params[:ticker])
-      # @stock.update(trending: social)
+    # @stock.update(trending: social)
       @news_hash = {}
       @basic_info = {}
       # render :show, status: :unprocessable_entity
