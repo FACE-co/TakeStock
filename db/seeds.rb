@@ -9,7 +9,7 @@
 User.destroy_all
 Stock.destroy_all
 
-User.create!(email: "face-co@gmail.com", password: "123456")
+User.create!(email: "elliott@faceco.com", password: "123456")
 
 Stock.create!({
   name: "APPLE INC",
@@ -295,7 +295,7 @@ Stock.create!({
   api_id: ""
 })
 
-Portfolio.create!(name: "My favourite stocks", user_id: 1)
+Portfolio.create!(name: "My Tech Stocks", user_id: 1)
 Portfolio.create!(name: "Indices and ETFs", user_id: 1)
 
 PortfolioStock.create!(portfolio_id: 1, stock_id: 1)
