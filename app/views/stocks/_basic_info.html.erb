@@ -1,6 +1,7 @@
 <% hash = @basic_info %>
-
-<table class="table-fixed text-xxs w-full font-serif">
+<% green_or_red = stock.yahooapi["regularMarketChange"].positive? ?  "text-emerald-500" : "text-rose-500"  %>
+<% plus_or_minus = stock.yahooapi["regularMarketChange"].positive? ? "+" : "-"  %>
+<table class="table-fixed text-xs w-full font-serif mt-4 mtl-4">
   <tbody>
     <tr>
       <td class="w-1/6"><strong>Open:</strong></td><td class="w-1/6">$<%= hash[:regularMarketOpen].to_s %></td>

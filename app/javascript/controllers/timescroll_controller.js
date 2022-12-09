@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 // Connects to data-controller="timescroll"
-const NEWS_API_KEY = "e261e54b338c4a6a95e2b57a942b9445"
+const NEWS_API_KEY = "fb75ef613f12441dae19903662d6de18"
 export default class extends Controller {
   static targets = ["time", "value", "valueshow", "news", "tickername", "twitterpage"]
 
@@ -32,33 +32,36 @@ export default class extends Controller {
       let array = data["articles"]
       let top7 = array.slice(0, 7)
       let replacecontent = ''
+
       top7.forEach(a => {
+        let newsdate = new Date(Date.parse(a["publishedAt"]))
         replacecontent = replacecontent +
-        `<div class="pt-2">
-          <div class="flex items-start rounded-xl bg-white p-4 shadow-lg">
-          <div class="flex items-center space-x-4">
-              <div class="flex-shrink-0">
-                  <img class="w-20 h-20 rounded-xl" src="${a["urlToImage"]}" alt="news">
-              </div>
-              <div class="flex flex-col h-20 justify-between">
-                <div>
-                  <a href="${a["url"]}" target="_blank">
-                    <p class="text-sm font-medium text-gray-900 "
-                    style="display: -webkit-box; -webkit-box-orient: vertical;
-                    -webkit-line-clamp: 3; overflow: hidden;">
-                      ${a["title"]}
+        `<div class="font-serif">
+          <div class="my-4 p-4 border rounded-lg border-slate-300 hover:bg-gray-100 hover:cursor-pointer group" onclick="window.location='<%= a['url'] %>'">
+            <div class="flex items-center space-x-4">
+                <div class="flex-shrink-0">
+                  <img class="object-cover h-20 w-20 rounded-xl" src="${a["urlToImage"]}" alt="news" >
+                </div>
+                <div class="flex flex-col h-20 justify-between">
+                  <div>
+                    <a href="${a["url"]}" target="_blank">
+                      <p class="text-sm font-medium text-gray-900"
+                      style="display: -webkit-box; -webkit-box-orient: vertical;
+                      -webkit-line-clamp: 3; overflow: hidden;">
+                        ${a["title"]}
+                      </p>
+                    </a>
+                  </div>
+                  <div>
+                    <p class="text-sm text-gray-400 truncate">
+                      ${newsdate.toUTCString()}
                     </p>
-                  </a>
+                  </div>
                 </div>
-                <div>
-                  <p class="text-sm text-gray-500 truncate">
-                    ${a["publishedAt"]}
-                  </p>
-                </div>
-              </div>
-          </div>
+            </div>
           </div>
         </div>`
+
       });
      return replacecontent
     }

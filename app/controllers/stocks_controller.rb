@@ -74,7 +74,7 @@ class StocksController < ApplicationController
 
   # /stock_news
   def news(stock)
-    query = "https://newsapi.org/v2/everything?q=#{stock.ticker}&from=#{Time.now.strftime('%Y-%m-%d')}&sortBy=publishedAt&apiKey=#{ENV['NEWS_API_KEY']}"
+    query = "https://newsapi.org/v2/everything?q=#{stock.ticker}&from=#{Time.now.strftime('%Y-%m-%d')}&to=#{Time.now.strftime('%Y-%m-%d')}&sortBy=popularity&apiKey=#{ENV['NEWS_API_KEY']}"
     # query = "https://newsapi.org/v2/everything?q=#{stock.ticker}&from=#{enddate}&to=#{enddate}&sortBy=popularity&apiKey=#{ENV['NEWS_API_KEY']}"
     stock_news = URI.open(query).read
     news_hash = JSON.parse(stock_news)

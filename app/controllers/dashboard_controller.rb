@@ -23,6 +23,5 @@ class DashboardController < ApplicationController
     stock_news = URI.open(query).read
     news = JSON.parse(stock_news)
     news['articles']
-
   end
 end
