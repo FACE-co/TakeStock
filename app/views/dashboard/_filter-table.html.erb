@@ -36,8 +36,8 @@
   </div>
 
   <%# PORTFOLIOS DROPDOWN %>
-      <% if current_user.present? %>
-  <div data-controller="dropdown" class="relative">
+    <% if current_user.present? %>
+    <div data-controller="dropdown" class="relative">
     <button type="button" data-action="dropdown#toggle click@window->dropdown#hide" class="inline-flex w-25 justify-center items-center rounded-full border border-gray-300 bg-white px-6 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
       My Portfolios
       <%= image_tag "chevron-down-solid.svg", style: 'height:15px;width:15px;', class:"ml-2" %>

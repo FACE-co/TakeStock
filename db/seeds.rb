@@ -9,7 +9,8 @@
 User.destroy_all
 Stock.destroy_all
 
-User.create!(email: "elliott.faceco@gmail.com", password: "123456")
+User.create!(email: "elliott@faceco.com", password: "123456")
+# AAPL
 
 Stock.create!({
   name: "APPLE INC",
@@ -30,7 +31,7 @@ Stock.create!({
   location: "California; U.S.A",
   api_id: "a43c3ffca9b4a0be9cee4fa1120832a2"
 })
-
+# TSLA
 Stock.create!({
   name: "TESLA INC",
   ticker: "TSLA",
@@ -50,7 +51,7 @@ Stock.create!({
   location: "California; U.S.A",
   api_id: "eaeafc4ffc04a49da153adebf1f6960a"
 })
-
+# JPM
 Stock.create!({
   name: "JPMORGAN CHASE & CO",
   ticker: "JPM",
@@ -70,7 +71,7 @@ Stock.create!({
   location: "New York; U.S.A",
   api_id: "9b2b5dd6bb56471237e8d985863c5a5d"
 })
-
+# SPY
 Stock.create!({
   name: "SPDR® S&P 500",
   ticker: "SPY",
@@ -90,7 +91,7 @@ Stock.create!({
   location: "",
   api_id: ""
 })
-
+# VOO
 Stock.create!({
   name: "Vanguard S&P 500 ETF",
   ticker: "VOO",
@@ -110,7 +111,7 @@ Stock.create!({
   location: "",
   api_id: ""
 })
-
+# MSFT
 Stock.create!({
   name: "MICROSOFT CORP",
   ticker: "MSFT",
@@ -130,7 +131,7 @@ Stock.create!({
   location: "Washington; U.S.A",
   api_id: "0f08a6a6742dc4148badfef6977406cf"
 })
-
+# GS
 Stock.create!({
   name: "Goldman Sachs Group Inc",
   ticker: "GS",
@@ -150,7 +151,7 @@ Stock.create!({
   location: "",
   api_id: ""
 })
-
+# Procter
 Stock.create!({
   name: "Procter & Gamble Company",
   ticker: "PG",
@@ -170,7 +171,7 @@ Stock.create!({
   location: "",
   api_id: ""
 })
-
+# NVDA
 Stock.create!({
   name: "NVIDIA Corporation",
   ticker: "NVDA",
@@ -190,7 +191,7 @@ Stock.create!({
   location: "",
   api_id: ""
 })
-
+# GOOGL
 Stock.create!({
   name: "Alphabet Inc Class A",
   ticker: "GOOGL",
@@ -210,7 +211,7 @@ Stock.create!({
   location: "",
   api_id: ""
 })
-
+# NKE
 Stock.create!({
   name: "Nike Inc",
   ticker: "NKE",
@@ -232,7 +233,7 @@ Stock.create!({
 })
 
 
-
+# MCHI
 Stock.create!({
   name: "iShares MSCI China ETF",
   ticker: "MCHI",
@@ -252,7 +253,7 @@ Stock.create!({
   location: "",
   api_id: ""
 })
-
+# JNJ
 Stock.create!({
   name: "Johnson & Johnson",
   ticker: "JNJ",
@@ -274,7 +275,7 @@ Stock.create!({
 })
 
 
-
+# IEUR
 Stock.create!({
   name: "iShares Core MSCI Europe ETF",
   ticker: "IEUR",
@@ -295,19 +296,13 @@ Stock.create!({
   api_id: ""
 })
 
-Portfolio.create!(name: "My favourite stocks", user_id: 1)
+Portfolio.create!(name: "My Tech Stocks", user_id: 1)
 Portfolio.create!(name: "Indices and ETFs", user_id: 1)
 
 PortfolioStock.create!(portfolio_id: 1, stock_id: 1)
 PortfolioStock.create!(portfolio_id: 1, stock_id: 2)
-PortfolioStock.create!(portfolio_id: 1, stock_id: 3)
 PortfolioStock.create!(portfolio_id: 1, stock_id: 6)
-PortfolioStock.create!(portfolio_id: 1, stock_id: 7)
-PortfolioStock.create!(portfolio_id: 1, stock_id: 8)
-PortfolioStock.create!(portfolio_id: 1, stock_id: 9)
-PortfolioStock.create!(portfolio_id: 1, stock_id: 10)
-PortfolioStock.create!(portfolio_id: 1, stock_id: 11)
-PortfolioStock.create!(portfolio_id: 1, stock_id: 13)
+
 PortfolioStock.create!(portfolio_id: 2, stock_id: 4)
 PortfolioStock.create!(portfolio_id: 2, stock_id: 5)
 PortfolioStock.create!(portfolio_id: 2, stock_id: 12)

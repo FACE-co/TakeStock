@@ -20,7 +20,7 @@
             <%# Display all the stock information if Portfolio has stocks, ELSE display string to notify user of empty portfolio L64-65 %>
             <tr class="text-white cursor-pointer">
               <% if stocks.any? %>
-              <% stocks.each_with_index do |stock, index| %>
+              <% stocks.first(10).each_with_index do |stock, index| %>
                 <tr class="group hover:bg-indigo-500 text-white cursor-pointer">
                   <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6 group-hover:text-white">  <%= link_to "#{index + 1}", stock_path(stock) %></td>
                   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 group-hover:text-white"><%= link_to "#{stock.yahooapi["shortName"].present? ? stock.yahooapi["shortName"] : stock.ticker}", stock_path(stock)  %></td>

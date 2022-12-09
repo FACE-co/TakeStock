@@ -7,6 +7,7 @@ class DashboardController < ApplicationController
       @stocks = Stock.search_by_name_and_ticker_and_sector(params[:query])
     else
       @stocks = Stock.all
+      # @stocks = @stocks.sort_by { |stock| stock.trending }
     end
 
     @news = news
