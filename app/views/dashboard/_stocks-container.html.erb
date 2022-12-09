@@ -54,6 +54,8 @@
                     </td>
                   <% else %>
                   <%# Display Add To Portfolio Option if not Portfolio Section %>
+                  <%# TODO Add Popper.JS to allow for Options to be generated outside of Div. %>
+                  <%# TODO https://github.com/tailwindlabs/tailwindui-issues/issues/147 %>
                     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500 table-cell group-hover:text-white/50">
                       <%= render "shared/add-stock", stock: stock %>
                     </td>
