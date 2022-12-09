@@ -9,15 +9,17 @@
           </div>
           <div class="flex flex-col h-20 justify-between">
             <div>
+              <a href="<%= a['url'] %>" target="_blank">
                 <p class="text-sm font-medium text-gray-900"
                 style="display: -webkit-box; -webkit-box-orient: vertical;
                 -webkit-line-clamp: 3; overflow: hidden;">
                   <%= a["title"] %>
                 </p>
+              </a>
             </div>
             <div>
               <p class="text-sm text-gray-400 truncate">
-                <%= Date.parse(a['publishedAt']).strftime("%b %d, %Y, %a") %>
+                <%= Date.parse(a['publishedAt']).strftime("%a, %d %b %Y, %H:%I:%M GMT") %>
               </p>
             </div>
           </div>
