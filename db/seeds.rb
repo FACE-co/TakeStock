@@ -9,7 +9,7 @@
 User.destroy_all
 Stock.destroy_all
 
-User.create!(email: "face-co@gmail.com", password: "123456")
+User.create!(email: "elliott.faceco@gmail.com", password: "123456")
 
 Stock.create!({
   name: "APPLE INC",
