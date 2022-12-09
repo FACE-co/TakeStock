@@ -1,4 +1,4 @@
-<% array = @news_hash["articles"] %>
+<% array = @news_hash["articles"].first(7) %>
 <% array.each do |a| %>
   <div class="font-serif">
     <div class="my-4 p-4 border rounded-lg border-slate-300 hover:bg-gray-100 hover:cursor-pointer group" onclick="window.location='<%= a['url'] %>'">
@@ -17,7 +17,7 @@
             </div>
             <div>
               <p class="text-sm text-gray-400 truncate">
-                <%= Date.parse(a['publishedAt']).strftime("%b %d, %Y, %a") %>
+                <%= Date.parse(a['publishedAt']).strftime("%a, %d %b %Y") %>
               </p>
             </div>
           </div>
