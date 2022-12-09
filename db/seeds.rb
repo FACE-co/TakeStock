@@ -6,12 +6,10 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-User.create!(email: "admin@gmail.com", password: "123456")
-User.create!(email: "a@gmail.com", password: "123456")
-User.create!(email: "b@gmail.com", password: "123456")
-User.create!(email: "c@gmail.com", password: "123456")
-
+User.destroy_all
 Stock.destroy_all
+
+User.create!(email: "face-co@gmail.com", password: "123456")
 
 Stock.create!({
   name: "APPLE INC",
@@ -53,26 +51,6 @@ Stock.create!({
   api_id: "eaeafc4ffc04a49da153adebf1f6960a"
 })
 
-# Stock.create!({
-#   name: "INVESCO QQQ TRUST SERIES 1",
-#   ticker: "QQQ",
-#   cik: "1067839",
-#   cusip: "46090E103 73935A104 631100104",
-#   exchange: "NASDAQ",
-#   isDelisted: false,
-#   category: "ETF",
-#   sector: "",
-#   industry: "",
-#   sic: "",
-#   sicSector: "",
-#   sicIndustry: "",
-#   famaSector: "",
-#   famaIndustry: "",
-#   currency: "USD",
-#   location: "Illinois; U.S.A",
-#   api_id: "7ed37b31dd7157289bac8114b3a9f788"
-# })
-
 Stock.create!({
   name: "JPMORGAN CHASE & CO",
   ticker: "JPM",
@@ -91,6 +69,46 @@ Stock.create!({
   currency: "USD",
   location: "New York; U.S.A",
   api_id: "9b2b5dd6bb56471237e8d985863c5a5d"
+})
+
+Stock.create!({
+  name: "SPDR® S&P 500",
+  ticker: "SPY",
+  cik: "",
+  cusip: "",
+  exchange: "",
+  isDelisted: false,
+  category: "",
+  sector: "Index",
+  industry: "",
+  sic: "",
+  sicSector: "",
+  sicIndustry: "",
+  famaSector: "",
+  famaIndustry: "",
+  currency: "",
+  location: "",
+  api_id: ""
+})
+
+Stock.create!({
+  name: "Vanguard S&P 500 ETF",
+  ticker: "VOO",
+  cik: "",
+  cusip: "",
+  exchange: "",
+  isDelisted: false,
+  category: "",
+  sector: "Index",
+  industry: "",
+  sic: "",
+  sicSector: "",
+  sicIndustry: "",
+  famaSector: "",
+  famaIndustry: "",
+  currency: "",
+  location: "",
+  api_id: ""
 })
 
 Stock.create!({
@@ -113,30 +131,184 @@ Stock.create!({
   api_id: "0f08a6a6742dc4148badfef6977406cf"
 })
 
-Portfolio.create!(name: "My portfolio 1", user_id: 1)
-Portfolio.create!(name: "My portfolio 2", user_id: 1)
+Stock.create!({
+  name: "Goldman Sachs Group Inc",
+  ticker: "GS",
+  cik: "",
+  cusip: "",
+  exchange: "",
+  isDelisted: false,
+  category: "",
+  sector: "Financial Services",
+  industry: "",
+  sic: "",
+  sicSector: "",
+  sicIndustry: "",
+  famaSector: "",
+  famaIndustry: "",
+  currency: "",
+  location: "",
+  api_id: ""
+})
 
-Portfolio.create!(name: "My portfolio 1", user_id: 2)
-Portfolio.create!(name: "My portfolio 2", user_id: 2)
+Stock.create!({
+  name: "Procter & Gamble Company",
+  ticker: "PG",
+  cik: "",
+  cusip: "",
+  exchange: "",
+  isDelisted: false,
+  category: "",
+  sector: "Consumer",
+  industry: "",
+  sic: "",
+  sicSector: "",
+  sicIndustry: "",
+  famaSector: "",
+  famaIndustry: "",
+  currency: "",
+  location: "",
+  api_id: ""
+})
 
-Portfolio.create!(name: "My portfolio 1", user_id: 3)
-Portfolio.create!(name: "My portfolio 2", user_id: 3)
+Stock.create!({
+  name: "NVIDIA Corporation",
+  ticker: "NVDA",
+  cik: "",
+  cusip: "",
+  exchange: "",
+  isDelisted: false,
+  category: "",
+  sector: "Technology",
+  industry: "",
+  sic: "",
+  sicSector: "",
+  sicIndustry: "",
+  famaSector: "",
+  famaIndustry: "",
+  currency: "",
+  location: "",
+  api_id: ""
+})
 
-Portfolio.create!(name: "My portfolio 1", user_id: 4)
-Portfolio.create!(name: "My portfolio 2", user_id: 4)
+Stock.create!({
+  name: "Alphabet Inc Class A",
+  ticker: "GOOGL",
+  cik: "",
+  cusip: "",
+  exchange: "",
+  isDelisted: false,
+  category: "",
+  sector: "Technology",
+  industry: "",
+  sic: "",
+  sicSector: "",
+  sicIndustry: "",
+  famaSector: "",
+  famaIndustry: "",
+  currency: "",
+  location: "",
+  api_id: ""
+})
+
+Stock.create!({
+  name: "Nike Inc",
+  ticker: "NKE",
+  cik: "",
+  cusip: "",
+  exchange: "",
+  isDelisted: false,
+  category: "",
+  sector: "Consumer",
+  industry: "",
+  sic: "",
+  sicSector: "",
+  sicIndustry: "",
+  famaSector: "",
+  famaIndustry: "",
+  currency: "",
+  location: "",
+  api_id: ""
+})
+
+
+
+Stock.create!({
+  name: "iShares MSCI China ETF",
+  ticker: "MCHI",
+  cik: "",
+  cusip: "",
+  exchange: "",
+  isDelisted: false,
+  category: "",
+  sector: "Index",
+  industry: "",
+  sic: "",
+  sicSector: "",
+  sicIndustry: "",
+  famaSector: "",
+  famaIndustry: "",
+  currency: "",
+  location: "",
+  api_id: ""
+})
+
+Stock.create!({
+  name: "Johnson & Johnson",
+  ticker: "JNJ",
+  cik: "",
+  cusip: "",
+  exchange: "",
+  isDelisted: false,
+  category: "",
+  sector: "Healthcare",
+  industry: "",
+  sic: "",
+  sicSector: "",
+  sicIndustry: "",
+  famaSector: "",
+  famaIndustry: "",
+  currency: "",
+  location: "",
+  api_id: ""
+})
+
+
+
+Stock.create!({
+  name: "iShares Core MSCI Europe ETF",
+  ticker: "IEUR",
+  cik: "",
+  cusip: "",
+  exchange: "",
+  isDelisted: false,
+  category: "",
+  sector: "Index",
+  industry: "",
+  sic: "",
+  sicSector: "",
+  sicIndustry: "",
+  famaSector: "",
+  famaIndustry: "",
+  currency: "",
+  location: "",
+  api_id: ""
+})
+
+Portfolio.create!(name: "My favourite stocks", user_id: 1)
+Portfolio.create!(name: "Indices and ETFs", user_id: 1)
 
 PortfolioStock.create!(portfolio_id: 1, stock_id: 1)
 PortfolioStock.create!(portfolio_id: 1, stock_id: 2)
-PortfolioStock.create!(portfolio_id: 1, stock_id: 4)
-
-PortfolioStock.create!(portfolio_id: 3, stock_id: 1)
-PortfolioStock.create!(portfolio_id: 3, stock_id: 2)
-PortfolioStock.create!(portfolio_id: 3, stock_id: 4)
-
-PortfolioStock.create!(portfolio_id: 5, stock_id: 1)
-PortfolioStock.create!(portfolio_id: 5, stock_id: 2)
-PortfolioStock.create!(portfolio_id: 5, stock_id: 4)
-
-PortfolioStock.create!(portfolio_id: 7, stock_id: 1)
-PortfolioStock.create!(portfolio_id: 7, stock_id: 2)
-PortfolioStock.create!(portfolio_id: 7, stock_id: 4)
+PortfolioStock.create!(portfolio_id: 1, stock_id: 3)
+PortfolioStock.create!(portfolio_id: 1, stock_id: 6)
+PortfolioStock.create!(portfolio_id: 1, stock_id: 7)
+PortfolioStock.create!(portfolio_id: 1, stock_id: 8)
+PortfolioStock.create!(portfolio_id: 1, stock_id: 9)
+PortfolioStock.create!(portfolio_id: 1, stock_id: 10)
+PortfolioStock.create!(portfolio_id: 1, stock_id: 11)
+PortfolioStock.create!(portfolio_id: 1, stock_id: 13)
+PortfolioStock.create!(portfolio_id: 2, stock_id: 4)
+PortfolioStock.create!(portfolio_id: 2, stock_id: 5)
+PortfolioStock.create!(portfolio_id: 2, stock_id: 12)
+PortfolioStock.create!(portfolio_id: 2, stock_id: 14)
