@@ -13,3 +13,4 @@ initCursor()
 // document.addEventListener("turbo:load", () => {
   //   initAlgolia()
   // })
+
