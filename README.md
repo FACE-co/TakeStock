@@ -1,6 +1,6 @@
 <h2>This is TakeStock! Proudly brought to you by Farah, Ambery, Casey and Elliott (FACE-co)</h2>
 
-<h2>Project Website</h2>
+<h3>Project Website</h3>
 https://www.takestock.dev
 
 <p>Please note: Due to API call limits, currently we require a user login to view the stocks!</p>
