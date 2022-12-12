@@ -6,7 +6,6 @@
 <li>Front-end: HTML, SCSS, Javascript and Tailwind CSS</li>
 <li>Back-end: Ruby on Rails, RESTful APIs</li>
 <li>Hosted on: Heroku</li>
-<li>Cloud-Based Services used: AWS</li>
 <li>Workflow: Trello</li>
 <li>Design & Development: Figma</li>
 </ul>
@@ -20,7 +19,7 @@
 <p>https://www.linkedin.com/in/amberyharris/ </p>
 <p>https://github.com/the-ham </p>
 
-<strong> Casey Qingyun Dai - </strong>
+<strong> Casey Dai - </strong>
 <p>https://www.linkedin.com/in/casey-qingyun-dai/ </p>
 <p>https://github.com/CaaaseyD </p>
 
