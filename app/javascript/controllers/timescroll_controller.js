@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 // Connects to data-controller="timescroll"
 const NEWS_API_KEY = "0aed0a55fa8b4bd08d5896247adb469f"
 export default class extends Controller {
-  static targets = ["time", "value", "valueshow", "news", "tickername", "twitterpage"]
+  static targets = ["time", "value", "valueshow", "news", "twitterpage"]
 
   connect() {
   };
@@ -28,44 +28,6 @@ export default class extends Controller {
       return dateToday.toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"});
     }
 
-    function replace(data){
-      let array = data["articles"]
-      let top7 = array.slice(0, 7)
-      let replacecontent = ''
-
-      top7.forEach(a => {
-        let newsdate = new Date(Date.parse(a["publishedAt"]))
-        replacecontent = replacecontent +
-        `<div class="font-serif">
-          <div class="my-4 p-4 border rounded-lg border-slate-300 hover:bg-gray-100 hover:cursor-pointer group" onclick="window.location='<%= a['url'] %>'">
-            <div class="flex items-center space-x-4">
-                <div class="flex-shrink-0">
-                  <img class="object-cover h-20 w-20 rounded-xl" src="${a["urlToImage"]}" alt="news" >
-                </div>
-                <div class="flex flex-col h-20 justify-between">
-                  <div>
-                    <a href="${a["url"]}" target="_blank">
-                      <p class="text-sm font-medium text-gray-900"
-                      style="display: -webkit-box; -webkit-box-orient: vertical;
-                      -webkit-line-clamp: 3; overflow: hidden;">
-                        ${a["title"]}
-                      </p>
-                    </a>
-                  </div>
-                  <div>
-                    <p class="text-sm text-gray-400 truncate">
-                      ${newsdate.toUTCString()}
-                    </p>
-                  </div>
-                </div>
-            </div>
-          </div>
-        </div>`
-
-      });
-     return replacecontent
-    }
-
     let datevalue = this.timeTarget.value
     if(datevalue  === 6){
       this.valueTarget.innerHTML = new Date().toISOString().slice(0, 10);
@@ -76,7 +38,6 @@ export default class extends Controller {
     }
 
     let enddate = this.valueTarget.innerHTML
-    let ticker = this.tickernameTarget.innerHTML
 
     //GET tweeter refresh due to timescroll change
     let current_url = new URL(document.URL);
@@ -89,12 +50,50 @@ export default class extends Controller {
     turboFrame.src = stock_tweets_url
 
     //GET news change due to timescroll change
-    let url = `https://newsapi.org/v2/everything?q=${ticker}&from=${enddate}&to=${enddate}&sortBy=popularity&apiKey=${NEWS_API_KEY}`
-    fetch(url)
-      .then(response => response.json())
-      .then((data) => {
-        this.newsTarget.innerHTML = replace(data);
-      })
+    const news_url = window.location.href + `/news`
+    let stock_news_url = `${news_url}?enddate=${enddate}`;
+    let newsTurbo = document.querySelector('#news_stock')
+    newsTurbo.src = stock_news_url
   }
 
 }
+
+
+
+// function replace(data){
+//   let array = data["articles"]
+//   let top7 = array.slice(0, 7)
+//   let replacecontent = ''
+
+//   top7.forEach(a => {
+//     let newsdate = new Date(Date.parse(a["publishedAt"]))
+//     replacecontent = replacecontent +
+//     `<div class="font-serif">
+//       <div class="my-4 p-4 border rounded-lg border-slate-300 hover:bg-gray-100 hover:cursor-pointer group" onclick="window.location='<%= a['url'] %>'">
+//         <div class="flex items-center space-x-4">
+//             <div class="flex-shrink-0">
+//               <img class="object-cover h-20 w-20 rounded-xl" src="${a["urlToImage"]}" alt="news" >
+//             </div>
+//             <div class="flex flex-col h-20 justify-between">
+//               <div>
+//                 <a href="${a["url"]}" target="_blank">
+//                   <p class="text-sm font-medium text-gray-900"
+//                   style="display: -webkit-box; -webkit-box-orient: vertical;
+//                   -webkit-line-clamp: 3; overflow: hidden;">
+//                     ${a["title"]}
+//                   </p>
+//                 </a>
+//               </div>
+//               <div>
+//                 <p class="text-sm text-gray-400 truncate">
+//                   ${newsdate.toUTCString()}
+//                 </p>
+//               </div>
+//             </div>
+//         </div>
+//       </div>
+//     </div>`
+
+//   });
+//  return replacecontent
+// }

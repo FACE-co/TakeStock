@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       get :trending
     end
     resources :tweets, only: [:index]
+    resources :news, only: [:index]
   end
 
   # only need id of portfolio_stock to destroy (So we don't nest this route)
