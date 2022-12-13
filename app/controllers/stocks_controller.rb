@@ -5,8 +5,6 @@ class StocksController < ApplicationController
     @portfolios = Portfolio.where(user_id: current_user.id) if current_user.present?
     @stock = Stock.friendly.find(params[:id])
     @new_stock = Stock.new
-
-    @news_hash = news(@stock)
     @basic_info = @stock.basic_info_no_alphavantage
 
     @reddit_articles = RedditSearch.call(@stock.ticker)
@@ -70,14 +68,5 @@ class StocksController < ApplicationController
         return stock
       end
     end
-  end
-
-  # /stock_news
-  def news(stock)
-    query = "https://newsapi.org/v2/everything?q=#{stock.ticker}&from=#{Time.now.strftime('%Y-%m-%d')}&to=#{Time.now.strftime('%Y-%m-%d')}&sortBy=popularity&apiKey=#{ENV['NEWS_API_KEY']}"
-    # query = "https://newsapi.org/v2/everything?q=#{stock.ticker}&from=#{enddate}&to=#{enddate}&sortBy=popularity&apiKey=#{ENV['NEWS_API_KEY']}"
-    stock_news = URI.open(query).read
-    news_hash = JSON.parse(stock_news)
-    return news_hash
   end
 end
