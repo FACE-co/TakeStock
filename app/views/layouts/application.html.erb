@@ -34,21 +34,22 @@
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
     </script>
   </head>
-  <body>
-  <div>
-    <%= render "shared/flashes" %>
-  </div>
-  <%# <body data-algolia-public-key="<%= ENV["ALGOLIA_FRONT_END_ID"] %>
-    <%# Overall Container Styling for all content %>
-    <div class="flex flex-col h-screen justify-between">
-      <%# Renders Body %>
-      <main class="mb-auto"><%= yield %></main>
-      <%# Render Footer %>
-      <footer class="mt-12"><%= render "shared/footer" %></footer>
+  <body data-news-api-public-key="<%= ENV["NEWS_API_KEY"] %>">
+    <div>
+      <%= render "shared/flashes" %>
     </div>
-    <div class="cursor"></div>
-    <div class="cursor2"></div>
-    <%# Custom Confirm - Generates Modal %>
-    <%= render "shared/confirm_modals" %>
-  </body>
+      <%# Overall Container Styling for all content %>
+      <div class="flex flex-col h-screen justify-between">
+        <%# Renders Body %>
+        <main class="mb-auto"><%= yield %></main>
+        <%# Render Footer %>
+        <footer class="mt-12"><%= render "shared/footer" %></footer>
+      </div>
+      <div class="cursor"></div>
+      <div class="cursor2"></div>
+      <%# Custom Confirm - Generates Modal %>
+      <%= render "shared/confirm_modals" %>
+    </body>
 </html>
+
+  <%# <body data-algolia-public-key="ENV["ALGOLIA_FRONT_END_ID"] %>
