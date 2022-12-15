@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :show ]
+  skip_before_action :authenticate_user!, only: [ :show, :about ]
 
   def show
     @portfolios = Portfolio.where(user: current_user).order(:created_at)

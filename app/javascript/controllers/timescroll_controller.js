@@ -1,6 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 // Connects to data-controller="timescroll"
-const NEWS_API_KEY = "0aed0a55fa8b4bd08d5896247adb469f"
+const NEWS_API_KEY = document.body.dataset.newsApiPublicKey
+// const NEWS_API_KEY = "0aed0a55fa8b4bd08d5896247adb469f"
 export default class extends Controller {
   static targets = ["time", "value", "valueshow", "news", "twitterpage"]
 
