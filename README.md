@@ -1,6 +1,4 @@
 <h2>This is TakeStock! Proudly brought to you by Farah, Ambery, Casey and Elliott (FACE-co)</h2>
-<h3><strong>This repo is my personal version of TakeStock, I will be using this fork to explore some further advancements and tweaks so that they do not affect the production version of the app.</strong></h3>
-
 
 <h3>Project Website</h3>
 https://www.takestock.dev
