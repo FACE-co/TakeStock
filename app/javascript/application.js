@@ -2,9 +2,9 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import "bootstrap"
-import { initCursor } from "./custom/custom_cursor"
+// import { initCursor } from "./custom/custom_cursor"
 
-initCursor()
+// initCursor()
 
 
 
@@ -13,4 +13,3 @@ initCursor()
 // document.addEventListener("turbo:load", () => {
   //   initAlgolia()
   // })
-
