@@ -3,10 +3,13 @@
 <h3>Project Website</h3>
 https://www.takestock.dev
 
-<p>Please note: Due to API call limits, currently we require a user login to view the stocks!</p>
-<p>Feel free to use<p>
-<p>User: user@takestock.com</p>
-<p>Password: password </p>
+<p>Please note: Our API keys have expired and we need the project hosted elsewhere, feel free to run this in your local with</p>
+
+```
+  nvm use
+  yarn
+  yarn bin/dev
+```
 
 <h3>This app has been completed with the following:</h3>
 <ul>
